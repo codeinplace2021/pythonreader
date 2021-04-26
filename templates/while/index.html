@@ -1,0 +1,152 @@
+%rebase templates/parts/chapter.html
+
+
+        <h1>While Loops</h1>
+        <hr/>
+
+<p>A loop takes a few lines of code, and runs them again and again.
+Most algorithms have a lines of code that need to be run thousands or millions of times, and loops are the way to do this.
+
+
+<p>The while-loop uses a boolean test expression to control the run of the body lines. The for-loop is great of looping over a collection. The while-loop is more general, providing enough control for any sort of looping, without requiring a collection to loop over.
+
+
+<h2>While Loop Syntax</h2>
+
+<p>The while-loop syntax has 4 parts: while, boolean test expression, colon, indented body lines:
+
+<pre>
+while <i>test</i>:
+    <i>indented body lines</i>
+
+</pre>
+
+<p><b>While Operation:</b> Check the boolean test expression, if it is True, run all the "body" lines inside the loop from top to bottom. Then loop back to the top, check the test again, and so on. When the test is False, exit the loop, running continues on the first line after the body lines.
+
+<p>Here is a while loop to print the numbers 0, 1, 2, ... 9 (there are easier ways to do this, but here we're just trying to show the parts of the loop).
+
+<!-- how show code vs output, could have >>> .. something simple here maybe right choice -->
+
+<pre>
+i = 0
+while i < 10:
+    print(i)
+    i = i + 1
+print('All done')
+
+0
+1
+2
+3
+4
+5
+6
+7
+8
+9
+All done
+</pre>
+
+<p>Very often the last line of the while body has an "increment" role, such as the <code>i = i + 1</code> line above. The test at the top of the loop checks that variable. It's important that on every iteration, the loop advances that variable one step towards the ultimate end of the loop.
+
+
+<h2>While Zero Iterations OK</h2>
+
+<p>Just as with the for-loop, a while-loop can iterate zero times. That happens if the boolean test is False the very fist time it is checked, like this:
+
+<pre>
+i = 99
+while i < 10:
+    print(i)
+    i += 1
+print('All done')
+
+# (zero iterations - no numbers print at all)
+All done
+</pre>
+
+<a name=infinite>
+<h2>Infinite Loop Bug</h2>
+
+<p>With a while-loop, it's possible to accidentally write a loop that never exits. In that case, the while just loops and loops but never makes the test False to exit. As the loop runs and runs, the fans on your laptop may spin up as CPU heats up with this high number of lines running without pause.
+
+<p>Here's an infinite loop example caused by a typical looking bug &mdash; the variable <code>i</code> accidentally stays at the value 1 and the loop just goes forever.
+
+<pre>
+i = 0
+while i < 10:   # BUG infinite loop
+    print(i)
+    i = i * 1
+print('All done')
+</pre>
+
+<h2>Don't Forget the Last "Increment" Line</h2>
+
+<p>Another easy infinite loop bug is forgetting the <code>i = i + 1</code> line entirely, so the variable never advances and the loop never exits. Since the more commonly used for-loop automates the increment step for us, we don't quite have the muscle memory to remember it when writing a while-loop.
+
+
+<h2>Do Not Write == True</h2>
+
+<p>Suppose there is some function <code>foo()</code> and you want a while loop to run so long as it returns True. Do not write this
+
+<pre>
+while foo() == True:   # NO not this way
+    ...
+</pre>
+
+<p>It's better style to write it the following way, letting the while itself evaluate the True/False of the test:
+
+<pre>
+while foo():           # YES this way
+    ...
+</pre>
+<!-- could link to explanation in #boolean -->
+
+<a name=break>
+<h2>Loop Break</h2>
+
+<p>The <code>break</code> directive in a loop exits the loop immediately. Loops have their standard way of exiting. The <code>break</code> gives an extra option to exit the loop if some special condition occurs. Usually the break is put inside an if that checks for some condition.
+
+<p>This example loops over a list of numbers, printing each one in the usual way. However, the if/break structure checks each number after printing, and breaks out of the loop if the number is 6.
+
+<pre>
+nums = [12, 1, 6, 13, 6, 0]
+for num in nums:
+    if num == 6:
+        break  # exit loop immediately
+    print(num)
+print('All done')
+
+12
+1
+All done
+</pre>
+
+<p>Most loops do not use break. Break is an option for certain cases where the programmer wants to be able to exit the loop earlier than it would normally.
+
+
+<h2>Loop Continue</h2>
+
+<p>The <code>continue</code> directive directs the loop run to go back to the top of the loop immediately to start the next iteration. In effect, it skips the current iteration. The continue directive is very rarely used. We mention it here for completeness.
+
+<p>Here is the above example changed to use continue. In effect it skips over iterations where num is 6.
+
+<pre>
+nums = [12, 1, 6, 13, 6, 0]
+for num in nums:
+    if num == 6:
+        continue  # jump to top of loop
+    print(num)
+print('All done')
+
+12
+1
+13
+0
+All done
+</pre>
+
+
+<hr/>
+
+

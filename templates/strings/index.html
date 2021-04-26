@@ -1,0 +1,511 @@
+%rebase templates/parts/chapter.html
+
+
+<h1>Python Strings</h1>
+<hr/>
+
+<p>A Python string, like <code>'Hello'</code> stores text as a sequence of individual characters. Text is central to many compautions - urls, chat messages, the underlying HTML code that makes up web pages.
+
+<p>Python strings are written between single quote marks like <code>'Hello'</code> or alternately they can be written in double quote marks like <code>"There"</code>.
+
+
+<pre>
+a = 'Hello'
+b = "isn't"
+</pre>
+
+<p>Each character in a string is drawn from the <a href='https://en.wikipedia.org/wiki/Unicode'>unicode</a> character set, which includes the "characters" or pretty much every language on earth, plus many emojis. See the <a href=#unicode>unicode section</a> below for more information.
+
+
+
+<!--
+Maybe more of a lecture-ism
+<h2>'123' vs. 123</h2>
+
+<p>In Python code the text of a string is marked by quote marks on either side, like <code>'Python'</code>. In contrast, an int value is just typed out as digits with no special extra characters required, like <code>123</code>.
+
+<p>Q: So what is this value: <code>'1234'</code>
+
+<p>That is a string, as we can see from the quote marks. It's a string length 4 made of the four typed characters '1' '2' '3' and '4'.
+-->
+
+<h2>String len()</h2>
+
+<p>The len() function returns the length of a string, the number of chars in it. It is valid to have a string of zero characters, written just as <code>''</code>, called the "empty string". The length of the empty string is 0. The len() function in Python is omnipresent - it's used to retrieve the length of <i>every</i> data type, with string just a first example.
+
+<pre>
+>>> s = 'Python'
+>>> len(s)
+6
+>>> len('')   # empty string
+0
+</pre>
+
+<h2>Convert Between Int and String</h2>
+
+<p>The formal name of the string type is "str". The str() function serves to convert many values to a string form. Here is an example this code computes the str form of the number 123:
+
+<pre>
+>>> str(123)
+'123'
+</pre>
+
+<p>Looking carefully at the values, <code>123</code> is a number, while <code>'123'</code> is a string length-3, made of the three chars '1' '2' and '3'.
+
+<p>Going the other direction, the formal name of the integer type is "int", and the int() function takes in a value and tries to convert it to be an int value:
+
+<pre>
+>>> int('1234')
+1234
+>>> int('xx1234')   # fails due to extra chars
+ValueError: invalid literal for int() with base 10: 'xx1234'
+</pre>
+
+
+<h2>String Indexing [ ]</h2>
+
+<p>Chars are accessed with zero-based indexing with square brackets, so the first chars is index 0, the next index 1, and the last char is at index len-1. 
+
+<p><img src="{{pathToRoot}}img/pythonreader/strings/python-str-index.png" alt="string 'Python' shown with index numbers 0..5">
+
+<p>Accessing a too large index number is an error. Strings are immutable, so they cannot be changed once created. Code to compute a different string always creates a new string in memory to represent the result (e.g. + below), leaving the original strings unchanged.
+
+<pre>
+>>> s = 'Python'
+>>> len(s)
+6
+>>> s[0]
+'P'
+>>> s[1]
+'y'
+>>> s[5]
+'n'
+>>> s[6]
+IndexError: string index out of range
+>>> s[0] = 'x'   # no, string is immutable
+TypeError: 'str' object does not support item assignment
+</pre>
+
+<h2>String +</h2>
+
+<p>The <code>+</code> operator combines (aka "concatenates") two strings to make a bigger string. This creates new strings to represent the result, leaving the original strings unchanged. (See the <a href=#immutable>working with immutable</a> below.)
+
+<pre>
+>>> s1 = 'Hello'
+>>> s2 = 'There'
+>>> s3 = s1 + ' ' + s2
+>>> s3
+'Hello There'
+>>> s1
+'Hello'
+</pre>
+
+<p>Concatenate + only works with 2 or more strings, not for example to concatenate a string and an int. Call the function str() function to make a string out of an int, then concatenation works.
+
+<pre>
+>>> 'score:' + 6
+TypeError: can only concatenate str (not "int") to str
+>>> 'score:' + str(6)
+'score:6'
+</pre>
+
+
+<a name=stringfn>
+<h2>String in</h2>
+
+<p>The <code>in</code> operator checks, True or False, if something appears anywhere in a string. In this and other string comparisons, characters much match exactly, so 'a' matches 'a', but does not match 'A'.(Mnemonic: this is the same word "in" as used in the for-loop.)
+
+<pre>
+>>> 'c' in 'abcd'
+True
+>>> 'c' in 'ABCD'
+False
+>>> 'aa'  in 'iiaaii'  # test string can be any length
+True
+>>> 'aaa' in 'iiaaii'
+False
+>>> '' in 'abcd'       # empty string in always True
+True
+</pre>
+
+<!--
+We have the basics, len(s), s[0]
+Here are the most useful Python string functions (mostly noun.verb form):
+-->
+
+<h2>Character Class Tests</h2>
+
+<p>The characters that make up a string can be divided into several categories or "character classes":
+
+<p><img src={{pathToRoot}}img/pythonreader/strings/python-charclass.png alt="alt: divide chars into alpha (lower/upper), digit, space, and misc leftovers">
+
+<p><b>alphabetic</b> chars - e.g. <code>'abcXYZ'</code> that make words. Alphabetic chars are further divided into upper and lowercase versions (the details depend on the particular unicode alphabet).
+
+<p><b>digit</b> chars - e.g. <code>'0' '1' .. '9'</code> to make numbers
+
+<p><b>space</b> chars - e.g. space <code>' '</code> newline <code>'\n'</code> and tab <code>'\t'</code>
+
+<p>Then there are all the other miscellaneous characters like <code>'$' '^' '<'</code> which are not alphabetic, digit, or space.
+
+<p>These test functions return True if all the chars in s are in the given class:
+
+<p><code>s.isalpha()</code> - True for alphabetic "word" characters like <code>'abcXYZ'</code> (applies to "word" characters in other unicode alphabets too like <code>'Σ'</code>)
+
+<p><code>s.isdigit()</code> - True if all chars in s are digits <code>'0..9'</code>
+
+<!-- not worth it!
+<p><code>s.isalnum()</code> - alphanumeric, just combines isalpha() and isdigit()
+-->
+
+<p><code>s.isspace()</code> - True for whitespace char, e.g. space, tab, newline
+
+<p><code>s.isupper(), s.islower()</code> - True for uppercase / lowercase alphabetic chars. False for other characters like <code>'9'</code> and <code>'$'</code> which do not have upper/lower versions.
+
+
+<pre>
+>>> 'a'.isalpha()
+True
+>>> '$'.isalpha()
+False
+>>> 'a'.islower()
+True
+>>> 'a'.isupper()
+False
+>>> s = '\u03A3'  # Unicode Sigma char
+>>> s
+'Σ'
+>>> s.isalpha()
+True
+>>> '6'.isdigit()
+True
+>>> 'a'.isdigit()
+False
+>>> '$'.islower()
+False
+>>> ' '.isspace()
+True
+>>> '\n'.isspace()
+True
+</pre>
+
+<p>Unicode aside: In the roman a-z alphabet, all alphabetic chars have upper/lower versions. In some alphabets, there are chars which are alphabetic, but which do not have upper/lower versions.
+
+
+<h2>Startswith EndsWith</h2>
+
+<p>These convenient functions return a boolean True/False depending on what appears at one end of a string. These are convenient when you need to check for something at an end, e.g. if a filename ends with '.html'.
+
+<p><code>s.startswith(x)</code>  - True if s start with string x
+
+<p><code>s.endswith(x)</code> - True if s ends with string x
+
+<pre>
+>>> 'Python'.startswith('Py')
+True
+>>> 'Python'.startswith('Px')
+False
+>>> 'resume.html'.endswith('.html')
+True
+</pre>
+
+
+<h2>String find()</h2>
+
+
+<p><code>s.find(x)</code> - searches s left to right, returns int index where string x appears, or -1 if not found. Use s.find() to compute the index where a substring first appears.
+
+<pre>
+>>> s = 'Python'
+>>> s.find('y')
+1
+>>> s.find('tho')
+2
+>>> s.find('xx')
+-1
+</pre>
+
+<p>There are some more rarely used variations of s.find(): <code>s.find(x, start_index)</code> - which begins the search at the given index instead of at 0; <code>s.rfind(x)</code> does the search right-to-left from the end of the string.
+
+
+<h2>Change Upper/Lower Case</h2>
+
+<p><code>s.lower()</code>  - returns a new version of s where each char is converted to its lowercase form, so <code>'A'</code> becomes <code>'a'</code>. Chars like <code>'$'</code> are unchanged. The original s is unchanged - a good example of strings being immutable. (See the <a href=#immutable>working with immutable</a> below.) Each unicode alphabet includes its own rules about upper/lower case.
+
+<p><code>s.upper()</code>  - returns an uppercase version of s
+
+<pre>
+>>> s = 'Python123'
+>>> s.lower()
+'python123'
+>>> s.upper()
+'PYTHON123'
+>>> s
+'Python123'
+</pre>
+
+<h2>Stripe Whitespace</h2>
+
+<p><code>s.strip()</code> - return a version of s with the whitespace characters from the very start and very end of the string all removed. Handy to clean up strings parsed out of a file.
+
+<pre>
+>>> '   hi there  \n'.strip() 
+'hi there'
+</pre>
+
+<h2>String Replace</h2>
+
+<p><code>s.replace(old, new)</code> - returns a version of s where all occurrences of <i>old</i> have been replaced by <i>new</i>. Does not pay attention to word boundaries, just replaces every instance of <i>old</i> in s. Replacing with the empty string effectively deletes the matching strings.
+
+<pre>
+>>> 'this is it'.replace('is', 'xxx')
+'thxxx xxx it'
+>>> 'this is it'.replace('is', '')
+'th  it'
+</pre>
+
+<a name=immutable>
+<h2>Working With Immutable <code>x = change(x)</code></h2>
+
+<p>Strings are "immutable", meaning the chars in a string never change. Instead of changing a string, code creates new strings.
+
+<p>Suppose we have a string, and want to change it to uppercase and add an exclamatin mark at its end, so <code>'Hello'</code> becomes <code>'HELLO!'</code>.
+
+<p>The following code looks reasonable but does not work
+
+<pre>
+>>> s = 'Hello'
+>>> s.upper()  # compute upper, but does not store it
+'HELLO'
+>>> s          # s is not changed
+'Hello'
+</pre>
+
+<p>The correct form computes the uppercase form, and also stores it back in the s variable, a sort of <code>x = change(x)</code> form.
+
+<pre>
+>>> s = 'Hello'
+>>> s = s.upper()  # compute upper, store in s
+>>> s = s + '!'    # add !, store in s
+>>> s              # s is the new, computed string
+'HELLO!'
+</pre>
+
+<a name=backslash>
+<h2>Backslash Special Chars</h2>
+
+<p>A backslash \ in a string "escapes" a special char we wish to include in the string, such as a quote or \n newline. Common backslash escapes:
+
+<pre>
+\'   # single quote
+\"   # double quote
+\\   # a backslash
+\n   # newline char
+</pre>
+
+<p>A string using \n:
+
+<pre>
+a = 'First line\nSecond line\nThird line\n'
+</pre>
+
+<p>Python strings can be written within triple ''' or """, in which case they can span multiple lines. This is useful for writing longer blocks of text.
+
+
+<pre>
+a = """First line
+Second line
+Third line
+"""
+</pre>
+
+
+
+<a name=format>
+<h2>String Format</h2>
+
+<p>The string .format() function is a handy way to paste values into a string. It uses the special marker <code>{}</code> within a string to mark where things go, like this:
+
+<pre>
+>>> 'Count: {}'.format(67)
+'Count: 67'
+>>> 'Count: {} and word: {}'.format(67, 'Yay')
+'Count: 67 and word: Yay'
+</pre>
+
+<p>The older approach would be to compute str(67) manually and use + to put the result string together. The str.format() function is a more convenient tool for that situation.
+
+<p>For floating point values, typically you do not wantn to print all 15 digits of a float value. The format marker <code>{:.4g}</code> means print at most 4 digits to the right of the decimal; "g" here is the general format, that works for float and int values as appropriate.
+
+<pre>
+>>> 2/3   # has lots of digits
+0.6666666666666666
+>>> 'val: {:.4g}'.format(2/3)
+'val: 0.6667'
+>>> 'val: {:.2g}'.format(2/3)
+'val: 0.67'
+>>> 'val: {:.2g}'.format(45)
+'val: 45'
+</pre>
+
+<p>There are many, many other options for format markers, but {:.4g} is a good one to know for the common situation of printing float values.
+
+<!-- njp - more detail on replace -->
+
+<a name=loops>
+<h2>String Loops</h2>
+
+<p>Standard i/range() loop goes through all index numbers for s:
+
+<pre>
+for i in range(len(s)):
+    # use s[i] in here
+</pre>
+
+
+<p>The "foreach" loop works on strings too, accessing each char.
+Unlike the above form, here you do not have access to the index of
+each char as it accessed.
+
+<pre>
+for char in s:
+    # use char in here
+</pre>
+
+<p><code>list('abc')</code> of a string yields a list <code>['a', 'b', 'c']</code> of its chars.
+
+
+<p>More details at official <a href='https://docs.python.org/3/library/stdtypes.html#textseq'>Python String Docs</a>
+
+
+<a name=slice>
+<h2>String Slices</h2>
+
+<img src={{pathToRoot}}img/pythonreader/strings/python-str-index.png alt="string 'Python' shown with index numbers 0..5">
+
+<p>Slice syntax is a powerful way to refer to sub-parts of a string instead of just 1 char. s[ <i>start</i> : <i>end</i> ] - returns a substring from s beginning at <i>start</i> index, running up to but not including <i>end</i> index. If the start index is omitted, starts from the beginning of the string. If the end index is omitted, runs through the end of the string. If the start index is equal to the end index, the slices is the empty string.
+
+
+
+<pre>
+>>> s = 'Python'
+>>> s[2:4]
+'th'
+>>> s[2:]
+'thon'
+>>> s[:5]
+'Pytho'
+>>> s[4:4]  # start = end: empty string
+''
+</pre>
+
+<p>If the end index is too large (out of bounds), the slice just runs through the end of the string. This is the a case where Python is permissive about wrong/out-of-bounds indexes. Similarly, if the start index is larger than the end index, the slice is just the empty string.
+
+<pre>
+>>> s = 'Python'
+>>> s[2:999]
+'thon'
+>>> s[3:2]  # zero chars
+''
+
+</pre>
+
+<p>Negative numbers also work within [ ] and slices: -1 is the rightmost char, -2 is the char to its left, and so on. This is convenient when you want to extract chars relative to their position from the end of the string.
+
+<pre>
+>>> s[-1]
+'n'
+>>> s[-2:]
+'on'
+</pre>
+
+<a name=split>
+<h2>String split()</h2>
+
+<p><code>str.split(',')</code> is a string function which divides a string up into a list of string pieces based on a "separator" parameter that separates the pieces:
+
+<pre>
+>>> 'a,b,c'.split(',')
+['a', 'b', 'c']
+>>> 'a:b:c'.split(':')
+['a', 'b', 'c']
+</pre>
+
+<p>A returned piece will be the empty string if we have two separators next to each other, e.g. the '::', or the separator is at the very start or end of the string:
+
+<pre>
+>>> ':a:b::c:'.split(':')
+['', 'a', 'b', '', 'c', '']
+</pre>
+
+<p>Special whitespace: split with no arguments at all splits on whitespace (space, tab, newline), and it groups multiple whitespace together. So it's a simple way to break a line of text into 'words' based on whitespace (note how the punctuation is lumped onto each 'word'):
+
+<pre>
+>>> 'Hello there,     he said.'.split()
+['Hello', 'there,', 'he', 'said.']
+</pre>
+
+<p>File strategy: a common pattern is to use 'for line in f' to loop over the lines in a file and 'line.split()' to break each line up into pieces. Some text file formats have a format that split()
+works on easily.
+
+<a name=join>
+<h2>String Join</h2>
+
+<p><code>','.join(lst)</code> is a string function which is approximately the opposite of split: take a list of strings parameter and forms it into a big string, using the string as a separator:
+
+<pre>
+>>> ','.join(['a', 'b', 'c'])
+'a,b,c'
+</pre>
+
+<p>The elements in the list should be strings, and join just puts them all together to make
+one big string. Note that split() and join() are both noun.verb on string. The list is just passed in as a parameter.
+
+<a name=unicode>
+<h2>Unicode Characters</h2>
+
+<p>In the early days of computers, the ASCII character encoding was very common, encoding the roman a-z alphabet. ASCII is simple, and requires just 1 byte to store 1 character, but it has no ability to represent characters of other languages.
+
+<p>Each character in a Python string is a <a href='https://en.wikipedia.org/wiki/Unicode'>unicode</a> character, so characters for all languages are supported. Also, many emoji have been added to unicode as a sort of character.
+
+<p>Every unicode character is defined by a unicode "code point" which is basically a big int value that uniquely identifies that character.  Unicode characters can be written using the "hex" version of their code point, e.g. "03A3" is the "Sigma" char Σ, and "2665" is the heart emoji char ♥.
+
+<p>Hexadecimal aside: hexadecimal is a way of writing an int in base-16 using the digits 0-9 plus the letters A-F, like this: 7F9A or 7f9a. Two hex digits together like 9A or FF represent the value stored in one byte, so hex is a traditional easy way to write out the value of a byte. When you look up an emoji on the web, typically you will see the code point written out in hex, like 1F644, the eye-roll emoji 🙄.  
+
+<p>You can write a unicode char out in a Python string with a \u followed by the 4 hex digits of its code point. Notice how each unicode char is just one more character in the string:
+
+<pre>
+>>> s = 'hi \u03A3'
+>>> s
+'hi Σ'
+>>> len(s)
+4
+>>> s[0]
+'h'
+>>> s[3]
+'Σ'
+>>>
+>>> s = '\u03A9'  # upper case omega
+>>> s
+'Ω'
+>>> s.lower()     # compute lowercase
+'ω'
+>>> s.isalpha()   # isalpha() knows about unicode
+True
+>>>
+>>> 'I \u2665'
+'I ♥'
+</pre>
+
+<p>For a code point with more than 4-hex-digits, use \U (uppercase U) followed by 8 digits with leading 0's as needed, like the fire emoji 1F525, and the inevitable 1F4A9.
+
+<pre>
+>>> 'the place is on \U0001F525'
+'the place is on 🔥'
+>>> s = 'oh \U0001F4A9'
+>>> len(s)
+4
+</pre>
+
+<p>Not all computers have the ability to display all unicode chars, so the display of a string may fall back to something like \x0001F489 - telling you the hex digits for the char, even though it can't be drawn on screen.
+
+

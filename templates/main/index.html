@@ -1,0 +1,178 @@
+<!doctype html>
+
+<html>
+
+<head>
+
+  %include templates/parts/head.html
+
+</head>
+
+<body>
+  
+  <div class="container">
+
+<script>
+// arg is button followed by div which it does show/hide alternately
+function showHide(button) {
+  if (button.nextElementSibling.style.display == "block") {
+    button.nextElementSibling.style.display = "none";
+  } else {
+    button.nextElementSibling.style.display = "block";
+  }
+}
+</script>
+
+<h1>Python main() - Command Line Arguments</h1>
+
+<p>Today's example is the <code>affirm.py</code> program which you can download if you want to try it yourself. Some code is left to be done as an exercise in the file <code>affirm-exercise.py</code>.
+
+<p><a href=affirm.zip>affirm.zip</a>
+
+<h2>Command Line Argument -affirm <i>name</i></h2>
+
+<p>The <code>affirm.py</code> program has a few options to say nice things about a name. Here are three runs of the program in the command line. What the user types is in bold, followed by the program's printed output.
+
+<pre>
+$ <b>python3 affirm.py -affirm Lisa</b>
+Everything is coming up Lisa
+$ <b>python3 affirm.py -affirm Bart</b>
+Looking good Bart
+$ <b>python3 affirm.py -affirm Maggie</b>
+Today is the day for Maggie
+$
+</pre>
+
+<p>Command line arguments, or "args", are extra information typed on the line when a program is run. The system is deceptively simple - the command line arguments are the words typed after the <code>program.py</code> on the command line, separated from each other by spaces. So in the first in this command line:
+
+<pre>
+$ <b>python3 affirm.py -affirm Lisa</b>
+</pre>
+
+<p>The words <code>-affirm</code> and <code>Lisa</code> are the 2 command line args.
+
+<p>
+<img src={{pathToRoot}}img/pythonreader/main/python-args.png alt="alt: -affirm and Lisa are the args">
+
+<p>Command line arguments like <code>-affirm</code> often select a mode or option for the run of the program, and these options typically begin with a dash as we have here.
+
+<h2>-hello <i>name</i></h2>
+
+<p>With the <code>-hello</code> option, the program prints a plain hello like this:
+
+<pre>
+$ <b>python3 affirm.py -hello Bart</b>
+Hello Bart
+</pre>
+
+<h2>-n <i>num</i> <i>name</i></h2>
+
+<p>With the <code>-n</code> option, the program prints the name a number of times, like this.
+
+<pre>
+$ <b>python3 affirm.py -n 10 Maggie</b>
+Maggie Maggie Maggie Maggie Maggie Maggie Maggie Maggie Maggie Maggie 
+$ <b>python3 affirm.py -n 100 Maggie</b>
+Maggie Maggie Maggie Maggie Maggie Maggie Maggie Maggie Maggie Maggie Maggie Maggie Maggie Maggie Maggie Maggie Maggie Maggie Maggie Maggie Maggie Maggie Maggie Maggie Maggie Maggie Maggie Maggie Maggie Maggie Maggie Maggie Maggie Maggie Maggie Maggie Maggie Maggie Maggie Maggie Maggie Maggie Maggie Maggie Maggie Maggie Maggie Maggie Maggie Maggie Maggie Maggie Maggie Maggie Maggie Maggie Maggie Maggie Maggie Maggie Maggie Maggie Maggie Maggie Maggie Maggie Maggie Maggie Maggie Maggie Maggie Maggie Maggie Maggie Maggie Maggie Maggie Maggie Maggie Maggie Maggie Maggie Maggie Maggie Maggie Maggie Maggie Maggie Maggie Maggie Maggie Maggie Maggie Maggie Maggie Maggie Maggie Maggie Maggie Maggie 
+</pre>
+
+<p>In the examples above, the number of command line arguments is three:  -n, number, name
+
+
+<h2>Command Line Args Python Code</h2>
+
+<pre>
+def main()
+    args = sys.argv[1:]
+    # args is a list of the command line args
+</pre>
+
+<p>The main() above begins with a CS106A standard line <code>args = sys.argv[1:]</code> which sets up a list named <code>args</code> to contain the command line arg strings. This line works and you can always use it. If you want to know what "sys.argv" is about, see the end of this document.
+
+<p>The <code>args</code> list contains one string for each command line argument.
+
+<p>1. For this command line:
+
+<pre>
+$ <b>python3 affirm.py -affirm Lisa</b>
+</pre>
+
+<p>args is the list <code>['-affirm', 'Lisa']</code>
+
+
+<p>2. For this command line
+
+<pre>
+$ <b>python3 affirm.py -n 10 Maggie</b>
+</pre>
+
+<p>args is the list <code>['-n', '10', 'Maggie']</code>
+
+<p>However many command line arguments the user typed in, they will populate the <code>args</code> list. Note that the args in the list are always <b>strings</b>.
+
+
+<h2>How To Write main()</h2>
+
+<p>The code in main() can use a simple series of if-statements to detect the different options, such as <code>-affirm</code>, and run the appropriate code for each option.
+
+<p>For example, consider a run of the program with the <code>-affirm</code> option like this:
+
+<pre>
+$ <b>python3 affirm.py -affirm Lisa</b>
+</pre>
+
+<p>Here is the if-statement in main() which detects this command line option and runs the code for it. The code checks if the number of args is 2, and the first arg (i.e. <code>args[0]</code>) is <code>-affirm</code>. If so, it prints the name which is in <code>args[1]</code> with a random affirmation. 
+
+<pre>
+def main()
+    args = sys.argv[1:]
+    
+    # 1. Check for the arg pattern:
+    #   python3 affirm.py -affirm Bart
+    #   e.g. args[0] is '-affirm' and args[1] is 'Bart'
+    if len(args) == 2 and args[0] == '-affirm':
+        # Select random nice phrase
+        affirmation = random.choice(AFFIRMATIONS)
+        # Print with the name in args[1]
+        print(affirmation, args[1])
+
+    # .. later if statements for -hello and -n ...
+</pre>
+
+<p>Q: Why check if <code>args[0]</code> is equal to <code>'-affirm'</code>?
+
+<p>A: The <code>args</code> list holds the command line args. In this case we want to check if the first command line arg is the string <code>'-affirm'</code>, and <code>args[0]</code> is the first arg.
+
+
+<h2>main() String vs. int</h2>
+
+<p>Consider the use of the -n option
+
+<pre>
+<b>python3 affirm.py -n 10 Maggie</b>
+</pre>
+
+<p>The values in the args list are always <b>strings</b>. In this case args[0] is the string '-n' and args[1] is the string '100'. The code needs to convert the string '100' to the int value 100 using the int() function.
+
+<h2>Examples and Exercises</h2>
+
+<p>The file <code>affirm.py</code> has all three command line options working: -affirm, -hello, -n
+
+<p>You can run the program to see what it does, and look at the main() code as an example.
+
+<p>The file <code>affirm-exercise.py</code> is the same, but does not have the code for -hello and -n, so you can practice coding up those cases.
+
+<h2>What is up With sys.argv?</h2>
+
+<p>The module <code>sys</code> holds interfaces to the operating system, and in particular it contains a list with the unfortunate name <code>argv</code> which holds the command line arguments. However, due to a convention set down in about 1974, the argv list contains an extra string at index 0 which is the name of the script itself, e.g. 'affirm.py'. This extra string is unhelpful. Therefore we create the args list like this:
+
+<pre>
+def main()
+    args = sys.argv[1:]
+</pre>
+
+<p>We choose the more sensible name "args" to hold the command line args, and we use a <i>slice</i> to skip over the unhelpful string at index 0, thus creating a list that is exactly just the command line arguments.
+
+&nbsp;
+
+</div></body></html>

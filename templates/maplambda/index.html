@@ -1,0 +1,97 @@
+<!doctype html>
+
+<html>
+
+<head>
+
+  %include templates/parts/head.html
+
+</head>
+
+<body>
+  
+  <div class="container">
+
+<script>
+// arg is button followed by div which it does show/hide alternately
+function showHide(button) {
+  if (button.nextElementSibling.style.display == "block") {
+    button.nextElementSibling.style.display = "none";
+  } else {
+    button.nextElementSibling.style.display = "block";
+  }
+}
+</script>
+
+<h1>Map Lambda</h1>
+
+<!-- could talk about map vs. comprehensions, fine to use compr -->
+
+<p>Lambda - a lambda expression is a way of creating a little function inline, without all the syntax of a def. Here is a lambda which takes in a number and returns that value doubled.
+
+<pre>
+lambda n: n * 2
+</pre>
+
+<p>The code of the lambda is typically just 1-line expression without variables or if-statements, and does not use "return". Lambda is perfect where you have a short computation to write inline. For longer code,  def is better.
+
+<p>The map() function runs a lambda function over a list, building a list of the results. The lambda should have 1 parameter in and one result out. Choose a suitable name for the parameter (n, s, lst, ..) to help keep clear the types of the elements. The result of map() is an "iterable" map object which mostly works like a list, but it does not print. Therefore, the examples below wrap the map() output in list() for printing.
+
+<pre>
+>>> nums = [1, 2, 3, 4, 5, 6]
+>>> 
+>>> map(lambda n: 2 * n, nums)  # unhelpful printing
+&lt;map object at 0x10ce142e8>
+>>>
+>>> list(map(lambda n: 2 * n, nums))  # list() to get printing
+[2, 4, 6, 8, 10, 12]
+>>>
+>>> list(map(lambda n: n * -1, nums))
+[-1, -2, -3, -4, -5, -6]
+>>>
+>>> list(map(lambda n: 2 ** n, nums))
+[2, 4, 8, 16, 32, 64]
+>>>
+>>> strs = ['Summer', 'is', 'coming']
+>>> list(map(lambda s: s.lower() + '!', strs))
+['summer!', 'is!', 'coming!']
+</pre>
+
+<h2>Lambda Def Equivalence</h2>
+
+<p>Map is often used with lambda, but it works with a def too. With def come the advantages of multiple lines, loops, comments, tests and what have you. Here is the above double-n computation written as a def instead of a lambda:
+
+<pre>
+def double(n):
+    return n * 2
+
+>>> nums = [1, 2, 3, 4, 5, 6]
+>>> list(map(double, nums))    # use name of function "double"
+[2, 4, 6, 8, 10, 12]
+</pre>
+
+<p>Note that the function is referred to by name, "double", but without the customary parenthesis (). This is the rare case of referring to a function, but not calling it.
+
+
+<h2>Filter</h2>
+
+<p>As a companion to map(), the <code>filter</code> function takes a function and a list, and returns a subsetted list of the elements where the function returns true.
+
+<p>For example, given a list of strings, return a list of the strings where the length is 3 or more:
+
+<pre>
+>>> strs = ['apple', 'and', 'a', 'donut']
+>>>
+>>> list(filter(lambda s: len(s) > 3, strs))
+['apple', 'donut']
+</pre>
+
+<p>For example, given a list of numbers, filter to contain only the odd numbers (<code>n % 2</code> is the modulus remainder after dividing by 2. For an even number returns 0, for an odd number 1.)
+
+<pre>
+>>> nums = [5, 3, 6, 1, 7, 2]
+>>> list(filter(lambda n: n % 2 == 1, nums))
+[5, 3, 1, 7]
+</pre>
+
+</div></body></html>

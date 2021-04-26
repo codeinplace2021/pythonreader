@@ -1,0 +1,557 @@
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    
+
+<title>Python Reader</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<meta http-equiv="content-type" content="text/html; charset=UTF8">
+
+
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<link rel="stylesheet" type="text/css" href="../../css/style.css">
+    <!-- Scrollbar Custom CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.css">
+
+<!-- Java Script -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="../../plugins/moment.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+<!-- Python highlighting -->
+<script src="../../plugins/prism/prism.js"></script>
+<link href="../../plugins/prism/prism.css" rel="stylesheet" />
+
+<!-- Probability Packages -->
+<script src="../../plugins/probability/gaussian.js"></script>
+<script src="../../plugins/color.js"></script>
+
+<!-- font awesome -->
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+
+<!-- SWAL -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+
+
+<!-- Stanford -->
+<link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Source+Serif+Pro:400,600,700' rel='stylesheet' type='text/css'>
+
+<!-- Math Jax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});
+</script>
+
+<script src="../../plugins/math.min.js"></script>
+<script src='https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
+
+
+<!-- jQuery CDN - Slim version (=without AJAX) -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <!-- Popper.JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
+    <!-- Bootstrap JS -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
+
+
+    <style>
+    pre.reveal {}
+  
+    /* mark pre that should get this setup */
+    span.phide {
+      display: none;
+    }
+  
+    span.pshow {
+      color: darkgreen;
+    }
+
+
+  
+    /* display:inline; */
+  </style>
+
+  <script>
+// arg is button followed by div which it does show/hide alternately
+function showHide(button) {
+  if (button.nextElementSibling.style.display == "block") {
+    button.nextElementSibling.style.display = "none";
+  } else {
+    button.nextElementSibling.style.display = "block";
+  }
+}
+
+
+// Functions for pre-reveal format
+function preSetup(pre) {
+  var text = pre.innerHTML;
+  var lines = text.split('\n');
+  for (var i = 0; i < lines.length; i++) {
+    if (!lines[i].startsWith('&gt;') && lines[i].trim()) {
+      lines[i] = '<span class=pshow>??</span><span class=phide>' + lines[i] + '</span>';
+    }
+  }
+  pre.innerHTML = lines.join('\n');
+}
+
+function initReveals() {
+  var pres = document.getElementsByClassName('reveal');
+  for (var pre of pres) {
+    preSetup(pre);
+  }
+}
+
+function preShow(pre) {
+  var spans = pre.getElementsByTagName('span');
+  for (var span of spans) {
+    if (span.getAttribute('class') == 'phide') span.setAttribute('class', 'pshow');
+    else span.setAttribute('class', 'phide');
+  }
+}
+</script>
+
+</head>
+
+<body>
+
+    <div class="wrapper">
+        <!-- Sidebar  -->
+<nav id="sidebar">
+    <div class="sidebar-header">
+        <h3>Python Reader</h3>
+    </div>
+
+    <ul class="list-unstyled components">
+        
+        <li>
+            <a href="../intro">Introduction</a>
+        </li>
+
+       <!-- <li>
+            <a href="../style">Style</a>
+        </li>-->
+
+        <li>
+            <a href="../interpreter">Interpreter</a>
+        </li>
+        
+        <li>
+            <a href="../variables">Variables</a>
+        </li>
+        
+        <li>
+            <a href="../print"><code>print</code></a>
+        </li>
+        <li>
+            <a href="../input"><code>input</code></a>
+        </li>
+        <li>
+            <a href="../math">Math and expressions</a>
+        </li>
+        <!--<li>
+            <a href="../if"><code>if</code> and comparisons</a>
+        </li>
+        <li>
+            <a href="../booleans">Booleans</a>
+        </li>
+        <li>
+            <a href="../while"><code>while</code></a>
+        </li>
+        <li>
+            <a href="../for"><code>for</code></a>
+        </li>
+        <li>
+            <a href="../functions">Functions</a>
+        </li>
+        <li>
+            <a href="../lists">Lists</a>
+        </li>
+        <li>
+            <a href="../filereading">File reading</a>
+        </li>
+        <li>
+            <a href="../strings">Strings</a>
+        </li>
+        <li>
+            <a href="../dicts">Dictionaries</a>
+        </li>-->
+
+    </ul>
+
+    <ul class="list-unstyled CTAs">
+        <li>
+            <a href="https://codeinplace.stanford.edu/course" class="download">Back to Code in Place</a>
+        </li>
+    </ul>
+</nav>
+        <!-- Page Content  -->
+        <div id="content">
+
+<button type="button" id="sidebarCollapse" class="mobile-only btn btn-info">
+    <i class="fas fa-align-left"></i>
+    <span></span>
+</button>            
+            <div class="page">    
+                <h1>Python Math</h1>
+                <hr/>
+
+<!--
+Experiment with chapters
+-->
+
+<h2>Numbers - int and float</h2>
+
+<p>Surprisingly, there are two distinct types of numbers for doing arithmetic in a computer - "int" for whole integer numbers like 6 and 42 and -3, and "float" for numbers like 3.14 with a decimal fraction.
+
+<!-- link to float discussion somewhere, "starting with int here" -->
+
+<a name=int>
+<h2>Int Type</h2>
+
+<p>The Python "int" type represents whole integer values like 12 and -2. Addition, subtraction, and multiplication and division work the usual way with the operators: <code class=b>+ - * /</code>. Division by zero is an error.
+
+<!-- show oddness of / a little later on -->
+
+
+
+<pre>
+>>> 1 + 10 - 2
+9
+>>> 2 * 3 * 4
+24
+>>> 2 * 6 / 3
+4.0
+>>> 6 / 0
+ZeroDivisionError: division by zero
+</pre>
+
+
+<!--
+1 + 2 * 3
+>>> 10 - 2 * 3
+4
+>>> (10 - 2) * 3
+24
+-->
+
+<a name=precedence>
+<h2>Precedence</h2>
+
+<p>Just as in regular mathematics, multiplication and division have higher "precedence" than addition and subtraction, so they are evaluated first in an expression. After accounting for precedence, the arithmetic is done left-to-right.
+
+<p>e.g. here the multiplication happens first, then the addition:
+
+<pre>
+>>> 1 + 2 * 3
+7
+>>> 1 + 3 * 3 + 1
+11
+</pre>
+
+<p>Add parenthesis into the code to control which operations are evaluated first:
+
+<pre>
+>>> (1 + 2) * 3
+9
+</pre>
+
+
+<h2>60 / 2 * 3</h2>
+
+<p>What is the value of `60 / 2 * 3'?
+
+
+<p>The evaluation proceeds left-to-right, applying each operator to a running result which is simple but can be unintuitive. For <code>60 / 2 * 3</code>, the steps are..
+
+<pre>
+1. start with 60
+2. 60 / 2 yielding 30.0
+3. 30.0 * 3 yielding 90.0
+</pre>
+
+<p>The 2 is in the denominator, but the 3 is not. Add parenthesis to put both numbers in the denominator e.g. <code>60 / (2 * 3)</code>
+
+<pre>
+>>> 60 / 2 * 3
+90.0
+>>> 60 / (2 * 3)
+10.0
+</pre>
+
+<!-- could put in conversion here: int() float() str() 
+
+<p>div by 0 error
+
+-->
+
+<h2>Division / Yields Float</h2>
+
+<p>One problem problem with <code>/</code> is that it does not produce an int, it produces a float.
+This is basically reasonable &mdash; 7 divided by 2 isn't an integer.
+
+<pre>
+>>> 7 / 2
+3.5        # a float, notice the "."
+</pre>
+
+<p>Adding subtracting or multiplying two ints always yields an int result, but division is different. The result of division is always a float value, even if the division comes out even.
+
+<pre>
+>>> 9 / 2
+4.5
+>>> 8 / 2
+4.0
+>>> 101 / 8
+12.625
+</pre>
+
+<h2>// int Division</h2>
+
+<p>Many times an algorithm makes the most sense if all of the values are kept as ints, so we need an alternative to the <code class=b>/</code> which produces floats. In Python the int-division operator <code class=b>//</code> rounds down any fraction, always yielding an int result.
+
+
+<pre>
+>>> 9 / 2    # "/" yields a float, not what we wanted
+4.5
+>>> 9 // 2   # "//" rounds down to int
+4
+>>> 8 // 2
+4
+>>> 87 // 8
+10
+</pre>
+
+<!--
+njp
+Since the int division // rounds values down, it's important to do the division <b>last</b> .. could have example about this
+
+>>> 10 * 200 // 11
+181
+>>> 10 // 11 * 200
+0
+>>> # 10 bags of cookies, 200 cookies per back, divided among 11 cars
+
+-->
+
+
+<h2>** Exponentiation</h2>
+
+<p>The <code>**</code> operator does exponentiation, e.g. <code>3 ** 2</code> is 3<sup>2</sup>
+
+<pre>
+>>> 3 ** 2
+9
+>>> 2 ** 10
+1024
+</pre>
+
+<p>Unlike most programming languages, Python int values do not have a maximum. Python allocates more and more bytes to store the int as it gets larger. The number of grains of sand making up the universe when I was in school was thought to be about 2<sup>100</sup>, playing the role of handy very-large-number (I think it's bigger now as they keep finding more universe, but this number is handy). In Python, we can write an expression with that number and it just works.
+
+<pre>
+>>> 2 ** 100
+1267650600228229401496703205376
+>>> 2 ** 100 + 1
+1267650600228229401496703205377
+</pre>
+
+<p>Memory use approximation: int values of 256 or less are stored in a special way that uses very few bytes. Other ints take up about 24 bytes each in RAM.
+
+
+<!-- njp precdence
+https://docs.python.org/3/reference/expressions.html#operator-precedence
+
+** exponentiation highest
+- unary
+* / // %
++ - binary loweset
+-->
+
+<a name=intmod>
+<h2>Int Mod %</h2>
+
+<p>The "modulo" or "mod" operator <code class=b>%</code> is essentially the remainder after division. So <code>(23 % 10)</code> yields 3 &mdash; divide 23 by 10 and 3 is the leftover remainder.
+
+<pre>
+>>> 23 % 10
+3
+>>> 36 % 10
+6
+>>> 43 % 10
+3
+>>  40 % 10  # mod result 0 = divides evenly
+0
+>>> 17 % 5
+2
+>>> 15 % 5
+0
+</pre>
+
+<p>If the modulo result is 0, it means the division can out evenly, e.g. <code>40 % 10</code> above. The best practice is to only use mod with non-negative numbers. Modding by 0 is an error, just like dividing by 0.
+
+<pre>
+>>> 43 % 0
+ZeroDivisionError: integer division or modulo by zero
+</pre>
+
+<!-- njp give application of mod -->
+
+
+<h2>Review Expressions</h2>
+
+<p>What is the value of each expression? Write the result as int (6) or float (6.0).
+
+<pre class=reveal>
+>>> 2 * 1 + 6
+8
+>>> 20 / 4 + 1
+6.0
+>>> 20 / (4 + 1)
+4.0
+>> 40 / 2 * 2
+40.0
+>>> 5 ** 2
+25
+>>> 7 / 2
+3.5
+>>> 7 // 2
+3
+>>> 13 % 10
+3
+>>> 20 % 10
+0
+>>> 42 % 20
+2
+>>> 31 % 20
+11
+</pre>
+<button  onclick="preShow(this.previousElementSibling)">Show</button>
+
+<script>
+// could have some per-elem version of this
+initReveals()
+</script>
+
+
+<!--
+
+<pre>
+xx
+<input type=text>yy
+</pre>
+
+
+<div>
+<pre class=reveal>
+>>> reveal test
+>>> 1 + 10 - 2
+9
+>>> 2 * 3 * 4
+24
+</pre>
+
+<script>
+initReveals()
+</script>
+
+-->
+
+
+
+<!-- maybe this goes in its own page, expand -->
+<a name=float>
+  <br /> <br />
+<h2>Float Type</h2>
+
+<p>Floating point numbers are used to do math with real quantities, such as a velocity or angle. The regular math operators <code>+ - * / **</code> all work with floats, producing a float result. If an expression mixes some int values and some float values, the math is converted to float - a one-way street called "promotion" to float.
+
+<pre>
+>>> 1.0 + 2.0 * 3.0
+7.0
+>>> 
+>>> 1 + 2 * 3.0
+7.0
+>>> 
+>>> 2.1 ** 2
+4.41
+</pre>
+
+<p>Float values can be written in scientific notation with the letter 'e' or 'E', like this:
+
+<pre>
+>>> 1.2e23 * 10
+1.2e+24
+>>> 1.0e-4
+0.0001
+</pre>
+
+<!-- njp could talk about 1.2e10 form, talk about how float is represented as 0..1 value * exp -->
+
+<h2>Float Error Term</h2>
+
+<p>Famously, floating point numbers have a tiny error term that builds up way off 15 digits or so to the right. Mostly this error is not shown when the float value is printed, as a few digits are not printed. However, the error digits are real, throwing the float value off a tiny amount.  The error term will appear sometimes, just as a quirk of how many digits are printed (see below). This error term is an intrinsic limitation of floating point values in the computer. (Perhaps also why CS people are drawn to do their algorithms with int.)
+
+<pre>
+>>> 0.1 + 0.1
+0.2
+>>> 0.1 + 0.1 + 0.1
+0.30000000000000004
+>>> 0.1 + 0.1 + 0.1 + 0.1 + 0.1 + 0.1 + 0.1
+0.7
+>>> 0.1 + 0.1 + 0.1 + 0.1 + 0.1 + 0.1 + 0.1 + 0.1
+0.7999999999999999
+</pre>
+
+<p>Mostly, an error 15 or so digits off to the right does not invalidate your computation. However, it means that code should not use <code>==</code> with float values, since the comparison will be thrown off by the error term. To compare float values, subtract them and compare the absolute value of the difference to some small delta.
+
+<pre>
+>>> # are float values a and b the same?
+>>> diff = abs(a - b)   # abs() is absolute value
+>>> if diff < 1.0e-9:   # if diff less than 1 billionth, 
+    ...
+</pre>
+
+<p>Memory use approximation: float values take up about 24 bytes apiece.
+
+<!-- jQuery CDN - Slim version (=without AJAX) -->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<!-- Popper.JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
+<!-- Bootstrap JS -->
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
+<!-- jQuery Custom Scroller CDN -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.concat.min.js"></script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#sidebar").mCustomScrollbar({
+            theme: "minimal"
+        });
+
+        $('#sidebarCollapse').on('click', function () {
+            $('#sidebar, #content').toggleClass('active');
+            $('.collapse.in').toggleClass('in');
+            $('a[aria-expanded=true]').attr('aria-expanded', 'false');
+        });
+    });
+</script>            </div>
+        </div>
+      </div>
+
+    
+</body>
+
+</html>
+
+
+
+
+
+
+
+

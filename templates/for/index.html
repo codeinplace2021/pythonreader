@@ -1,0 +1,105 @@
+%rebase templates/parts/chapter.html
+
+
+        <h1>For Loops</h1>
+        <hr/>
+
+<p>A loop takes a few lines of code, and runs them again and again.
+Most algorithms have a lines of code that need to be run thousands or millions of times, and loops are the way to do this.
+
+<!--<ul>
+<li><a href=#for>For Loop</a></li>
+<li><a href=#while>While Loop</a></li>
+<li><a href=#infinite>Infinite Loop</a> bug</li>
+<li><a href=#break>Break</a></li>
+<li><a href=#standard>Standard Loop Patterns</a></li>
+</ul>-->
+
+
+<a name=for>
+<h2>For Loop - aka Foreach</h2>
+
+<p>The "for" loop is probably the single most useful type of loop.
+The for-loop, aka "foreach" loop, looks at each element in a collection once.
+The collection can be any type of collection-like data structure, but the examples below use a list.
+
+<p>Here is a for-loop example that prints a few numbers:
+
+<pre>
+>>> for num in [2, 4, 6, 8]:
+        print(num)
+2
+4
+6
+8
+</pre>
+
+<!-- njp I don't know that this formal tour of the syntax is very helpful vs. just seeing it go -->
+
+<p><b>Loop Syntax:</b> the loop begins with the keyword <code>for</code> followed by a
+variable name to use in the loop, e.g. <code>num</code> in this example. Then the keyword <code>in</code> and 
+a collection of elements for the loop, e.g. the list <code>[2, 4, 6, 8]</code>. 
+Finally there is colon <code>:</code> followed by the indented "body" lines controlled by the loop.
+
+<p><b>Loop Operation:</b> the loop runs the body lines again and again, once for each element in the collection. Each run of the body is called an "iteration" of the loop. For the first iteration, the variable is set to the first element, and the body lines run (in this case, essentially <code>num = 2</code>. For the second iteration, <code>num = 4</code> and so on, once for each element.
+
+<p>The main story of the for loop is that if we have a collection of numbers or strings or pixels, the for-loop is an easy way to write code that looks at each value once. Now we'll look at a few features and slightly subtle features of the loop.
+
+
+
+
+<h2>Loops with <code>range()</code> Function</h2>
+
+<p>The python <code>range()</code> function creates a collection of numbers on the fly, like
+[0, 1, 2, 3, 4]
+This is very useful, since the numbers can be used to index into collections such as string. The range() function can be called in a few different ways.
+
+<!-- njp could explain about motivation of making index numbers -->
+
+<h3>range(n) - 1 Parameter Form</h3>
+
+<p>The most common form is <code>range(n)</code>, for integer n, which returns a numeric series starting with 0 and extending up to but not including n, e.g. <code>range(6)</code> returns <code>0, 1, 2, 3, 4, 5</code>. 
+
+<pre>
+>>> for i in range(6):
+...   print(i)
+... 
+0
+1
+2
+3
+4
+5
+</pre>
+
+<h2>Loop Controls The Variable, Not You</h2>
+
+<p>Usually variables only change when we see an assignment with an equal sign <code class=b>=</code>
+
+<p>The for-loop is strange, since for each iteration, the loop behind the scenes is setting the variable to point to the next value. Mostly this is very convenient, but it does mean that setting the variable to something at the end of the loop has basically no effect...
+
+<pre>
+for num in [2, 4, 6, 8]:
+    print(num)
+    num = 100    # No effect on output,
+                 # the loop resets num on each iteration
+</pre>
+
+<!-- not sure this is worth mentioning -->
+
+<!--
+<h2>Oddity: Variable Name</h2>
+
+<p>The variable name given to the for-loop is used to hold the value for each iteration. The variable name used is up to the programmer. The loop will work just the same for any variable name, so for example this version of the loop works the same as the original but with the variable name <code>meh</code>
+
+<pre>
+for meh in [2, 4, 6, 8]:
+    print(meh)
+    print(meh + 0.5)
+</pre>
+-->
+
+
+<hr/>
+
+

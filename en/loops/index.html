@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    
+
+<title>Python Reader</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<meta http-equiv="content-type" content="text/html; charset=UTF8">
+
+
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<link rel="stylesheet" type="text/css" href="../../css/style.css">
+    <!-- Scrollbar Custom CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.css">
+
+<!-- Java Script -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="../../plugins/moment.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+<!-- Python highlighting -->
+<script src="../../plugins/prism/prism.js"></script>
+<link href="../../plugins/prism/prism.css" rel="stylesheet" />
+
+<!-- Probability Packages -->
+<script src="../../plugins/probability/gaussian.js"></script>
+<script src="../../plugins/color.js"></script>
+
+<!-- font awesome -->
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+
+<!-- SWAL -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+
+
+<!-- Stanford -->
+<link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Source+Serif+Pro:400,600,700' rel='stylesheet' type='text/css'>
+
+<!-- Math Jax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});
+</script>
+
+<script src="../../plugins/math.min.js"></script>
+<script src='https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
+
+
+<!-- jQuery CDN - Slim version (=without AJAX) -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <!-- Popper.JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
+    <!-- Bootstrap JS -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
+
+
+</head>
+
+<body>
+
+    <div class="wrapper">
+        <!-- Sidebar  -->
+<nav id="sidebar">
+    <div class="sidebar-header">
+        <h3>Python Reader</h3>
+    </div>
+
+    <ul class="list-unstyled components">
+        <p>By Nick Parlante</p>
+        
+        <li>
+            <a href="../intro">Introduction</a>
+        </li>
+
+        <li>
+            <a href="../interpreter">Interpreter</a>
+        </li>
+        
+        <li>
+            <a href="../variables">Variables</a>
+        </li>
+        <li>
+            <a href="../math">Math and expressions</a>
+        </li>
+        <li>
+            <a href="../print"><code>print</code></a>
+        </li>
+        <li>
+            <a href="../input"><code>input</code></a>
+        </li>
+        <li>
+            <a href="../if">if and comparisons</a>
+        </li>
+        <li>
+            <a href="../booleans">booleans</a>
+        </li>
+        <li>
+            <a href="../loops">loops</a>
+        </li>
+    </ul>
+
+    <ul class="list-unstyled CTAs">
+        <li>
+            <a href="https://compedu.stanford.edu/codeinplace/v1/#/course" class="download">Back to Code in Place</a>
+        </li>
+    </ul>
+</nav>
+        <!-- Page Content  -->
+        <div id="content">
+
+<button type="button" id="sidebarCollapse" class="mobile-only btn btn-info">
+    <i class="fas fa-align-left"></i>
+    <span></span>
+</button>            
+            <div class="page">    
+                
+
+        <h1>Loops</h1>
+        <hr/>
+
+<p>A loop takes a few lines of code, and runs them again and again.
+Most algorithms have a lines of code that need to be run thousands or millions of times, and loops are the way to do this.
+
+<ul>
+<li><a href=#for>For Loop</a></li>
+<li><a href=#while>While Loop</a></li>
+<li><a href=#infinite>Infinite Loop</a> bug</li>
+<li><a href=#break>Break</a></li>
+<li><a href=#standard>Standard Loop Patterns</a></li>
+</ul>
+
+
+<a name=for>
+<h2>For Loop - aka Foreach</h2>
+
+<p>The "for" loop is probably the single most useful type of loop.
+The for-loop, aka "foreach" loop, looks at each element in a collection once.
+The collection can be any type of collection-like data structure, but the examples below use a list.
+
+<p>Here is a for-loop example that prints a few numbers:
+
+<pre>
+>>> for num in [2, 4, 6, 8]:
+        print(num)
+2
+4
+6
+8
+</pre>
+
+<!-- njp I don't know that this formal tour of the syntax is very helpful vs. just seeing it go -->
+
+<p><b>Loop Syntax:</b> the loop begins with the keyword <code>for</code> followed by a
+variable name to use in the loop, e.g. <code>num</code> in this example. Then the keyword <code>in</code> and 
+a collection of elements for the loop, e.g. the list <code>[2, 4, 6, 8]</code>. 
+Finally there is colon <code>:</code> followed by the indented "body" lines controlled by the loop.
+
+<p><b>Loop Operation:</b> the loop runs the body lines again and again, once for each element in the collection. Each run of the body is called an "iteration" of the loop. For the first iteration, the variable is set to the first element, and the body lines run (in this case, essentially <code>num = 2</code>. For the second iteration, <code>num = 4</code> and so on, once for each element.
+
+<p>The main story of the for loop is that if we have a collection of numbers or strings or pixels, the for-loop is an easy way to write code that looks at each value once. Now we'll look at a few features and slightly subtle features of the loop.
+
+<h2>Rule: Do Not Change Collection While Looping</h2>
+
+<p>For the for-loop to work properly, the body lines should not add or remove elements while the loop is running. This is a pretty reasonable rule &mdash; it's hard to see how the loop could work if elements were appearing and disappearing on the fly. Violating this rule does not produce a clear error message; it just means the loop may not see the series elements correctly.
+
+<h2>Zero Iterations is Ok</h2>
+
+<p>Suppose <code>urls</code> is a list of urls we want to print with a foreach:
+
+<pre>
+for url in urls:
+    print(url)
+print('All done')
+</pre>
+
+<p>What does the above code do if the number of urls in the list is zero, i.e. the list is empty? That's actually a valid loop input, and in that case the for-loop just runs the body lines zero times, skipping directly to the 'All done' line. Sometimes programmers feel they need to add an extra if-statement to guard against the list being empty, but in fact the for-loop skips over the empty collection fine.
+
+
+<h2>Loop Controls The Variable, Not You</h2>
+
+<p>Usually variables only change when we see an assignment with an equal sign <code class=b>=</code>
+
+<p>The for-loop is strange, since for each iteration, the loop behind the scenes is setting the variable to point to the next value. Mostly this is very convenient, but it does mean that setting the variable to something at the end of the loop has basically no effect...
+
+<pre>
+for num in [2, 4, 6, 8]:
+    print(num)
+    num = 100    # No effect on output,
+                 # the loop resets num on each iteration
+</pre>
+
+<!-- not sure this is worth mentioning -->
+
+<!--
+<h2>Oddity: Variable Name</h2>
+
+<p>The variable name given to the for-loop is used to hold the value for each iteration. The variable name used is up to the programmer. The loop will work just the same for any variable name, so for example this version of the loop works the same as the original but with the variable name <code>meh</code>
+
+<pre>
+for meh in [2, 4, 6, 8]:
+    print(meh)
+    print(meh + 0.5)
+</pre>
+-->
+
+
+<a name=while>
+<h2>While Loop</h2>
+
+<p>The while-loop uses a boolean test expression to control the run of the body lines. The for-loop is great of looping over a collection. The while-loop is more general, providing enough control for any sort of looping, without requiring a collection to loop over.
+
+
+<h2>While Loop Syntax</h2>
+
+<p>The while-loop syntax has 4 parts: while, boolean test expression, colon, indented body lines:
+
+<pre>
+while <i>test</i>:
+    <i>indented body lines</i>
+
+</pre>
+
+<p><b>While Operation:</b> Check the boolean test expression, if it is True, run all the "body" lines inside the loop from top to bottom. Then loop back to the top, check the test again, and so on. When the test is False, exit the loop, running continues on the first line after the body lines.
+
+<p>Here is a while loop to print the numbers 0, 1, 2, ... 9 (there are easier ways to do this, but here we're just trying to show the parts of the loop).
+
+<!-- how show code vs output, could have >>> .. something simple here maybe right choice -->
+
+<pre>
+i = 0
+while i < 10:
+    print(i)
+    i = i + 1
+print('All done')
+
+0
+1
+2
+3
+4
+5
+6
+7
+8
+9
+All done
+</pre>
+
+<p>Very often the last line of the while body has an "increment" role, such as the <code>i = i + 1</code> line above. The test at the top of the loop checks that variable. It's important that on every iteration, the loop advances that variable one step towards the ultimate end of the loop.
+
+
+<h2>While Zero Iterations OK</h2>
+
+<p>Just as with the for-loop, a while-loop can iterate zero times. That happens if the boolean test is False the very fist time it is checked, like this:
+
+<pre>
+i = 99
+while i < 10:
+    print(i)
+    i += 1
+print('All done')
+
+# (zero iterations - no numbers print at all)
+All done
+</pre>
+
+<a name=infinite>
+<h2>Infinite Loop Bug</h2>
+
+<p>With a while-loop, it's possible to accidentally write a loop that never exits. In that case, the while just loops and loops but never makes the test False to exit. As the loop runs and runs, the fans on your laptop may spin up as CPU heats up with this high number of lines running without pause.
+
+<p>Here's an infinite loop example caused by a typical looking bug &mdash; the variable <code>i</code> accidentally stays at the value 1 and the loop just goes forever.
+
+<pre>
+i = 0
+while i < 10:   # BUG infinite loop
+    print(i)
+    i = i * 1
+print('All done')
+</pre>
+
+<h2>Don't Forget the Last "Increment" Line</h2>
+
+<p>Another easy infinite loop bug is forgetting the <code>i = i + 1</code> line entirely, so the variable never advances and the loop never exits. Since the more commonly used for-loop automates the increment step for us, we don't quite have the muscle memory to remember it when writing a while-loop.
+
+
+<h2>Do Not Write == True</h2>
+
+<p>Suppose there is some function <code>foo()</code> and you want a while loop to run so long as it returns True. Do not write this
+
+<pre>
+while foo() == True:   # NO not this way
+    ...
+</pre>
+
+<p>It's better style to write it the following way, letting the while itself evaluate the True/False of the test:
+
+<pre>
+while foo():           # YES this way
+    ...
+</pre>
+<!-- could link to explanation in #boolean -->
+
+<a name=break>
+<h2>Loop Break</h2>
+
+<p>The <code>break</code> directive in a loop exits the loop immediately. Loops have their standard way of exiting. The <code>break</code> gives an extra option to exit the loop if some special condition occurs. Usually the break is put inside an if that checks for some condition.
+
+<p>This example loops over a list of numbers, printing each one in the usual way. However, the if/break structure checks each number after printing, and breaks out of the loop if the number is 6.
+
+<pre>
+nums = [12, 1, 6, 13, 6, 0]
+for num in nums:
+    if num == 6:
+        break  # exit loop immediately
+    print(num)
+print('All done')
+
+12
+1
+All done
+</pre>
+
+<p>Most loops do not use break. Break is an option for certain cases where the programmer wants to be able to exit the loop earlier than it would normally.
+
+
+<h2>Loop Continue</h2>
+
+<p>The <code>continue</code> directive directs the loop run to go back to the top of the loop immediately to start the next iteration. In effect, it skips the current iteration. The continue directive is very rarely used. We mention it here for completeness.
+
+<p>Here is the above example changed to use continue. In effect it skips over iterations where num is 6.
+
+<pre>
+nums = [12, 1, 6, 13, 6, 0]
+for num in nums:
+    if num == 6:
+        continue  # jump to top of loop
+    print(num)
+print('All done')
+
+12
+1
+13
+0
+All done
+</pre>
+<a name=standard>
+<h2>Standard Loop Phrases</h2>
+
+
+<p>Looping over collections is very common. Here are the most important patterns.
+
+
+
+<h3>1. Loop Over a List</h3>
+
+<p>The for-loop will see each element in the list once. There are no index numbers in this form.
+
+<pre>
+words = ['hi', 'there!', ...]
+for word in words:
+    # use word in here
+    print(word)
+</pre>
+
+
+
+
+<h3>2. Loop Over Int Range</h3>
+
+<p>Use range() to create a series of numbers, and nest that in a for-loop to take some action with each number.
+
+<pre>
+for i in range(10):
+  print(i)
+# 0 1 2 3 4 5 6 7 8 9
+</pre>
+
+
+<h3>3. Loop Over All Index Numbers</h3>
+
+<p>For a linear collections (e.g. list, string), index numbers 0, 1, ... len-1 indentify each element in the collection. The following loop combines for/range/len to run a variable i through all the index numbers in a string or list.
+
+<p>Code inside the loop can use <code>[i]</code> or a slice or whatever to access into the collection based on <code>i</code>. Use this form if the algorithm needs access to the index numbers, not just the bare elements.
+
+<pre>
+# string s, loop though all its chars by index number
+s = 'Hello'
+for i in range(len(s)):  # i.e. range(5)
+  print(i, s[i])
+
+0 H
+1 e
+2 l
+3 l
+4 0
+</pre>
+
+<p>It's standard to use the one-letter variable names <code>i, j, k</code> for looping through index numbers like this (echoing use of subscripts i, j, k in mathematical writing before computers existed).
+
+<hr/>
+
+
+
+            </div>
+        </div>
+    </div>
+
+
+<!-- jQuery CDN - Slim version (=without AJAX) -->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<!-- Popper.JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
+<!-- Bootstrap JS -->
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
+<!-- jQuery Custom Scroller CDN -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.concat.min.js"></script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#sidebar").mCustomScrollbar({
+            theme: "minimal"
+        });
+
+        $('#sidebarCollapse').on('click', function () {
+            $('#sidebar, #content').toggleClass('active');
+            $('.collapse.in').toggleClass('in');
+            $('a[aria-expanded=true]').attr('aria-expanded', 'false');
+        });
+    });
+</script></body>
+
+</html>

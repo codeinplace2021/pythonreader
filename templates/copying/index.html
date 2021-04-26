@@ -1,0 +1,206 @@
+<!doctype html>
+<!doctype html>
+
+<head>
+
+  %include templates/parts/head.html
+
+</head>
+
+<body>
+  
+  <div class="container">
+    <script>
+// arg is button followed by div which it does show/hide alternately
+function showHide(button) {
+  if (button.nextElementSibling.style.display == "block") {
+    button.nextElementSibling.style.display = "none";
+  } else {
+    button.nextElementSibling.style.display = "block";
+  }
+}
+</script>
+
+
+<h1>Python Does Not Copy</h1>
+
+<p>Python has a very consistent way of handling memory between lines of code or between functions - there is just one string, or list, or dict, and references to that one proliferate across the lines.
+
+<!-- njp more here -->
+
+<h2>Python Does Not Copy #1 - Lists</h2>
+
+<p>Suppose your code is manipulating a string or list or dict, and so has a reference to this structure. What happens if there is an assignment <code>=</code>? Does this result in two lists?
+
+
+<pre>
+>>> lst = [1, 2]
+>>> lst2 = lst
+</pre>
+
+<p>No, there is just the one list. The <code>=</code> works in a "shallow" way, creating an additional reference to the one list.
+
+<p>
+<img src={{pathToRoot}}img/pythonreader/copying/python-nocopy1.png alt="alt:lst and lst2 point to the same list">
+
+<p>Python always works this way - there is just one list or dict or whatever the code created explicitly, e.g. in this case <code>[1, 2]</code>, and then references to that one list are spread around.
+
+<p>We can observe that there's just one list, since changes made on the <code>lst2</code> variable can be seen on the <code>lst</code> variable.
+
+<pre>
+>>> lst
+[1, 2]
+>>> lst2.append(3)
+>>> lst2
+[1, 2, 3]
+>>> 
+>>> lst    # shows there was just one list
+[1, 2, 3]
+</pre>
+
+<h2>Python Does Not Copy #2 - Nesting</h2>
+
+<p>Suppose there is a dictionary <code>d</code>, and a list is stored as a value inside it. What happens when code refers to that list inside the dict? Does that make a copy?
+
+<p>No copy is made. There is the one list inside of the dict, and <code>lst</code> points to that list, even though it is nested inside of something else.
+
+<p>
+<img src={{pathToRoot}}img/pythonreader/copying/python-nocopy2.png alt="alt:lst points to list inside of dict">
+
+
+<pre>
+>>> d = {}
+>>> d['a'] = [1, 2]  # put list inside of dict
+>>> d
+{'a': [1, 2]}
+>>>
+>>> lst = d['a']     # a reference to the list
+>>> lst
+[1, 2]
+</pre>
+
+<p>As before, we can observe that there is one list with multiple references by changing it.
+
+<pre>
+>>> lst = d['a']
+>>> lst.append(3)
+>>> lst
+[1, 2, 3]
+>>> 
+>>> d     # Observe the list within d is changed too
+{'a': [1, 2, 3]}
+</pre>
+
+<h2>Python Does Not Copy #2a - Nesting Again</h2>
+
+<p>Say we have the above case with the list inside the dict at key 'a'. The expression <code>d['a']</code> is a reference to that list. This means the expression <code>d['a']</code> can be used in code to examine or modify that list.
+
+<pre>
+>>> d = {}
+>>> d['a'] = [1, 2]
+>>> d['a']             # look at list
+[1, 2]
+>>> d['a'].append(13)  # refer to list and change it
+>>> d['a'] 
+[1, 2, 13]
+</pre>
+
+<h2>Python Does Not Copy #3 - Parameters and Return</h2>
+
+<p>Suppose we have this code
+
+<pre>
+def exclaim(strs):
+    """
+    Modifies the strs list,
+    appending '!' to each str element.
+    """
+    for i in range(len(strs)):
+        strs[i] += '!'
+
+
+def caller():
+    lst = ['a', 'b', 'c']
+
+    exclaim(lst)
+    # what's in lst now?
+</pre>
+
+<p>What happens when exclaim() is called, passing in the list of strings? Does this make a copy of the list? No, like before, there is never a copy.
+
+<p>
+<img src={{pathToRoot}}img/pythonreader/copying/python-nocopy3.png alt="alt:caller and called function point to same memory">
+
+
+<p>The called function exclaim() just gets a reference to the list that caller created.
+
+<h2>Caller / Called Functions Share Memory = Communicate Changes</h2>
+
+<p>Because the called and caller functions share the one list, that means that changes made by the called function are seen by the caller function - it's just the one data structure being worked on by 2 or more functions.
+
+<p>This is a form of data communication from the called function back to the caller, but it is not so crisp as using <b>return</b>. With return, we see an explicit line with an expression, and that is the value being returned.
+
+<p>In contrast, this "shallow" communication, which is a fine technique, is more broad. The contract of the exclaim() function is that whatever list the caller provides, it is going to be modified.
+
+<!--
+
+<h2>Experiment 1 - Exclaim In The Interpreter</h2>
+
+
+<p>For the demo, writing this def right in the >>> interpreter, although normally we write defs in PyCharm so we can edit and use them.
+
+<p>Look at this code. What is the english translation of what it does?
+
+<pre>
+>>> def exclaim(strs):
+...   for i in range(len(strs)):
+...     strs[i] += '!'
+... 
+>>> exclaim
+<function exclaim at 0x10cbcba28>
+>>> 
+>>> 
+>>> lst = ['a', 'b' ,'c']
+>>> exclaim(lst)
+>>> 
+>>> # what does list look like now?
+... 
+>>> lst
+['a!', 'b!', 'c!']
+</pre>
+
+<p>Conclusion: there is one list or dict, references to that one get passed between functions. Modifications made in one function show up in the others.
+
+
+<h2>Experiment 2 - What Does = Do Again?</h2>
+
+<p>What does this do <code>for s in lst:</code>
+
+<p>Reminder: this creates a variable named <code>s</code> and sets it = to each elem in the list, one at a time, so in the loop we can say <code>s.lower()</code> or whatever to work on each string.
+
+<p>What happens if we instead write the exclaim function with <code>for s in strs:</code> instead of using the index numbers, like this:
+
+<pre>
+>>> def exclaim(strs):
+...   for s in strs:
+...     s += '!'
+... 
+>>> lst = ['a', 'b' ,'c']
+>>> exclaim(lst)
+>>> 
+>>> # what does lst look like now?
+... 
+>>> lst
+['a', 'b', 'c']
+</pre>
+
+-->
+
+&nbsp;
+
+
+
+
+  </div>
+</body>
+

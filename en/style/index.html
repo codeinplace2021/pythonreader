@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    
+
+<title>Python Reader</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<meta http-equiv="content-type" content="text/html; charset=UTF8">
+
+
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<link rel="stylesheet" type="text/css" href="../../css/style.css">
+    <!-- Scrollbar Custom CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.css">
+
+<!-- Java Script -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="../../plugins/moment.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+<!-- Python highlighting -->
+<script src="../../plugins/prism/prism.js"></script>
+<link href="../../plugins/prism/prism.css" rel="stylesheet" />
+
+<!-- Probability Packages -->
+<script src="../../plugins/probability/gaussian.js"></script>
+<script src="../../plugins/color.js"></script>
+
+<!-- font awesome -->
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+
+<!-- SWAL -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+
+
+<!-- Stanford -->
+<link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Source+Serif+Pro:400,600,700' rel='stylesheet' type='text/css'>
+
+<!-- Math Jax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});
+</script>
+
+<script src="../../plugins/math.min.js"></script>
+<script src='https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
+
+
+<!-- jQuery CDN - Slim version (=without AJAX) -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <!-- Popper.JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
+    <!-- Bootstrap JS -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
+
+
+</head>
+
+<body>
+
+    <div class="wrapper">
+        <!-- Sidebar  -->
+<nav id="sidebar">
+    <div class="sidebar-header">
+        <h3>Python Reader</h3>
+    </div>
+
+    <ul class="list-unstyled components">
+        
+        <li>
+            <a href="../intro">Introduction</a>
+        </li>
+
+       <!-- <li>
+            <a href="../style">Style</a>
+        </li>-->
+
+        <li>
+            <a href="../interpreter">Interpreter</a>
+        </li>
+        
+        <li>
+            <a href="../variables">Variables</a>
+        </li>
+        
+        <li>
+            <a href="../print"><code>print</code></a>
+        </li>
+        <li>
+            <a href="../input"><code>input</code></a>
+        </li>
+        <li>
+            <a href="../math">Math and expressions</a>
+        </li>
+        <!--<li>
+            <a href="../if"><code>if</code> and comparisons</a>
+        </li>
+        <li>
+            <a href="../booleans">Booleans</a>
+        </li>
+        <li>
+            <a href="../while"><code>while</code></a>
+        </li>
+        <li>
+            <a href="../for"><code>for</code></a>
+        </li>
+        <li>
+            <a href="../functions">Functions</a>
+        </li>
+        <li>
+            <a href="../lists">Lists</a>
+        </li>
+        <li>
+            <a href="../filereading">File reading</a>
+        </li>
+        <li>
+            <a href="../strings">Strings</a>
+        </li>
+        <li>
+            <a href="../dicts">Dictionaries</a>
+        </li>-->
+
+    </ul>
+
+    <ul class="list-unstyled CTAs">
+        <li>
+            <a href="https://codeinplace.stanford.edu/course" class="download">Back to Code in Place</a>
+        </li>
+    </ul>
+</nav>
+        <!-- Page Content  -->
+        <div id="content">
+
+<button type="button" id="sidebarCollapse" class="mobile-only btn btn-info">
+    <i class="fas fa-align-left"></i>
+    <span></span>
+</button>            
+            <div class="page">    
+                
+<h1>Python Style Part 1 - PEP8</h1>
+<hr/>
+
+
+<p>CS106A does not just teach coding. It has always taught how to write <i>clean</i> code with good style.
+Your section leader will talk with you about the correctness of code, but also pointers for good style.
+
+<p>Messy code works poorly &mdash; hard to read, hard to debug. To help you develop the right habits, we want you to always turn in clean code, and of course all of our examples should also have good clean style.
+
+
+<h1>Readable Code</h1>
+
+<p>The goal of good style is "readable" code, meaning that when someone sweeps their eye over the code, what that code does shines through.
+
+<p>Experience has shown that readable code is less time consuming to build and debug. Debugging especially can be a huge time-sink, so learning to write clean code and keep it clean is how we will do things all the time. Like surgeons keeping their hands clean, it's the right way to do it and we will try to develop the habit all the time.
+
+<!-- xx possible Aside: the black hole gravity well of messy style -->
+
+<h2>Readability 1 - Function and Variable Names</h2>
+
+<p>The first step to good readability is a good variable and function names, like this example: 
+
+<pre>
+...
+url = get_browser_url()
+if has_security_problem(url):
+    display_alert('That url looks sketchy!')
+else:
+    html = download_url(url)
+    display_html(html)
+...
+</pre>
+
+<p>The narrative steps the code takes are apparent from the good function and variable names (essentially the verbs and nouns in the narrative). Notice that no other comments are necessary here. The names alone make it very readable.
+
+<p>The functions are the actions in the code, so we prefer verb names like "display_alert" or "remove_url" that say what the function does. Variables are like the nouns of the code, so we prefer names that reflect what that variable stores like "urls" or "original_image" or "resized_image". We'll talk about naming in more detail in the Style 2 document.
+
+<!--
+
+<p>The second
+ Readability stems from choosingExperience shows that the best code is "readable" - someone sweeping their eye over it can see what it does and how its parts fit together.
+
+<p>xx talk about var and fn naming .. does that go here or later?
+
+-->
+
+<h2>Readability 2 - PEP8 Tactics</h2>
+
+<p>Python is developed as a collaborative, free and open source project. A "PEP" (Python Enhancement Proposal) is a written proposal used in Python development.
+
+<p><a href="https://www.python.org/dev/peps/pep-0008/">PEP8</a> is a consensus set of style and formatting rules for writing "standard" style Python, so your code has the right look for anyone else reading or modifying it. This is very much like English spelling reform, where "public" is the standard spelling, and "publick" is out of use and looks weird. 
+
+<p>Here are the most important PEP8 rules we will use. The code you turn in should abide by PEP8.
+
+<!--
+<p>xx could talk about Bike Shed https://en.wikipedia.org/wiki/Law_of_triviality
+-->
+
+<h3>Indent 4 Spaces</h3>
+
+<p>Indent code logically using spaces &mdash; 4 spaces is the most common.
+For if/for/while .. write "body" lines indented on the next line after the colon.
+Early in the life of Python, some programs used 2 spaces and some used 4 spaces, but 4 spaces has grown to dominate. The best practice is to use literal spaces to indent the code, not tab stops.
+
+<pre>
+if color == 'red':
+    color = 'green'
+    print(color)
+</pre>
+
+
+<h3>Single Space Between Items</h3>
+
+<p>Most lines of code have "operators" mixed in such as as <code class=b>+ * / = >=</code>. Use a single space to separate the operators and items:
+
+<pre>
+bound = x * 12 + 13
+if x >= 4:
+    print(x + 2)
+</pre>
+
+<!--
+<li>(*exception*) possibly helpful to vary spaces to reflect precedence
+<pre>
+a * b + c + c * d    # strict PEP8 spacing
+a*b + c + c*d        # OK with this if done logically
+</pre>
+-->
+
+<h3>Space After Comma/Colon</h3>
+
+<p>A comma or colon has 1 space after it, but no spaces before it.
+
+<pre>
+# e.g.
+foo(1, 'hello', 42)  # params to a fn call
+[1, 2, 3]            # e.g. list
+{'a': 1, 'b': 2}     # e.g. dict
+</pre>
+
+<h3>Use a Consistent Quote Mark</h3>
+
+<p>Python strings can be written within single quotes like <code>'Hello'</code> or double quotes like
+<code>"there"</code>. PEP8 requires a program to pick one quote style and use it consistently. For CS106A, we recommend just using single quote. Single quote is tiny bit easier since it does not require the shift key. Just always use single quote and don' think about it.
+
+
+<h3>2 Blank Lines Before Def</h3>
+
+<p>PEP8 requires 2 blank lines before each def in a file. This is one of the weaker PEP8 rules. We will not be very upset about your code if it has 3 lines between functions.
+
+
+<h3>Blank Lines Within a Def</h3>
+
+<p>If the lines of code have have natural phases - a few lines setting up the file, a few lines sorting the keys, .. use blank lines within the def to separate these phases from each other, much like diving an essay into paragraphs. The standard says to use blank lines "sparingly".
+
+<h3>Do Not Write: if x == True</h3>
+
+<p>The way that boolean True/False is evaluated in an if/while test is a little more complicated than it appears. The simple rule is this: do not write <code>if x == True</code> or <code>if x == False</code> in an in/while test.
+
+<p>Say we have a print_greeting() function that takes in a "shout_mode" parameter.
+
+<p>Do not write this:
+
+<pre>
+def print_greeting(words, shout_mode):
+    if shout_mode == True:   # NO not like this
+        print(words.upper())
+    else
+        print(words)
+</pre>
+
+
+<p>Write it this way:
+
+<pre>
+def print_greeting(words, shout_mode):
+    if shout_mode:           # YES like this
+        print(words.upper())
+    else
+        print(words)
+</pre>
+
+
+<p>To invert the logic do not use <code>== False</code>. Use <code class=b>not</code> like this:
+
+<pre>
+def print_greeting(words, shout_mode):
+    if not shout_mode:
+        print('Not shouting')
+    else
+        print(words)
+</pre>
+
+<h3>Remove Pass from Code</h3>
+
+<p>The <code>pass</code> directive in Python is a placeholder line that literally does nothing. It is very rarely used in regular production code. However, in coding exercises, there is often some boilerplate code with a <code>pass</code> marking the spot where the student code goes. Remove all the <code>pass</code> markers from your code before turning it in.
+
+
+<h3># Inline Comments</h3>
+
+<p>It's a good practice to add # "inline" comments to explain
+what especially non-obvious or interesting code does.
+Inline comments are not needed when the code itself does a good
+job of showing what the line does.
+
+<p>1. For the following lines, the code does a good job of telling
+the story, so no inline comments are needed beyond the good variable
+and function names. Most lines of code are like this.
+
+<pre>
+count += 1
+total_len = len(name) + len(address)
+</pre>
+
+
+<p>2. Inline comments are appropriate as in the
+example below, explaining
+what a non-obvious line <i>accomplishes</i> -
+addressing the bigger goal picture, not the mechanics
+of the operators.
+
+<pre>
+# increase i to the next multiple of 10
+i = 10 * (i // 10 + 1)
+</pre>
+
+<p>See how the
+inline comment provides useful information
+that is not obvious from the line itself.
+
+
+<p>3. Another important use of inline comments
+to note when the code does <b>not</b> do what it
+appears to. This speaks to readability -
+the code does not do what its variable and function
+names suggest, so we need an inline comment
+to clear things up.
+
+<pre>
+vendors.add('AT&T')
+vendors.add('Stanford University')
+vendors.add('T-Mobile')
+# Note: We pass 'T-Mobile' here, but for historical
+# reasons the payment system re-writes and uses
+# 'Vodafone' for this internally.
+</pre>
+
+<p><b>Teaching</b> - example code used in teaching often has more inline comments than regular production code, since for teaching there are many times we want to point out or explain a technique shown on a line.
+
+
+<!--
+<h3>Constants For Repeated Values</h3>
+
+<p>TBD
+
+-->
+
+<!--
+TBD
+
+<li>Functions should have a """comment like this""" explaining
+what the function does with its inputs, i.e. its pre and post conditions.
+<li>Teaching exception: sometimes what a function does in class is defined on another page,
+in which case we don't repeat that in the """
+-->
+
+
+<h3>The Misguided PEP8 Rule About ==</h3>
+
+<p>How do you compare two values in Python? The answer is: use the <code>==</code> operator
+like this:
+
+<pre>
+if word == 'meh':
+    print('Enthusiasm low')
+</pre>
+
+<p>It works for strings, it works for ints, it works for lists, it works for pretty much everything. Having nailed down that <code class=b>==</code> is the simple, correct thing that should come to mind when comparing two things, you may skip the following paragraph.
+
+<p>There is a IMHO misguided suggestion in PEP8: it requires that comparisons to the special value None use the obscure <code>is</code> operator instead of <code>==</code>. That is a bad idea, since comparing to None is pretty common, but the <code>is</code> operator is obscure. In fact  it's unusual for a program to have any need for the <code>is</code> operator at all.
+Forcing the mass of regular programs to use this boutique operator most people have never heard of and will never need is not good Python. Therefore, the CS106A position it to just use <code>==</code> to compare any two values, which is the simple, intuitive way to think about comparisons.
+
+<pre>
+if val == None:  # CS106A says this is fine
+    print('Is nothing sacred?')
+</pre>
+
+<hr>
+
+<p>Naming quirks:
+
+<h3>Python Keywords</h3>
+
+<p>A few words like <code>def</code>, <code>for</code>, <code>and</code> are fixed "keywords" in Python, so you cannot use those words as variable or function names.
+
+<pre>
+>>> import keyword
+>>> keyword.kwlist
+['False', 'None', 'True', 'and', 'as', 'assert', 'async', 'await', 'break', 'class', 'continue', 'def', 'del', 'elif', 'else', 'except', 'finally', 'for', 'from', 'global', 'if', 'import', 'in', 'is', 'lambda', 'nonlocal', 'not', 'or', 'pass', 'raise', 'return', 'try', 'while', 'with', 'yield']
+</pre>
+
+<h3>"len" Rule: Do Not Use Builtin Function as a Variable Name</h3>
+
+<p>Python has many  built-in functions like <code>len()</code> and <code>range()</code>. As a strange example of Python's flexibility, your code can use assignment <code>=</code> to change what <code>len</code> means within your code .. probably a huge mistake!
+
+<pre>
+>>> len('hello')   # len function works
+5
+>>> len = 7        # redefine "len" to be 7, bad idea
+>>> len('hello')   # oh noes!
+TypeError: 'int' object is not callable
+</pre>
+
+<p>Here is the simple rule: do not use the name of a common function as a variable name. Here are the most common function names:
+
+<pre>
+len abs min max int float list str dict range map filter format
+</pre>
+
+<p>Rather than memorize the list of all the function names to avoid, it is sufficient avoid using the names of functions that <i>your code uses</i>, typically the well known functions like <code>len</code>, <code>range</code>, <code>min</code>, and so on.
+
+<p>This is why we avoid using "str" or "list" as variable names, instead using "s" and "lst".
+
+<p>Redefining a function in this way only affects your local code, not code elsewhere in the program. So if your code accidentally defines a variable named <code>divmod</code>, that will not interfere with other code calling the <code>divmod()</code> function.
+
+<!--
+more style
+
+
+<h2>Programming Style - Readable</h2>
+
+<p>Experience shows that the best code is "readable" - someone sweeping their eye over it can see what it does and how its parts fit together.
+
+<h3>Variable Names</h3>
+
+<p>A good variable names reflects what data it holds so lines with that data make sense. Typing a very long variable name is a chore, so we want a name just long enough to show what's going on; 's2' is not good, but 'start' or 'mid' are enough.
+
+<p>Below is an example from the midterm review - lots of string variables. If they had names like s1 s2 s3 it's a lot harder to get right. Creating meaningful+short variable names lets the programmer narrate their own ideas as they write each line.
+The last line is a nice example of names supporting the code. We would say that the code "reads" nicely, showing what it does.
+
+<p><b>foo() Example Function Problem</b> - Given a string s of even length, if the string length is 2 or less, return it unchanged. Otherwise take off the first and last chars. Consider the remaining middle piece. Split the middle into front and back halves. Swap the order of these two halves, and return the whole thing with the first and last chars restored. So 'x1234y' yields 'x3412y'.
+
+<pre>
+def foo(s):
+    if len(s) <= 2:
+        return s
+    first = s[0]
+    last = s[len(s)-1]
+    mid = s[1:len(s)-1]
+    halfway = len(mid) // 2  # index of halfway
+    return first + mid[halfway:] + mid[:halfway] + last
+</pre>
+
+
+<h3>Allowable 1-Letter Names</h3>
+
+<p>In a real program, most variables are not 1-letter, since the variables are carrying real data around, and the variable name reflects that type of data. <b>But</b> there are a few idiomatic uses where the 1-letter variable is quite readable, as the 1-letter form is a kind of standard for certain situations:
+
+<ul>
+<li> i - int counter over linear collection, often 0..len-1 (j and k also)
+<li> n - an int value without semantics (more typically you know
+what the value represents like 'weight' or 'height')
+<li> x y - referring to x y coordinates in a 2d space
+<li> f - file handle for <code>open(filename, 'r') as f</code>
+<li> s - a string with no particular content
+<br> if the string is an ip address we would use 'ip' as its name,
+but some algorithms take in a string with zero semantics, in which case 's' is ok.
+<li> d - a dict with no semantics. This maybe just happens in demos
+of dict functions (such as in the official python docs), as a dict in a real program will have semantics that suggest a real name like 'counts'.
+</ul>
+
+<h3>Collection Data Structures - 's'</h3>
+
+<p>Variable names for lists, dicts, .. that hold many things work well with 's' at the end. One sign this is working well is writing the foreach loop, and the logic of the names confirms you have it right:
+
+<pre>
+<h1>e.g. 'lines' is a list of text lines from a file</h1>
+for line in lines:
+    ...
+
+<h1>e.g. 'nums' is a list of int values</h1>
+for num in nums:
+    ...
+
+<h1>e.g. 'weights' is a list of weight values</h1>
+for weight in weights:
+    ...
+
+<h1>e.g. 'word_counts' is a dict mapping word -> count</h1>
+for word in word_counts.keys():
+    count = word_counts[word]
+    ...
+</pre>
+
+<h3>Names vs. Bugs - Time Saver!</h3>
+
+<p>Tracking down bugs is a very time consuming. Often a bug creeps in when you lose track of - a word vs. a list of words vs. a dict of lists of words. Being careful with your variable names as you go code up your steps can be a big time saver by cutting down on these bugs.
+
+
+<h3>Function Decomposition</h3>
+
+<p>Decomposition refers to separating out smaller functions to compute sub-parts of the big problem. Divide and conquer!
+
+<ul>
+<li> Shorter = easier! Don't write a 100 line program. Much easier to write a series of 10 line functions.
+<li> A decomposed function should try to solve a single, independent problem. Ideally the problem is as independent as possible, not entangled with specifics of the larger program. (independence makes it easier to write, easier to test, easier to re-use).
+<li> Separate testing - can write a test for the 10 line function. The 100 line program is much harder to debug as one big lump.
+<li> Re-use - sometimes the 10-line function can be called called from multiple spots, re-using its capability (one indication that this sort of re-use may be possible is copy-pasting code into 2 or more sections of a program).
+</ul>
+
+
+
+<hr>
+
+<h2>Style Strategy - Decomposition</h2>
+
+<ul class="slide">
+<li>Decomposition - this story will develop over the weeks
+<li>Pogram - made of functions
+<li>Divide and Conquer
+<li>Divide problem into separate functions
+<liMesh these functions together
+<li>Today: decompose out a helper function
+<br>A function solves a sub-problem
+<br>aka a "helper function"
+<br>Code calls that function when that sub-problem appears
+<li>Each function has pre/post conditions
+<li>Advantage: easier to write shorter code
+<li>Advantage: don't have to write code again, just call your function
+
+</ul>
+
+<h2>Top-Down Decomposition Strategy</h2>
+
+
+<ul class="slide">
+<li>Earlier examples showed how a program is made of many functions
+<li>e.g. beloved
+<li>Now .. how to think up these functions?
+<li>Top-Down Decomposition recipe:
+<li>We have problem X to solve
+<li>Thinking up the code for solve_x() function
+<li>Q: what would be useful helper function here?
+<li>Q: something I could call to solve a sub-part of the problem?
+<li>What should be the pre and post conditions of the helper?
+<li>e.g. say we think up a function called helper()
+<li>1. Write the code for solve_x(), calling helper()
+<li>2. Now go implement the code for helper() too
+</ul>
+
+-->
+
+
+</div></body></html>
+
+            </div>
+        </div>
+    </div>
+
+
+<!-- jQuery CDN - Slim version (=without AJAX) -->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<!-- Popper.JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
+<!-- Bootstrap JS -->
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
+<!-- jQuery Custom Scroller CDN -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.concat.min.js"></script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#sidebar").mCustomScrollbar({
+            theme: "minimal"
+        });
+
+        $('#sidebarCollapse').on('click', function () {
+            $('#sidebar, #content').toggleClass('active');
+            $('.collapse.in').toggleClass('in');
+            $('a[aria-expanded=true]').attr('aria-expanded', 'false');
+        });
+    });
+</script></body>
+
+</html>

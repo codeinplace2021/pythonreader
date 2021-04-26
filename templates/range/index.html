@@ -1,0 +1,140 @@
+<!doctype html>
+
+<html>
+
+<head>
+
+    %include templates/parts/head.html
+
+</head>
+
+<body>
+    
+    <div class="container">
+
+
+
+<h1>Python range() Function</h1>
+
+<p>The python <code>range()</code> function creates a collection of numbers on the fly, like
+0, 1, 2, 3, 4.
+This is very useful, since the numbers can be used to index into collections such as string. The range() function can be called in a few different ways.
+
+<!-- njp could explain about motivation of making index numbers -->
+
+<h2>range(n) - 1 Parameter Form</h2>
+
+<p>The most common form is <code>range(n)</code>, for integer n, which returns a numeric series starting with 0 and extending up to but not including n, e.g. <code>range(5)</code> returns <code>0, 1, 2, 3, 4</code>. This is perfect for generating the index numbers into, for example, a string..
+
+<pre>
+>>> s = 'Python'
+>>> len(s)
+6
+>>> for i in range(len(s)):
+...   print(s[i])
+... 
+P
+y
+t
+h
+o
+n
+</pre>
+
+<p>Below are some more examples calling range(). For cosmetic reasons in the examples below, the call of the range() function is inside a list() so  the numbers will print out. This use of list() is only for printing, not needed to use range() in a loop.
+
+<pre>
+>>> list(range(5))
+[0, 1, 2, 3, 4]
+>>> list(range(10))
+[0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+>>> list(range(2))
+[0, 1]
+</pre>
+
+<p>What is <code>range(0)</code>? Range is supposed to start at 0 and go up to but not including n. It turns out, the "not including" part dominates, so <code>range(0)</code> is no numbers at all.
+
+
+<pre>
+>>> list(range(1))
+[0]
+>>> list(range(0))   # n <= 0, no numbers
+[]
+>>> list(range(-42))
+[]
+</pre>
+
+<h2>reversed() Variation</h2>
+
+<p>Probably the second most common problem is to go through the standard index numbers, but in reverse order. The <code>reversed()</code> function takes in a linear collection and returns a reversed form of it. This works nicely with range() to go over the regular numbers in reverse order:
+
+<pre>
+>>> s = 'Python'
+>>> len(s)
+6
+>>> for i in reversed(range(len(s))):
+...   print(s[i])
+... 
+n
+o
+h
+t
+y
+P
+</pre>
+
+<h2>range(start, stop) - 2 Parameter Form</h2>
+
+<p>Range with 2 parameters specifies a start number other than 0, but is otherwise like the 1 parameter form above, going up to but not equal to the stop number.
+
+<pre>
+>>> list(range(5, 10))
+[5, 6, 7, 8, 9]
+>>> list(range(5, 7))
+[5, 6]
+>>> list(range(5, 6))
+[5]
+>>> list(range(5, 5))  # start >= stop, no numbers
+[]
+>>> list(range(0, 5))
+[0, 1, 2, 3, 4]
+>>> list(range(0, 0))
+[]
+>>> list(range(0, -1))
+[]
+</pre>
+
+<p>Mnemonic: the "stop" number is <b>strong</b>, so as soon as the numbers hit or exceed the stop the range is done (even if the start number initiates things in that position).
+
+
+
+<h2>range(start, stop, step) - 3 Parameter Form</h2>
+
+<p>The 3 parameter form begins with start number, up to but no including the stop number as usual. The difference is the "step" amount between numbers is now custom. Once the number is equal or goes beyond the stop, the range ends. As before, the stop number itself is always omitted.
+
+
+<pre>
+>>> list(range(0, 10, 2))
+[0, 2, 4, 6, 8]
+>>> list(range(0, 10, 6))
+[0, 6]
+>>> list(range(200, 800, 100))
+[200, 300, 400, 500, 600, 700]
+</pre>
+
+<p>If the step is negative, the range decreases from start down to stop. As always, numbers reaching or beyond the stop are omitted, but now step is decreasing.
+
+<pre>
+>>> list(range(10, 5, -1))
+[10, 9, 8, 7, 6]
+>>> list(range(10, 5, -2))
+[10, 8, 6]
+>>> list(range(6, 5, -2))
+[6]
+>>> list(range(5, 5, -2))  # equal to stop is omitted
+[]
+>>> list(range(4, 5, -2))  # beyond the stop is omitted
+[]
+</pre>
+
+</div></body></html>

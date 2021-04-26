@@ -1,0 +1,17 @@
+<h3>
+    Questions & Answers
+</h3>
+
+
+% import csv 
+% f = open(questions, encoding='utf-8', errors='ignore')
+% reader = csv.reader(f)
+% for line in list(reader)[6:]:
+%   answers = line[4:]
+%   if any(answers):
+        <br />
+        <i><p><b>Q:</b>&nbsp;{{line[1]}}</p></i>
+%       for i, a in enumerate(set([a for a in answers if a])):
+%           if a:
+               <p><b>A{{i + 1}}:&nbsp;</b> {{a}}</p>
+        

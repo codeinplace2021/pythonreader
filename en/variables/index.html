@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    
+
+<title>Python Reader</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<meta http-equiv="content-type" content="text/html; charset=UTF8">
+
+
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<link rel="stylesheet" type="text/css" href="../../css/style.css">
+    <!-- Scrollbar Custom CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.css">
+
+<!-- Java Script -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="../../plugins/moment.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+<!-- Python highlighting -->
+<script src="../../plugins/prism/prism.js"></script>
+<link href="../../plugins/prism/prism.css" rel="stylesheet" />
+
+<!-- Probability Packages -->
+<script src="../../plugins/probability/gaussian.js"></script>
+<script src="../../plugins/color.js"></script>
+
+<!-- font awesome -->
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+
+<!-- SWAL -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+
+
+<!-- Stanford -->
+<link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Source+Serif+Pro:400,600,700' rel='stylesheet' type='text/css'>
+
+<!-- Math Jax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});
+</script>
+
+<script src="../../plugins/math.min.js"></script>
+<script src='https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
+
+
+<!-- jQuery CDN - Slim version (=without AJAX) -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <!-- Popper.JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
+    <!-- Bootstrap JS -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
+
+
+</head>
+
+<body>
+
+    <div class="wrapper">
+        <!-- Sidebar  -->
+<nav id="sidebar">
+    <div class="sidebar-header">
+        <h3>Python Reader</h3>
+    </div>
+
+    <ul class="list-unstyled components">
+        
+        <li>
+            <a href="../intro">Introduction</a>
+        </li>
+
+       <!-- <li>
+            <a href="../style">Style</a>
+        </li>-->
+
+        <li>
+            <a href="../interpreter">Interpreter</a>
+        </li>
+        
+        <li>
+            <a href="../variables">Variables</a>
+        </li>
+        
+        <li>
+            <a href="../print"><code>print</code></a>
+        </li>
+        <li>
+            <a href="../input"><code>input</code></a>
+        </li>
+        <li>
+            <a href="../math">Math and expressions</a>
+        </li>
+        <!--<li>
+            <a href="../if"><code>if</code> and comparisons</a>
+        </li>
+        <li>
+            <a href="../booleans">Booleans</a>
+        </li>
+        <li>
+            <a href="../while"><code>while</code></a>
+        </li>
+        <li>
+            <a href="../for"><code>for</code></a>
+        </li>
+        <li>
+            <a href="../functions">Functions</a>
+        </li>
+        <li>
+            <a href="../lists">Lists</a>
+        </li>
+        <li>
+            <a href="../filereading">File reading</a>
+        </li>
+        <li>
+            <a href="../strings">Strings</a>
+        </li>
+        <li>
+            <a href="../dicts">Dictionaries</a>
+        </li>-->
+
+    </ul>
+
+    <ul class="list-unstyled CTAs">
+        <li>
+            <a href="https://codeinplace.stanford.edu/course" class="download">Back to Code in Place</a>
+        </li>
+    </ul>
+</nav>
+        <!-- Page Content  -->
+        <div id="content">
+
+<button type="button" id="sidebarCollapse" class="mobile-only btn btn-info">
+    <i class="fas fa-align-left"></i>
+    <span></span>
+</button>            
+            <div class="page">    
+                
+
+<h1>Variables</h1>
+<hr/>
+
+<p>A Python variable represents a little bit of memory, keeping track of a value as the code runs. 
+
+<p>A variable is created simply with an "assignment" equal sign <code class=b>=</code> stores a pointer to that value into the variable like this:
+
+<pre>
+x = 42
+</pre>
+
+<p>
+<img src=../../img/pythonreader/variables/py-var1.png alt="variable name x refers to int value 42">
+
+
+<p>Later in the code, appearances of that variable name, e.g.  <code class=b>x</code>, retrieve its current value, in this case 42. <!-- I figure this doesn't really require explanation .. they've seen vars in math so much -->
+
+<p>Trying to retrieve the value of a variable that does not exist fails with an error (i.e. no <code>=</code> ever assigned that variable).
+
+
+<h2>Variable Assignment Rules</h2>
+
+<p>Here is a more complicated code example and a picture of memory for it, with the variables on the left and their values on the right.
+
+<pre>
+x = 10
+y = 'hello'
+y = 'bye'
+z = y
+</pre>
+
+<p>
+<img src=../../img/pythonreader/variables/py-var2.png alt="variable x refers to 10, variable y refers to 'bye', z refers to the same 'bye'">
+
+
+<!--
+<p>Assigning a variable sets its arrow to point to the value. Retrieving the value of variable following its arrow.
+-->
+
+<p>Things to notice here...
+
+<p>1. Assignment like <code>x = 10</code> above sets a pointer into that variable, pointing to the value.
+
+<p>2. Assignment like <code>y = 'bye'</code> above, where the variable has an existing pointer in it, overwrites the existing pointer with the new one. Put another way, a variable holds just one pointer. Assigning a new pointer gets rid of the old one.
+
+<p>3. Assignment between two variables like <code>z = y</code> above, makes them point to the same thing.
+It does not set up a permanent link between the variables; it is simpler than that. This assignment just changes <code>z</code> to point to the <code>y</code> value at that moment.
+
+<!-- (This is described as "shallow" below, rearranging the pointers in the variables.) -->
+
+<p>4. Small observation 1: each value in Python is tagged with its type, so in the example above the number 10 is tagged with the type "int", and the string <code>'hello'</code> is tagged with its type "str".
+
+<p><b>Garbage Collection Aside</b>: in the above example, the string 'hello' exists in memory at one time, but then the variable <code>y</code> is moved to point to something else. When a value such as a 'hello' here is left with no variable pointing to it, it cannot be used any more by the code. Such memory, storing a value that is not used, is called "garbage", and the "garbage collector" facility reclaims that memory, re-using it to hold new values. This is something Python does automatically behind the scenes. Most modern languages have a garbage collection to reclaim memory automatically.
+
+<!-- Just because your programs stores the string 'woot' in memory at one time does not mean 'woot' is there forever. There is a natural re-cycling process yyyyyy
+-->
+ 
+<!-- njp - 
+<ul class=slide>
+<li>could get into types 
+<li>could have the '+' example here or later .. how much of a hurry are we in?
+</ul>
+-->
+
+<h2>Variable Swap</h2>
+
+<p>Suppose we have two variables and we want to "swap" their values, so each takes on the value of the other. This is a little coding move that all programmers should know.
+
+<pre>
+a = 42
+b = 13
+</pre>
+
+<p>
+<img src=../../img/pythonreader/variables/py-varswap1.png alt="before swap: a is 42, b is 13">
+
+
+<p>It might seem that one can begin with <code>a = b</code>, but this does not work, since it overwrites and thus loses the original value of <code>a</code>. The classic 3-line solution uses a temporary variable named "temp" to hold this value during the swap, like this:
+
+<pre>
+temp = a
+a = b
+b = temp
+</pre>
+
+<p>Starting with the above diagram, you can trace through the three assignments, leading to this memory structure:
+
+<p>
+<img src=../../img/pythonreader/variables/py-varswap2.png alt="after swap: a is 13, b is 42, temp is 42">
+
+
+<h2>Assignment <code>=</code> is Shallow</h2>
+
+<p>The swap example demonstrates a key feature of Python assignment &mdash; each assignment <code>=</code> merely changes what a variable points to. The int, string etc. values are undisturbed. The assignment <code>=</code> in Python just moves an arrow around. In the diagram, this changes the arrows on the left, but the values on the right are undisturbed.
+
+<p>We'll revisit this shallow quality of assignment with parameters and nested data structures.
+
+<h2>Variable Names are Superficial Labels</h2>
+
+<p>Normally variables names are chosen to reflect what data they contain. That said, there
+is one funny feature of variable names to know.
+
+<p>Consider the following computation
+
+<pre>
+>>> x = 6
+>>> y = x + x
+>>> y
+12
+</pre>
+
+<p>Using a couple variables, it computes that doubling 6 makes 12. Suppose instead it was written this way:
+
+<pre>
+>>> alice = 6
+>>> bob = alice + alice
+>>> bob
+12
+</pre>
+
+<p>This is <b>exactly</b> the same computation, just using different variable names. What matters in a computation is the structure &mdash; which value is used at each spot in the computation. The variable names are just labels on the computation. If we change a variable name consistently throughout the code, the computation will work the same.
+
+<p>That said, though variable names are superficial, good code uses meaningful variable names, reflecting the role of that data in the algorithm.
+       
+
+<hr/>         
+            </div>
+        </div>
+    </div>
+
+
+<!-- jQuery CDN - Slim version (=without AJAX) -->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<!-- Popper.JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
+<!-- Bootstrap JS -->
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
+<!-- jQuery Custom Scroller CDN -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.concat.min.js"></script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#sidebar").mCustomScrollbar({
+            theme: "minimal"
+        });
+
+        $('#sidebarCollapse').on('click', function () {
+            $('#sidebar, #content').toggleClass('active');
+            $('.collapse.in').toggleClass('in');
+            $('a[aria-expanded=true]').attr('aria-expanded', 'false');
+        });
+    });
+</script></body>
+
+</html>

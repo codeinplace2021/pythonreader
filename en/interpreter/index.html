@@ -1,0 +1,261 @@
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    
+
+<title>Python Reader</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<meta http-equiv="content-type" content="text/html; charset=UTF8">
+
+
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<link rel="stylesheet" type="text/css" href="../../css/style.css">
+    <!-- Scrollbar Custom CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.css">
+
+<!-- Java Script -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="../../plugins/moment.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+<!-- Python highlighting -->
+<script src="../../plugins/prism/prism.js"></script>
+<link href="../../plugins/prism/prism.css" rel="stylesheet" />
+
+<!-- Probability Packages -->
+<script src="../../plugins/probability/gaussian.js"></script>
+<script src="../../plugins/color.js"></script>
+
+<!-- font awesome -->
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+
+<!-- SWAL -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+
+
+<!-- Stanford -->
+<link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Source+Serif+Pro:400,600,700' rel='stylesheet' type='text/css'>
+
+<!-- Math Jax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});
+</script>
+
+<script src="../../plugins/math.min.js"></script>
+<script src='https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
+
+
+<!-- jQuery CDN - Slim version (=without AJAX) -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <!-- Popper.JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
+    <!-- Bootstrap JS -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
+
+
+</head>
+
+<body>
+
+    <div class="wrapper">
+        <!-- Sidebar  -->
+<nav id="sidebar">
+    <div class="sidebar-header">
+        <h3>Python Reader</h3>
+    </div>
+
+    <ul class="list-unstyled components">
+        
+        <li>
+            <a href="../intro">Introduction</a>
+        </li>
+
+       <!-- <li>
+            <a href="../style">Style</a>
+        </li>-->
+
+        <li>
+            <a href="../interpreter">Interpreter</a>
+        </li>
+        
+        <li>
+            <a href="../variables">Variables</a>
+        </li>
+        
+        <li>
+            <a href="../print"><code>print</code></a>
+        </li>
+        <li>
+            <a href="../input"><code>input</code></a>
+        </li>
+        <li>
+            <a href="../math">Math and expressions</a>
+        </li>
+        <!--<li>
+            <a href="../if"><code>if</code> and comparisons</a>
+        </li>
+        <li>
+            <a href="../booleans">Booleans</a>
+        </li>
+        <li>
+            <a href="../while"><code>while</code></a>
+        </li>
+        <li>
+            <a href="../for"><code>for</code></a>
+        </li>
+        <li>
+            <a href="../functions">Functions</a>
+        </li>
+        <li>
+            <a href="../lists">Lists</a>
+        </li>
+        <li>
+            <a href="../filereading">File reading</a>
+        </li>
+        <li>
+            <a href="../strings">Strings</a>
+        </li>
+        <li>
+            <a href="../dicts">Dictionaries</a>
+        </li>-->
+
+    </ul>
+
+    <ul class="list-unstyled CTAs">
+        <li>
+            <a href="https://codeinplace.stanford.edu/course" class="download">Back to Code in Place</a>
+        </li>
+    </ul>
+</nav>
+        <!-- Page Content  -->
+        <div id="content">
+
+<button type="button" id="sidebarCollapse" class="mobile-only btn btn-info">
+    <i class="fas fa-align-left"></i>
+    <span></span>
+</button>            
+            <div class="page">    
+                <h1>Python Interpreter</h1>
+                <hr/>
+
+<p>You write your Python code in a text file with a name like <code>hello.py</code>. How does that code Run? There is program installed on your computer named "python3" or "python", and its job is looking at and running your Python code. This type of program is called an "interpreter".
+
+<h2>Talk To The Interpreter</h2>
+
+<p>A nice benefit of using an interpreter is that you can start interactive version of the interpreter and type Python code right into it to see what it does. What happens if you use <code>+</code> in Python code like this: <code>'hello' + 3</code>?
+
+<p>You could look up the answer to this, but a very quick way to find out is to type code into the interpreter and see what it does.
+
+<p>There are 2 ways to get the interpreter:
+
+
+<p>1. Open a command-line terminal. Mac: run the "Terminal" app in the Utilities folder. Windows: type "powershell" in the lower left, this opens the Windows command line terminal. In the terminal type the command "python3" ("python" on Windows). This runs the interpreter program directly. Type ctrl-d to exit when done (on Windows ctrl-z).
+
+<p>2. If you have PyCharm installed, at the lower-left of any window, click the Python Console tab. Or use the Tools &gt; Python Console menu item.
+
+<h2>Working With The Interpreter</h2>
+
+<p>The interpreter prints a ">>>" prompt and waits for you to type some Python code. It reads what you type, evaluates it, and prints the result - the so called read-eval-print loop (here what the user types is shown in bold)
+
+<pre>
+>>> <b>1 + 2 * 3</b>
+7
+>>> <b>'hello' + 'there'</b>
+'hellothere'
+>>> <b>max(1, 5, -2)</b>
+5
+>>> <b>'hello' + 2</b>
+TypeError: can only concatenate str (not "int") to str
+</pre>
+
+<p>This is an excellent way to experiment with Python features to see how they work. If you have some code you are thinking about, it can be quick and informative to fire up the interpreter, and type the code in to see what it does.
+
+<h2>Indent In Interpreter</h2>
+
+<p>It's possible to write multi-line indented code in the interpreter (we will cover those later in this reader). If a line is not finished, such as ending with ":", hitting return does not run the code right away. You can write further indented lines. When you enter a blank line, the interpreter runs the whole thing. (For throw-away code like this, I am willing to indent just 2 spaces).
+
+<pre>
+>>> for i in range(10):
+...   mult = i * 100
+...   print(i, mult)
+... 
+0 0
+1 100
+2 200
+3 300
+4 400
+5 500
+6 600
+7 700
+8 800
+9 900
+</pre>
+
+<h2>Interpreter Hacks: dir help</h2>
+
+
+<p>With the special <b>help</b> function, you can pull up the PyDoc for each function (the triple-quote comments for a function). To refer to a function within the <code>str</code> type use the form <code>str.find</code>. Note that the function name is <b>not</b> followed by parenthesis - this is the unusual case of referring to a function but not calling it.
+
+<pre>
+>>> <b>help(str.find)</b>
+find(...)
+    S.find(sub[, start[, end]]) -> int
+    
+    Return the lowest index in S where substring sub is found,
+    such that sub is contained within S[start:end].  Optional
+    arguments start and end are interpreted as in slice notation.
+    
+    Return -1 on failure.
+</pre>
+
+<!-- jQuery CDN - Slim version (=without AJAX) -->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<!-- Popper.JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
+<!-- Bootstrap JS -->
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
+<!-- jQuery Custom Scroller CDN -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.concat.min.js"></script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#sidebar").mCustomScrollbar({
+            theme: "minimal"
+        });
+
+        $('#sidebarCollapse').on('click', function () {
+            $('#sidebar, #content').toggleClass('active');
+            $('.collapse.in').toggleClass('in');
+            $('a[aria-expanded=true]').attr('aria-expanded', 'false');
+        });
+    });
+</script>            </div>
+            
+        </div>
+    </div>
+
+   
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div></body></html>

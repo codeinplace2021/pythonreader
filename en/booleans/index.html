@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    
+
+<title>Python Reader</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<meta http-equiv="content-type" content="text/html; charset=UTF8">
+
+
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<link rel="stylesheet" type="text/css" href="../../css/style.css">
+    <!-- Scrollbar Custom CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.css">
+
+<!-- Java Script -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="../../plugins/moment.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+<!-- Python highlighting -->
+<script src="../../plugins/prism/prism.js"></script>
+<link href="../../plugins/prism/prism.css" rel="stylesheet" />
+
+<!-- Probability Packages -->
+<script src="../../plugins/probability/gaussian.js"></script>
+<script src="../../plugins/color.js"></script>
+
+<!-- font awesome -->
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+
+<!-- SWAL -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+
+
+<!-- Stanford -->
+<link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Source+Serif+Pro:400,600,700' rel='stylesheet' type='text/css'>
+
+<!-- Math Jax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});
+</script>
+
+<script src="../../plugins/math.min.js"></script>
+<script src='https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
+
+
+<!-- jQuery CDN - Slim version (=without AJAX) -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <!-- Popper.JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
+    <!-- Bootstrap JS -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
+
+
+</head>
+
+<body>
+
+    <div class="wrapper">
+        <!-- Sidebar  -->
+<nav id="sidebar">
+    <div class="sidebar-header">
+        <h3>Python Reader</h3>
+    </div>
+
+    <ul class="list-unstyled components">
+        
+        <li>
+            <a href="../intro">Introduction</a>
+        </li>
+
+       <!-- <li>
+            <a href="../style">Style</a>
+        </li>-->
+
+        <li>
+            <a href="../interpreter">Interpreter</a>
+        </li>
+        
+        <li>
+            <a href="../variables">Variables</a>
+        </li>
+        
+        <li>
+            <a href="../print"><code>print</code></a>
+        </li>
+        <li>
+            <a href="../input"><code>input</code></a>
+        </li>
+        <li>
+            <a href="../math">Math and expressions</a>
+        </li>
+        <!--<li>
+            <a href="../if"><code>if</code> and comparisons</a>
+        </li>
+        <li>
+            <a href="../booleans">Booleans</a>
+        </li>
+        <li>
+            <a href="../while"><code>while</code></a>
+        </li>
+        <li>
+            <a href="../for"><code>for</code></a>
+        </li>
+        <li>
+            <a href="../functions">Functions</a>
+        </li>
+        <li>
+            <a href="../lists">Lists</a>
+        </li>
+        <li>
+            <a href="../filereading">File reading</a>
+        </li>
+        <li>
+            <a href="../strings">Strings</a>
+        </li>
+        <li>
+            <a href="../dicts">Dictionaries</a>
+        </li>-->
+
+    </ul>
+
+    <ul class="list-unstyled CTAs">
+        <li>
+            <a href="https://codeinplace.stanford.edu/course" class="download">Back to Code in Place</a>
+        </li>
+    </ul>
+</nav>
+        <!-- Page Content  -->
+        <div id="content">
+
+<button type="button" id="sidebarCollapse" class="mobile-only btn btn-info">
+    <i class="fas fa-align-left"></i>
+    <span></span>
+</button>            
+            <div class="page">    
+                
+        <h1>Boolean Values</h1>
+<hr/>
+
+<p>The Boolean values in Python are <code>True</code> and <code>False</code>, typically used to control if-statements and while-loops.
+
+<!-- https://en.wikipedia.org/wiki/George_Boole -->
+
+<h1>Boolean And Or Not</h1>
+
+<p>The Python "bool" type (short for "boolean") has only two values - <code>True</code> and <code>False</code>.
+Expressions yielding a bool value like <code>a > 10</code>, can be combined with <b>and</b> <b>or</b> <b>not</b>, like following (printing 'yay' if a is in the range 0..100 inclusive):
+
+<pre>
+if a >= 0 and a <= 100:
+    print('yay')
+</pre>
+
+<p>Python is unique in using the plain words like "and" for this. many languages use "&&" for and, "||" for or.
+
+<p><code><i>a</i> and <i>b</i></code> &rarr; True if both are True
+
+<p><code><i>a</i> or <i>b</i></code> &rarr; True if one or the other or both are True
+
+<p><code>not <i>a</i></code> &rarr; Inverts True/False
+
+<h2>Boolean Precedence </h2>
+
+<p>There is "precedence" between and/or/not, analogous to arithmetic precedence, where "*" has higher precedence than "+".
+
+<p>Precedence order: <code>not</code> is highest precedence, followed by <code>and</code>, followed by <code>or</code>. Mnemonic: <code>not</code> is like unary minus e.g. '-6', <code>and</code> is like * mutliplication, <code>or</code> is like + addition.
+
+<p>Q: what does the following do:
+<pre>
+if a < 6 and b < 6 or c < 6:
+</pre>
+
+
+<p>The <code>and</code> goes first (higher precedence), so the above is equivalent to the following form with parenthesis added to show the order the comparisons are evaluated:
+<pre>
+if (a < 6 and b < 6) or c < 6:
+</pre>
+
+
+<p>To force the <code>or</code> to go first, put in parenthesis like this:
+<pre>
+if a < 6 and (b < 6  or c < 6):
+</pre>
+
+<p>If you are unsure, you can always add parenthesis to an expression to force the order you want.
+
+
+<h2>Boolean Short-Circuit</h2>
+
+<p>Suppose you have an int i, and you want to check if the char at that index is alphabetic .. but only if i is valid. You can write that this way...
+
+<pre>
+if i < len(s) and s[i].isalpha():...
+</pre>
+
+<p>This works because the boolean evaluation goes left to right, stopping ("short-circuiting") as soon as it can. So in the example above, if <code>i < len(s)</code> is False (i.e. i is large), the whole expression evaluates to False. In particular the <code>s[i].isalpha()</code> is <b>not evaluated</b>. Attempting to evaluate it would be an error, since i is too large, creating an IndexError.
+
+<p>Writing the <code>i&lt;len(s)</code> test to the left of the <code>s[i]</code> in effect protects it, and this is a common programming pattern. Most computer languages use short circuiting in the their boolean expressions like this.
+
+<hr/>
+            </div>
+        </div>
+    </div>
+
+
+<!-- jQuery CDN - Slim version (=without AJAX) -->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<!-- Popper.JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
+<!-- Bootstrap JS -->
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
+<!-- jQuery Custom Scroller CDN -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.concat.min.js"></script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#sidebar").mCustomScrollbar({
+            theme: "minimal"
+        });
+
+        $('#sidebarCollapse').on('click', function () {
+            $('#sidebar, #content').toggleClass('active');
+            $('.collapse.in').toggleClass('in');
+            $('a[aria-expanded=true]').attr('aria-expanded', 'false');
+        });
+    });
+</script></body>
+
+</html>

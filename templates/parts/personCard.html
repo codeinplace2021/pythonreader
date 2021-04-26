@@ -1,0 +1,17 @@
+<div class="col non-mobile-only">
+	 
+	<img src="{{data['img']}}" style="width:100%;border-radius:5px;max-width:500px; max-height:300px"><br/>
+	<b>{{data['pos']}}: <a href="{{data['url']}}">{{data['name']}}</a></b><br/>
+	<i class="fas fa-envelope sidebaricon"></i> {{data['email']}}<span class="non-mobile-only-inline">{{data['emailLongExt']}}</span><br/>
+	
+	<i class="fas fa-clock sidebaricon"></i> {{data['time']}}
+</div>
+
+<div class="col mobile-only nopadding" >
+	 
+	<img src="{{data['img']}}" style="width:100%;border-radius:5px;"><br/>
+	<b>{{data['pos']}}<br/><a href="{{data['url']}}">{{data['name']}}</a></b><br/>
+	<i class="fas fa-envelope sidebaricon"></i> {{data['email']}}<br/>
+	
+	<i class="fas fa-clock sidebaricon"></i> {{data['time']}}
+</div>

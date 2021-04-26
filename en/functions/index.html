@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    
+
+<title>Python Reader</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<meta http-equiv="content-type" content="text/html; charset=UTF8">
+
+
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<link rel="stylesheet" type="text/css" href="../../css/style.css">
+    <!-- Scrollbar Custom CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.css">
+
+<!-- Java Script -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="../../plugins/moment.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+<!-- Python highlighting -->
+<script src="../../plugins/prism/prism.js"></script>
+<link href="../../plugins/prism/prism.css" rel="stylesheet" />
+
+<!-- Probability Packages -->
+<script src="../../plugins/probability/gaussian.js"></script>
+<script src="../../plugins/color.js"></script>
+
+<!-- font awesome -->
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+
+<!-- SWAL -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+
+
+<!-- Stanford -->
+<link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Source+Serif+Pro:400,600,700' rel='stylesheet' type='text/css'>
+
+<!-- Math Jax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});
+</script>
+
+<script src="../../plugins/math.min.js"></script>
+<script src='https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
+
+
+<!-- jQuery CDN - Slim version (=without AJAX) -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <!-- Popper.JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
+    <!-- Bootstrap JS -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
+
+
+</head>
+
+<body>
+
+    <div class="wrapper">
+        <!-- Sidebar  -->
+<nav id="sidebar">
+    <div class="sidebar-header">
+        <h3>Python Reader</h3>
+    </div>
+
+    <ul class="list-unstyled components">
+        
+        <li>
+            <a href="../intro">Introduction</a>
+        </li>
+
+       <!-- <li>
+            <a href="../style">Style</a>
+        </li>-->
+
+        <li>
+            <a href="../interpreter">Interpreter</a>
+        </li>
+        
+        <li>
+            <a href="../variables">Variables</a>
+        </li>
+        
+        <li>
+            <a href="../print"><code>print</code></a>
+        </li>
+        <li>
+            <a href="../input"><code>input</code></a>
+        </li>
+        <li>
+            <a href="../math">Math and expressions</a>
+        </li>
+        <!--<li>
+            <a href="../if"><code>if</code> and comparisons</a>
+        </li>
+        <li>
+            <a href="../booleans">Booleans</a>
+        </li>
+        <li>
+            <a href="../while"><code>while</code></a>
+        </li>
+        <li>
+            <a href="../for"><code>for</code></a>
+        </li>
+        <li>
+            <a href="../functions">Functions</a>
+        </li>
+        <li>
+            <a href="../lists">Lists</a>
+        </li>
+        <li>
+            <a href="../filereading">File reading</a>
+        </li>
+        <li>
+            <a href="../strings">Strings</a>
+        </li>
+        <li>
+            <a href="../dicts">Dictionaries</a>
+        </li>-->
+
+    </ul>
+
+    <ul class="list-unstyled CTAs">
+        <li>
+            <a href="https://codeinplace.stanford.edu/course" class="download">Back to Code in Place</a>
+        </li>
+    </ul>
+</nav>
+        <!-- Page Content  -->
+        <div id="content">
+
+<button type="button" id="sidebarCollapse" class="mobile-only btn btn-info">
+    <i class="fas fa-align-left"></i>
+    <span></span>
+</button>            
+            <div class="page">    
+                <h1>Python Functions 1.0</h1>
+<hr/>
+
+
+<p>A python program is made of many lines of code, stored in a file with a name like "example.py".
+It's natural to have a way to divide the lines code up into sensible sub-parts, and these are called <b>functions</b>. Almost all the code you work with in Python is inside a function.
+
+<h2>Python Function Syntax - "def"</h2>
+
+<p>Suppose we have a Python program in the file example.py. The program text will be divided into many functions, each marked in the program text by the word <b>def</b>:
+
+<p>
+<img src=../../img/pythonreader/functions/python-program-fns.png alt="alt: program is made of functions, each with def">
+
+
+<p>Here is an example Python function named "foo". This function doesn't do anything sensible, just shows the syntax of a function.
+
+<pre>
+def foo():
+    x = 1
+    y = 2
+    z = 3
+    i = 0
+</pre>
+
+<!--
+
+<pre>
+def draw_colors():
+    bit = Bit('5x5.world')
+    bit.paint('blue')
+    bit.move()
+    bit.move()
+    bit.paint('red')
+</pre>
+-->
+
+<p>Parts of a function definition:
+
+<ul>
+ <li> <b>def</b> - A function begins with the word <code class=b>def</code>
+ <li> <b>name</b> - def is followed by the function's name, here <code class=b>foo</code>
+ <br>The name is chosen by the programer to reflect what the function does
+ <br>Here "foo" is just a CS nonsense word
+ <li> <b>parenthesis</b> - the name is followed by a pair of parenthesis and a colon <code class=b>():</code>
+<br>Functions and parenthesis pairs <code class=b>()</code> frequently go together in Python syntax
+ <li><b>body lines</b> - Indented within the def are the "body" lines of code which make up the function.
+ <br>When a function runs, the computer runs its body lines from top to bottom.
+</ul>
+
+
+<p>Key points: A function starts with the word "def", has a name, and some lines of code
+
+<h2>Function Call 1.0</h2>
+
+<p>Say we have a function named "caller", and its body lines are run from top to bottom in the usual way:
+
+<pre>
+def caller():
+    x = 6
+    y = x + 1
+    foo()   # call the "foo" function
+    x = 7
+...
+</pre>
+
+<p>To "call" a function is to invoke and run its lines of code.
+The list below traces the sequence of the  caller() function running, calling the foo() function to run its lines, and then returning to finish the caller() lines.
+
+<ol>
+<li>Line 1: <code>x = 6</code> runs in the caller
+<li>Line 2: <code>y = x + 1</code> runs in the caller
+<li>Line 3: <code>foo()</code> runs, calling that function
+ <br>-The run goes over to foo(), running the body lines there
+ <br>-Note the required parenthesis <code>()</code> to call the function
+ <br>-The run of foo() goes through its lines
+ <br>-When foo() is done, the run resumes in the caller code...
+<li>Line 4 <code>x = 7</code> runs in the caller
+</ol>
+
+<p>The run of lines in the caller code is suspended while called function runs.
+Or equivalently, we could say that the computer runs one function at a time, so when it's running foo(), it's not running caller() lines and vice-versa.
+
+<p>Here's a diagram showing the function-call sequence.
+The run starts with the lines in the caller function and goes over to run the lines in the called function. When the called function is finished, the run resumes where it left off in the caller.
+
+<p>
+<img src=../../img/pythonreader/functions/python-fncall0.png alt="alt: function call run goes from caller, to called, back to caller">
+
+<p>Bonus fact: the variables, such a "x" above, are separate and independent for each function, so x in caller is a completely separate variable from x in foo.
+
+<p>Key point Call a function by its name with parenthesis added, like <code>foo()</code>
+
+<h2>Variant: Obect-Oriented Noun.Verb Function Call</h2>
+
+<p>Another way to call a function is the object-oriented aka noun.verb style, like this:
+
+<pre>
+    bit.move()
+</pre>
+
+<p>Here <code>bit</code> is Python data of some sort, and <code>.move()</code> is a function to run on that data. At its heart, this is still just a function call, but the data to work on is listed first, then a dot, then then the function name. Python mixes regular function calls and OOP function calls. Many languages use this "OOP" style, as it has a nice quality of thinking about what data you want to work on first, and then what operation to perform on that data.
+
+
+<h1>Parameter Passing</h1>
+
+<p>Suppose we have a paint_window() function that fills a computer window with a color. We want a way to tell the function <b>what</b> color to use when calling it &mdash; blue or red or whatever. 
+
+<p>A parameter is extra information supplied by the caller that customizes the run of the called function. We will learn all the details of parameters in time. For today, it's sufficient that a function can take a parameter, and the parameter value is "passed in" as part of the call simply by including the desired value within the parenthesis.
+
+<p>So for example to call the paint_window() function to paint the window blue might look like the following.
+
+<pre>
+paint_window('blue')
+</pre>
+
+<p>The syntax <code>'blue'</code> is a Python string, which is the way to express a bit of text like this.
+
+<p>Calling the function to paint the window yellow would look like:
+
+<pre>
+paint_window('yellow')
+
+</pre>
+
+<p>A programmer would say the code "calls the paint_window function" and "passes in 'yellow' as the parameter".
+
+<p>You could say that <code>paint_window</code> is the verb we want the computer to do, and 'blue' or 'yellow' are difference noun modifiers we provide to the action.
+
+<h3>Rule 3: Pass a parameter value within the parenthesis of a function call</h3>
+
+<p>The existence of parameters perhaps explains why the parenthesis are part of the function-call syntax &mdash; the parens are the place for the parameter values.
+
+<p>We will see more details of how parameters work, but the case above is pretty simple. Call the function by name, and between the parenthesis there is a possibility of passing in extra information the function uses.
+
+<h2>print() Parameter Example</h2>
+
+<p>This is a "in the interpreter" demo/example you can try. There is a function in Python called <code>print()</code>. It does many things, but one simple thing it does is take in a parameter value and print it out to the screen. Though unglamorous, this is a way to see function call and parameters in action.
+
+<pre>
+>>> print('hi')     # Call print() passing in param 'hi'
+hi                  # Output produced by print()
+>>> print(23)
+23
+>>> print(4 + 5)
+9
+</pre>
+
+<p>What you see here is calling the <code>print()</code> by its name as usual, and in between the parenthesis passing in parameter value like <code>'hi'</code> or <code>23</code>. The print() lines take in that parameter value and print it to the screen.
+
+
+<p>A function can accept multiple more parameter values, and in fact print() accepts any number of parameters. The multiple parameter values are listed within the parenthesis, separated by commas, like this:
+
+<pre>
+>>> print('hi', 22)
+hi 22
+>>> print('behold', 123, 'donuts')
+behold 123 donuts
+>>> print(4, 8, 15, 16, 'woot')
+4 8 15 16 woot
+</pre>
+
+
+
+<!--
+
+<p>Crazy leftovers
+
+<h2>Bit Functions First Day</h2>
+<ul class="slide">
+<li>
+<pre>
+bit = Bit(filename)  # Create bit in named world
+                     # filename is a value like '3x3.world'
+bit.move()   # move forward 1 square (err if way is blocked)
+bit.left()   # turn left
+bit.paint('blue')  # paint current square blue
+                   # 'red' and 'green' work too
+</pre>
+<li><code>bit.move()</code> - calling a function named "move()"
+<br>- "calling" a function, another word for running it
+<li>Required syntax - () at the end of the function name
+</ul>
+
+
+<ul class="slide">
+<li>In Python, "def" introduces a function
+<li>We'll do that a lot in CS106AP
+<li>But today is the first
+</ul>
+
+
+<h2>4 Things About def Functions</h2>
+
+<ul class="slide">
+<li>1. A function has a name, e.g. "blue_green"
+<li>2. A function contains lines of code
+<li>3. A function can be "run", aka "called"
+<br> - the Run button does this
+<br>-This runs the lines in the function
+<li>4. A function has parameter data passed in
+<br> - e.g. "filename" within the parenthesis
+<br> - more advanced topic for later
+</ul>
+
+
+<h2>Def Talk</h2>
+
+<ul class="slide">
+<li>We've defined functions .. looks like
+<pre>
+def blue_row(bit):
+    bit.paint('blue')
+    ...
+</pre>
+<li>There 2 ways to call a function in Python
+<li>Form 1 - noun.verb or "object oriented"
+<pre>
+   bit.move()
+   bit.paint('blue')
+   bit.move()
+</pre>
+<li>Function call: go do that, come back when done
+<li>"invoke"
+<li>Form 2 - plain function call
+<pre>
+   blue_row(bit)
+</pre>
+</ul>
+
+
+<h2>Foreshadow: Big Picture</h2>
+<ul class="slide">
+<li>Program  made of functions
+<li>How do functions exchange data?
+<li>Function: black box model
+<br>-data in: parameters
+<br>-data out: return
+<li>Today 1 function, later build whole picture
+</ul>
+
+
+<h2>"score" Function Example</h2>
+
+<ul class="slide">
+<li>This simple "score" function - maybe it's inside a computer game
+<li>Takes in "n" and "limit" parameters, and returns a score value
+<li>If n is greater than the limit, returns 2*n + 10 (i.e. a bonus of 10)
+<li>Otherwise returns 2*n
+<li>Here's a def, this code works, followed by caller code
+<pre>
+
+<p>def score(n, limit):
+    if n > limit:
+        return 2 * n + 10
+    return 2 * n
+
+</pre>
+<li>"Caller" code:
+<pre>
+x = score(6, 10)
+<h1>now x is 12</h1>
+y = score(7, 10)
+z = score(11, 10)
+<h1>now z is 32</h1>
+</pre>
+</ul>
+
+<h2>Function Call Rules</h2>
+
+<ul class="slide">
+<li>We have "caller" code, and "called" function
+<li>Call a function by its name
+<pre>
+<h1>e.g. caller code</h1>
+x = score(6, 10)
+<h1>now x is 12</h1>
+y = score(7, 10)
+z = score(11, 10)
+</pre>
+<li>Caller must provide a value for each parameter, inside the parenthesis
+<li>Parameters match up by position - 1st to 1st, 2nd to 2nd
+<br>Parameter values can be expressions, like 2 + 6
+<li>Called code runs .. using caller-provided parameter values
+<br>Caller code suspends while called runs
+<br>-Each parameter is like a variable, = assigned with value from caller
+<li><b>return <i>value</i></b> in called function
+<br>-exit called function immediately
+<br>-return the <i>value</i> to the caller code
+<br>-caller can use = or whatever to store returned value
+<br>-caller code resumes running
+<li>Python edge case: if return value is not provided, Python uses <code>None</code> as the default return value for any function call
+</ul>
+
+<br>
+<img src='lecture-functioncall.png' alt='score function called by score(6, 10)'>
+
+<p>Hack mode demo, score, calls with various parameter values/expressions
+
+<h2>We Need To Talk About Parameter Names</h2>
+
+<ul class="slide">
+<li>People are used to words having meaning
+<li>With parameters this is only half true!
+<li>Consider these three functions
+<pre>
+def score(n, limit):
+    if n > limit:
+        return 2 * n + 10
+    return 2 * n
+
+<p>def score2(x, y):
+    if x > y:
+        return 2 * x + 10
+    return 2 * x
+
+<p>def score3(zip, zap):
+    if zip > zap:
+        return 2 * zip + 10
+    return 2 * zip
+</pre>
+<li>These 3 functions are effectively identical
+<li>The "n" is just a placeholder meaning "the first parameter"
+<li>Using the word "x' works just as well to mean "the first parameter"
+<li>Caller does not need to use "n" as the first parameter
+</ul>
+
+
+<h2>Each Function Has Its Own Variable Names ("scope"</h2>
+
+<ul class="slide">
+<li>Each function gets its own variables, independent
+<li>Inside a function = its indented lines
+<li>If one function has an "n"
+<li>That's totally separate from an "n" in another function or somewhere else
+<li>Parameters do not match up by <b>name</b> like "n" to "n"
+<li>Parameters for function call match up by <b>position</b>
+</ul>
+
+<p>Demo of this ("n" inside the function vs "n" outside)
+
+<pre>
+>>> def score(n, limit):
+        if n > limit:
+            return 2 * n + 10
+        return 2 * n
+>>> score(6, 10)
+12
+>>> n = 13
+>>> n = 13
+>>> n
+13
+>>> score(6, 10)
+12
+>>> score(13, 10)
+36
+</pre>
+
+
+<h2>Parameters - What To Remember</h2>
+
+<ul class="slide">
+<li>Variable and parameter names in each function are independent / separate
+<li>Calling a function, match up parameter values by position
+<li>e.g. Calling a foo() function - say it takes 3 parameters
+<li>Pass 3 values within the parenthesis
+<pre>
+foo(17, 13, 'red')
+</pre>
+</ul>
+
+<hr>
+
+<h2>Optional: Lucky Return Example</h2>
+
+<p>lucky(n) example - given an int n, the function lucky(n) returns
+the lucky version of that number. We'll say that for "teen" ints in the range 13..19,
+the lucky value is 20. For all other ints, the lucky value is just n unchanged.
+
+<p>Here is code that implements lucky(n):
+<pre>
+def lucky(n):
+    """Given int n, returns its 'lucky' value."""
+    if n >= 13 and n <= 19:
+        return 20
+    # Get to this line only if above test is false
+    return n
+</pre>
+
+
+<p>Calling lucky() looks like:
+
+<pre>
+...
+x = lucky(10)
+y = lucky(15)
+...
+</pre>
+
+
+
+<h2>lucky_sum Example</h2>
+
+<p>lucky_sum(a, b, c) - computes the sum of the lucky versions
+of a,b,c. Calls lucky(n) 3 times to get the lucky values.
+
+<pre>
+def lucky_sum(a, b, c):
+    # Here we call lucky() a few times
+    # to build up our sum.
+    sum = lucky(a)
+    sum += lucky(b)
+    sum += lucky(c)
+    return sum
+    # Alternately could write it as a big expression
+    # without using a sum variable:
+    # return lucky(a) + lucky(b) + lucky(c)
+</pre>
+
+
+<h2>Runnable lucky_sum - Autograde Table</h2>
+
+<p>The example below calls the lucky_sum() function with various parameter values. Prints out and checks the return value - one per row. This little table is a good way to think about a function - various input cases and what value the function returns.
+
+<p>What happens if there is no return, function "falls off the end" - easy to write the code and forget to put the return
+
+<p> &gt;
+
+<a href='https://parlante.org/make/fn/lucky_sum'>lucky_sum</a>
+
+-->
+
+
+    </div>
+</body>
+
+
+
+
+            </div>
+        </div>
+    </div>
+
+
+<!-- jQuery CDN - Slim version (=without AJAX) -->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<!-- Popper.JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
+<!-- Bootstrap JS -->
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
+<!-- jQuery Custom Scroller CDN -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.concat.min.js"></script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#sidebar").mCustomScrollbar({
+            theme: "minimal"
+        });
+
+        $('#sidebarCollapse').on('click', function () {
+            $('#sidebar, #content').toggleClass('active');
+            $('.collapse.in').toggleClass('in');
+            $('a[aria-expanded=true]').attr('aria-expanded', 'false');
+        });
+    });
+</script></body>
+
+</html>

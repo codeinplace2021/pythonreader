@@ -1,0 +1,199 @@
+<!doctype html>
+
+<html>
+
+<head>
+
+  %include templates/parts/head.html
+
+</head>
+
+<body>
+  
+  <div class="container">
+
+<script>
+// arg is button followed by div which it does show/hide alternately
+function showHide(button) {
+  if (button.nextElementSibling.style.display == "block") {
+    button.nextElementSibling.style.display = "none";
+  } else {
+    button.nextElementSibling.style.display = "block";
+  }
+}
+</script>
+
+
+<h1>Sorting</h1>
+
+<p>Sorting is a classic computer algorithm and all computer languages provide it for you. There are piles of CS research and language features on just this one topic which I would venture say is now a solved problem. (In CS106B you'll design and analyze your own sort algorithm.) Here we'll look at the sorted() function which works on any linear data structure.
+
+<h2>Sorting 1.0</h2>
+
+<p>The <code>sorted()</code> function orders the elements into increasing order. The elements can be any type (str, int, float, ..) so long as that type supports <code><</code> and <code>==</code>.
+
+<p>The simplest use of sorted is just ordering a linear series of strs or ints into increasing order. Sorted() returns a new list, leaving the original list unchanged:
+
+
+<pre>
+>>> nums = [23, 42, 4, 8, 15, 16]
+>>> sorted(nums)
+[4, 8, 15, 16, 23, 42]
+>>> nums
+[23, 42, 4, 8, 15, 16]   # original list not changed
+>>>
+>>> strs = ['banana', 'zebra', 'apple', 'donut']
+>>> sorted(strs)
+['apple', 'banana', 'donut', 'zebra']
+</pre>
+
+<p>By default, sorted() returns elements in increasing order. The optional <code>reverse=True</code> parameter returns the elements in decreasing order:
+
+<pre>
+>>> sorted(strs, reverse=True)
+['zebra', 'donut', 'banana', 'apple']
+</pre>
+
+<!--
+This is maybe too obscure to mention
+
+<p>The elements should be < comparable to each other - int vs. int, str vs. str is fine. Comparing < str to int does not have an intuitive definition and is an error (and that's got to one of the more readable error messages!):
+
+<pre>
+>>> sorted([2, 3, 'hi'])
+Error:'<' not supported between instances of 'str' and 'int'
+</pre>
+-->
+
+
+<h2>Sort Upper / Lower</h2>
+
+<p>By default, uppercase chars come before lowercase chars, so uppercase strings will sort to the front of the list:
+
+<pre>
+>>> strs = ['donut', 'ZEBRA', 'BANANA', 'apple']
+>>> sorted(strs)
+['BANANA', 'ZEBRA', 'apple', 'donut']
+</pre>
+
+<p>One possible fix it to convert the strings to all upper or lower case, although this is not the best looking solution. If the user's data is in a mix of upper and lower case, it's nice to preserve that for them. A fix that preserves the upper/lower case is shown in <a href=#upperlower>Sort Upper/Lower Fix</a> below.
+
+<h2>Sorting 2.0 - Tuples</h2>
+
+<p>Say you have a list of tuples, giving a web domain name and a path on that domain. 
+A common goal for this data is to sort <b>first</b> by domain, but when domains are equal, <b>fall-back</b> to sorting by path. This fall-back strategy is exactly what sorted() does, ordering first by [0], then falling back to [1] and so on.
+
+<pre>
+>>> domains = [('stanford.edu', '/meh'), ('google.com','/search'), ('stanford.edu', '/admit')]
+>>> sorted(domains)
+[('google.com', '/search'), ('stanford.edu', '/admit'), ('stanford.edu', '/meh')]
+</pre>
+
+<p><b>Stable</b> - a common feature of good sort algorithm is that it only re-orders elements from the original if they are not ==. So if we had 2 copies of the ('stanford.edu', '/admit') tuple in that list, they would stay in the same order after sorting. The built in sorting algorithm is stable in this way.
+
+
+<h2>Sorting 3.0 - Custom Sorting</h2>
+
+<p>Say you have a list of strings, and you want to sort in a way other than alphabetic. Python has a very nice way to do this, the "key" function.
+
+<p>The key function is a function of 1 parameter that produces a sort-by value to use for comparisons in place of the original value.
+
+<h2>Sort Key Example 1</h2>
+
+<p>Sort strings by their length. Introduce by_len(s) function that takes in one string and returns its length. 
+
+<p>When calling sorted, pass in <b>key=by_len</b>. In this way, the sorting uses the length of each string for comparisons.
+
+<pre>
+>>> strs = ['bbb', 'cc', 'dd', 'aaa', 'z']
+>>> 
+>>> sorted(strs)
+['aaa', 'bbb', 'cc', 'dd', 'z']  # sort by alphabetic
+>>> 
+>>> def by_len(s):               # by_len(s) - returns len(s)
+..  return len(s)  
+>>>
+>>> sorted(strs, key=by_len)     # sort with by_len
+['z', 'cc', 'dd', 'bbb', 'aaa']
+>>>
+</pre>
+
+<p>Note that in <code>sorted(a, key=by_len)</code> we have the name of the function <code>by_len</code> but it is not followed by parenthesis. This is the rare case of identifying a function by name, but <b>not</b> calling it.
+
+
+<p>Note the "stable" feature of the sort - 'bbb' comes before 'aaa' - they have the same length, but 'bbb' was before 'aaa' in the original, so they keep that ordering in the sorted version.
+
+
+<!--
+Actually can just use the built-in function 'len' but typically you need to write your own by_len or whatever function to capture the sorting you want.
+-->
+
+<h2>Sort Key Example 2</h2>
+
+<p>Say we have (str, int) "food" tuples where the int is a count, such as from a dict-count algorithm.
+
+<pre>
+>>> foods = [('apple', 5), ('banana', 2), ('chocolate', 137), ('bread', 10)]
+>>> sorted(foods)
+[('apple', 5), ('banana', 2), ('bread', 10), ('chocolate', 137)]
+</pre>
+
+<p>Say we want to sort these same tuples, but in increasing order by the count. Introduce a by_count(food) function.
+
+<pre>
+>>> def by_count(food): return food[1] 
+>>> sorted(foods)
+[('apple', 5), ('banana', 2), ('bread', 10), ('chocolate', 137)]
+>>> sorted(foods, key=by_count)
+</pre>
+
+<p>What if we want the highest count first? Use the reverse=True parameter.
+
+<pre>
+>>> sorted(foods, key=by_count, reverse=True)
+[('chocolate', 137), ('bread', 10), ('apple', 5), ('banana', 2)]
+</pre>
+
+<h2>Sort Lambda</h2>
+
+<p>Lambda is a very compact way of writing a short function without requiring a separate def. This works well with sorted(). Here is the food by_count() example, re-written with this lambda
+
+<pre>
+  lambda food: food[1]
+</pre>
+
+<p>The one parameter to the lambda is one <code>food</code> tuple, and the lambda returns <code>food[1]</code> &mdash; in this way, sorting uses the count from each food tuple for sorting. Rather than use "return", the lambda just has the expression to use, <code>food[1]</code> in this case.  See the <a href={{pathToRoot}}pythonreader/maplambda/>map/lambda</a> chapter for more information about lambdas.
+
+<pre>
+>>> foods = [('apple', 5), ('banana', 2), ('chocolate', 137), ('bread', 10)]
+>>> # Lambda equivalent of by_count():
+>>> sorted(foods, key=lambda food: food[1])
+[('banana', 2), ('apple', 5), ('bread', 10), ('chocolate', 137)]
+>>>
+>>> # Lambda sorting by name:
+>>> sorted(foods, key=lambda food: food[0])
+[('apple', 5), ('banana', 2), ('bread', 10), ('chocolate', 137)]
+</pre>
+
+<a name=upperlower>
+<h2>Sort Upper/Lower Fix</h2>
+
+<p>With lambda, we can write a sort that is not tripped up by upper/lower case in the input strings. The key= lambda computes the lowercase form of each string to use in the comparisons:
+
+<pre>
+>>> strs = ['donut', 'ZEBRA', 'BANANA', 'apple']
+>>> sorted(strs)
+['BANANA', 'ZEBRA', 'apple', 'donut']      # upper before lower - lame
+>>> 
+>>> sorted(strs, key=lambda s: s.lower())  # sort by lowercase form - nice
+['apple', 'BANANA', 'donut', 'ZEBRA']
+</pre>
+
+<h2>Sorting Speed?</h2>
+
+<p>How much time does sorting take?
+An algorithm that makes 1 pass over a list, doing a fixed-cost computation for each element could be called "linear" time cost. If you double the length of the list, the time taken roughly doubles. Many algorithms we've worked out have this linear 1-pass-over-the-data quality.
+
+<p>Sorting is more expensive than linear. It has to go back and forth repeatedly, some elements have to be examined many times. Technically the time to sort is proportionate to len * log(len). Measuring costs like this is a whole topic in CS106B. For CS106A, just remember that sorting is medium expensive.
+
+</div></body></html>

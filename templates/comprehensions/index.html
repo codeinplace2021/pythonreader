@@ -1,0 +1,80 @@
+<!doctype html>
+
+<head>
+
+  %include templates/parts/head.html
+
+</head>
+
+<body>
+  
+  <div class="container">
+    <script>
+// arg is button followed by div which it does show/hide alternately
+function showHide(button) {
+  if (button.nextElementSibling.style.display == "block") {
+    button.nextElementSibling.style.display = "none";
+  } else {
+    button.nextElementSibling.style.display = "block";
+  }
+}
+</script>
+
+
+<h1>Comprehensions</h1>
+
+<p>Comprehensions are a compact, neat way to express a computation converting the elements in a list.
+Comprehensions address a common sub-problem in a program &mdash; given a list of elements, compute a new list where each element is transformed in some way, e.g. square each number in a list:
+
+<pre>
+>>> nums = [1, 2, 3, 4, 5, 6]
+>>> [n * n for n in nums]
+[1, 4, 9, 16, 25, 36]
+</pre>
+
+<p>The comprehension computes a new list of the transformed elements, leaving the original list unchanged.
+
+<p>Three steps to write a comprehension:
+<ol>
+<li>Write the outer square brackets <br><code>[  ]</code>
+<li>Write a regular foreach loop over the source list inside the brackets, <br><code>[for n in nums]</code>
+<li>Finally write an expression for the new elements at the left, like <code>n * n</code> in <br><code>[n * n for n in nums]</code>
+</ol>
+
+
+<p>Choose a suitable variable name for the loop, reflecting that the list contains ints, or strs or whatever, helping to keep track of what type you have as you complete the code.
+
+<pre>
+>>> nums = [1, 2, 3, 4, 5, 6]
+>>> [2 ** n for n in nums]
+[2, 4, 8, 16, 32, 64]
+>>>
+>>> [n * -1 for n in nums]
+[-1, -2, -3, -4, -5, -6]
+</pre>
+
+<p>The computed value for the new list does not need to be the same type as in the source list. The expression at the left can yield up any type of Python value.
+
+<pre>
+>>> [str(n) + '!' for n in nums]
+['1!', '2!', '3!', '4!', '5!', '6!']
+</pre>
+
+<p>The comprehension can also filter out some elements. Add an optional <code>if <i>test</i></code> at the right side, controlling which elements are included in the result.
+
+<pre>
+>>> [n * n for n in nums if n >= 3]
+[9, 16, 25, 36]
+</pre>
+
+<p>Many programs have a part of the computation that just needs to transform the elements of a list in some way, and comprehensions are great for that part of the program.
+
+
+<p>Stylistically, the sweet spot for comprehensions is about 1 line long. If a comprehension is so complex it spans multiple lines, the result is so dense that it is hard to read. Avoid the temptation to express the entire program as giant nested structure of comprehensions.
+
+<!-- njp could talk about how to write code out in longer form, say def + map -->
+
+
+  </div>
+</body>
+

@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    
+
+<title>Python Reader</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<meta http-equiv="content-type" content="text/html; charset=UTF8">
+
+
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<link rel="stylesheet" type="text/css" href="../../css/style.css">
+    <!-- Scrollbar Custom CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.css">
+
+<!-- Java Script -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="../../plugins/moment.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+<!-- Python highlighting -->
+<script src="../../plugins/prism/prism.js"></script>
+<link href="../../plugins/prism/prism.css" rel="stylesheet" />
+
+<!-- Probability Packages -->
+<script src="../../plugins/probability/gaussian.js"></script>
+<script src="../../plugins/color.js"></script>
+
+<!-- font awesome -->
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+
+<!-- SWAL -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+
+
+<!-- Stanford -->
+<link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Source+Serif+Pro:400,600,700' rel='stylesheet' type='text/css'>
+
+<!-- Math Jax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});
+</script>
+
+<script src="../../plugins/math.min.js"></script>
+<script src='https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
+
+
+<!-- jQuery CDN - Slim version (=without AJAX) -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <!-- Popper.JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
+    <!-- Bootstrap JS -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
+
+
+</head>
+
+<body>
+
+    <div class="wrapper">
+        <!-- Sidebar  -->
+<nav id="sidebar">
+    <div class="sidebar-header">
+        <h3>Python Reader</h3>
+    </div>
+
+    <ul class="list-unstyled components">
+        
+        <li>
+            <a href="../intro">Introduction</a>
+        </li>
+
+       <!-- <li>
+            <a href="../style">Style</a>
+        </li>-->
+
+        <li>
+            <a href="../interpreter">Interpreter</a>
+        </li>
+        
+        <li>
+            <a href="../variables">Variables</a>
+        </li>
+        
+        <li>
+            <a href="../print"><code>print</code></a>
+        </li>
+        <li>
+            <a href="../input"><code>input</code></a>
+        </li>
+        <li>
+            <a href="../math">Math and expressions</a>
+        </li>
+        <!--<li>
+            <a href="../if"><code>if</code> and comparisons</a>
+        </li>
+        <li>
+            <a href="../booleans">Booleans</a>
+        </li>
+        <li>
+            <a href="../while"><code>while</code></a>
+        </li>
+        <li>
+            <a href="../for"><code>for</code></a>
+        </li>
+        <li>
+            <a href="../functions">Functions</a>
+        </li>
+        <li>
+            <a href="../lists">Lists</a>
+        </li>
+        <li>
+            <a href="../filereading">File reading</a>
+        </li>
+        <li>
+            <a href="../strings">Strings</a>
+        </li>
+        <li>
+            <a href="../dicts">Dictionaries</a>
+        </li>-->
+
+    </ul>
+
+    <ul class="list-unstyled CTAs">
+        <li>
+            <a href="https://codeinplace.stanford.edu/course" class="download">Back to Code in Place</a>
+        </li>
+    </ul>
+</nav>
+        <!-- Page Content  -->
+        <div id="content">
+
+<button type="button" id="sidebarCollapse" class="mobile-only btn btn-info">
+    <i class="fas fa-align-left"></i>
+    <span></span>
+</button>            
+            <div class="page">    
+                
+
+<h1>Python Dict</h1>
+<hr/>
+
+<p>The dict "dictionary" type is very important because it takes in disorganized data, organizes it,
+and it is <b>fast</b>. The dict here is based on the "hash table" data structure.
+You will learn how to build and analyze a hash table in CS106B, here we're happy to just use them. Many important algorithms leverage hash tables in some way since they can handle large data sets and remain fast.
+
+'dict' is the name of the Python dict type, so we'll use just 'd' as a generic variable name.
+
+<pre>
+d = {}                  # Create empty dict
+d['ca'] = 'California'  # 1. Set key/value pairs into dict
+d['ok'] = 'Oklahoma'
+d['nj'] = 'New Jersey'
+d['tx'] = 'Texas'
+val = d['nj']           # 2. Retrieve value by key
+val = d['xx']           # fails with KeyError
+check = 'nj' in d       # 3. in check -> True
+</pre>
+
+
+<p>1. <code>d['ca'] = 'California'</code> - with equal-sign: d[key] = xxx creates a key/value pair in the dict. If a pair was in there already, it is overwritten.
+
+<p>2. <code>val = d['nj']</code> - referring to d[key] retrieves the value for that key, or is a KeyError. Code needs to check that the key is in before doing [ ] retrieval.
+
+<p>3. <code>if 'nj' in d:</code> - use <b>in</b> to check if a key is in the dict or not. This sort of 'in' works for lists too, but for dicts it's much faster.
+
+<p>Key point: dicts (hash tables) are <b>fast</b>. Even if the dict has 1 million key/value pairs in it, performing the get/set/in of single key is very fast. If the dict grows to hold 10 million key/value pairs, the speed is largely unchanged.
+
+<p>Strategy: therefore if we are reading a file or a network taking in disorganized data, load the data into a dict choosing the key and value definitions we want to output. The data will become organized by that key, even though it was in random order as it was read.
+
+<p>The type used as key should be "immutable", often a string or int (or tuple when we get to those).
+
+<h2>Dict Counting</h2>
+
+<p>Here is the canonical logic to load up a dict - in this example
+the code counts the number of occurrences of each word, but many useful
+dict operations will follow this basic loop/in/out pattern.
+
+<pre>
+def strs_counts(strs):
+    """
+    Given a list of strings, return a 'counts' dict of
+    str->count key/value pairs
+    """
+    counts = {}
+    for s in strs:
+        # fix up not-in case
+        if not s in counts:
+            counts[s] = 0
+        # invariant: at this line, s is in
+        counts[s] += 1
+        # alternate 'else' solution:
+        #if not s in counts:
+        #    counts[s] = 1
+        #else:
+        #    counts[s] += 1
+    return counts
+</pre>
+
+<h2>Getting Data out of Dict</h2>
+
+
+<p>1. <code>len(d)</code> - as you would guess, the number of key/value pairs in the dict
+
+<p>2. <code>d.get(<i>key</i>)</code> - retrieves the value for a key, but if the key is not there, returns None by default (vs. throwing an error like [ ]). A 2 parameter form  <code>d.get(key, missing-value)</code> specifies what value to return if the key is missing. This forms an alternative to writing if/in logic to check if the key is in.
+
+<p>3. <code>d.keys()</code> - returns an iterable of all the keys in dict (in a random order). Can loop over this to get each key. The keys alone, no values.
+
+<p>4. <code>d.values()</code> - returns an iterable of all the values in dict (in a random order). Can loop over this to get each value.
+
+<p>5. <code>d.items()</code> returns an iterable of the key,value pairs. This works with a particular sort of double-variable loop, see below. If you want to look at all of the key,value pairs, this is the most direct way.
+
+<p>The most common pattern for looping over a dict, using sorted() function which returns a linear collection sorted into increasing order:
+
+<pre>
+def print_counts2(counts):
+    # sort the keys for nicer output
+    for key in sorted(counts.keys()):
+        print(key, counts[key])
+</pre>
+
+
+<p>The double-variable key,value loop (more detailed explanation in the tuples section below)
+<pre>
+def print_counts3(counts):
+    # key,value loop over .items()
+    # unsorted
+    for key,value in counts.items():
+        print(key, value)
+</pre>
+
+
+<!--
+
+<a name=tuple>
+<h2>Tuples</h2>
+
+<p>The 'tuple' is a Python type which is like a small list. Tuples are like a list but written within parenthesis, here is a tuple of three strings: <code>('a', 'b', 'c')</code>
+
+<p>Accessing a tuple works like a list -- len, [ ], in, slices, loops -- but the big difference is that a tuple is immutable. It is built once and then never changes. There is no append() function.
+
+<pre>
+>>> t = ('a', 'b', 'c')
+>>> len(t)
+3
+>>> t[0]
+'a'
+>>> 'c' in t
+True
+>>> t[0:2]
+('a', 'b')
+>>> t[0:2]
+('a', 'b')
+>>> t[0] = 'hi'   # no changing it!
+Error:'tuple' object does not support item assignment
+</pre>
+
+<p>Tuples are useful where you have a fixed number of things to keep as a group -- e.g. an x,y coordinate pair stored in a len-2 tuple like (4, 10) keeps the x,y together as a unit. In contrast, a list is useful when you have an unlimited number of items you want to store together, such as the typical pattern of reading out of a file and using lst.append() to put all the items together in one list.
+
+<p>Recall that dict-keys should be immutable. Therefore if you have some composite data that you want to use as a dict key, e.g. a string and an int, form them into a tuple ('meh', 16) and then use that as the key.
+
+
+<h2>Tuples and Assignment</h2>
+
+<p>One quirky but important use of tuples is assignment multiple variable at once, like this:
+
+<pre>
+>>> (x, y) = (12, 4)
+>>> x
+12
+>>> y
+4
+</pre>
+
+<p>The length of the left-hand-side and right-hand-side must be the same (CS terminology protip "lhs" and "rhs".)
+
+<h2>Tuples and Multiple Value Return</h2>
+
+<p>Communicating <b>in</b> to a function is a rich area: you can have any number of parameters, they each get a name. How do you communicate <b>out</b> of a function .. return 1 value. Returning 1 value covers 90% of the cases. But sometimes it really makes sense to return 2 or more values. The Pythonic way to do this is to return a tuple packing together the values. Like this
+
+<pre>
+def min2(a, b):
+    """
+    Given 2 ints, returns (True, min_val) if at least
+    one is negative and min_val is the minimum value.
+    Otherwise returns (False, None)
+    """
+    if a<0 or b<0:
+        return (True, min(a, b))
+    return (False, None)
+</pre>
+
+<p>There are 2 requirements:
+
+<p>1. The function doc string must state the size and content-types of the returned tuple. There's no way the caller code can be written correctly without
+this information.
+
+<p>2. All paths should return a tuple of that same length, even if it is
+(None, None), so that standard looking calling code of the form (x, y) = fn(..) works
+without crashing should it hit the None case.
+
+
+<p>Calling min2 looks like this, catching the len-2 tuple result into 2 variables.
+<pre>
+    (negative, min_val) = min2(a, b)
+    if negative:
+       ...
+</pre>
+
+-->
+
+
+
+<h2>Tuples and Dicts</h2>
+
+<p>One handy use of tuples is the dict.items() function, which returns the entire contents of the dict as an list of len-2 (key, value) tuples.
+
+<pre>
+>>> d = {'a':1, 'd':4, 'c':2, 'b':3}
+>>> d
+{'a': 1, 'd': 4, 'c': 2, 'b': 3}
+>>> d.items()
+dict_items([('a', 1), ('d', 4), ('c', 2), ('b', 3)])  # (key, value) tuples
+>>> sorted(d.items())   # same tuples, sorted by key
+[('a', 1), ('b', 3), ('c', 2), ('d', 4)]
+</pre>
+
+<p>Sorting of tuples goes left-to-right within each tuple -- first sorting by all the [0] values across the tuples, then by [1], and so on.
+
+<p>Once all the data has been loaded into a dict, it's natural to have a process-all-the-data phase. This can be written as a loop over the above d.items() list. The loop syntax below takes one tuple off the list for each iteration, setting the two variable, key and value each time:
+
+<pre>
+# Example: for loop setting key/value for each iteration
+for key,value in d.items():
+    # use key and value in here
+</pre>
+
+<p>This is a special version of the for loop, where there are multiple variables, and the number of variables matches the size of a tuples coming off the list. The above example, looping key,value over dict.items() is probably the most common use of this multiple-variable variant of the for loop.
+
+
+
+            </div>
+        </div>
+    </div>
+
+
+<!-- jQuery CDN - Slim version (=without AJAX) -->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<!-- Popper.JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
+<!-- Bootstrap JS -->
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
+<!-- jQuery Custom Scroller CDN -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.concat.min.js"></script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#sidebar").mCustomScrollbar({
+            theme: "minimal"
+        });
+
+        $('#sidebarCollapse').on('click', function () {
+            $('#sidebar, #content').toggleClass('active');
+            $('.collapse.in').toggleClass('in');
+            $('a[aria-expanded=true]').attr('aria-expanded', 'false');
+        });
+    });
+</script></body>
+
+</html>

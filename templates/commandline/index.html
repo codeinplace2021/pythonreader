@@ -1,0 +1,266 @@
+<!doctype html>
+
+<head>
+
+      %include templates/parts/head.html
+
+</head>
+
+<body>
+      
+      <div class="container">
+            <!--
+
+<p>Issue:
+ Show interp trace I guess?
+
+-->
+
+<h1>The Command Line</h1>
+
+<!--
+<blockquote style='max-width:700px;'>It was the best of times, it was the worst of times, it was the age of wisdom, it was the age of foolishness</blockquote>
+-->
+
+<p>There are two views of the computer - in the user view, one just picks up the computer to see text and image and icons. The user clicks and types, the computer reacts follow their wishes. That's a fantastic story, describing how billions of regular people to use computers, seeing and creating dazzling results.
+
+<p>But how does that work behind the scenes? The programmers's world putting this all together is driven bythe <b>command line</b>.
+
+<h2>Command Line</h2>
+
+<p>Here's a simple example of the command line, in this case running the command known as "date" which prints the current date and time (works on the Mac and Windows).
+
+<pre>
+$ <b>date</b>
+Tue Oct  1 13:49:55 PDT 2019
+$
+</pre>
+
+<p>With the command line, the computer types out a prompt, shown here as "$" although typically it is longer, showing things like the current directory. The cursor is left blinking to the right of the prompt, waiting for the user to type something. The user types a command and hits the return key to run the command. In this example, shown in bold, the "date" command. The computer takes in what the user has typed, runs it, prints the resulting output to the screen, and then puts up a prompt again.
+
+<p>The command line is often called the "terminal" since that was the name for the screen and keyboard devices that were wired up to computers in the early days.
+
+<p>Below, we'll show how to get a terminal from within PyCharm which will be our common way to do it. See the "Creating Command Line" at the end of this doc for how to get a command line without PyCharm.
+
+<h2>Example Project Folder: hello</h2>
+
+<p>For the examples bellow you can use our "hello" project. Download the <a href=hello.zip>hello.zip</a> zip file. Move the .zip file the folder where you'd like to keep your code. Expand it to get a "hello" folder that contains a "hello.py" file and some other files. The examples below will use this hello folder as an example for various command.
+
+<p>Windows hello.zip issue: by default Windows expands hello.zip to create a "hello" folder with a second "hello" folder inside it, which is one too many folders. Windows will put up a dialog to choose where the files should go; in that dialog, delete the "hello" off the end to avoid this nesting.
+
+
+<h2>Terminal in a Folder</h2>
+
+<p>A command line always runs in the context of a folder on the computer so the commands can have easy access to the files in that folder. What regular users call a "folder" on the computer, programmers user the older term "directory", but it's the same thing &mdash; a directory has a name and holds a collection files and sub-directories.
+
+<p>How do you get a command prompt in a directory? There is a very easy way from within PyCharm:
+
+<p>Run PyCharm. Select the Open... menu command. Navigate to the "hello" folder unzipped above. Click on the hello folder and open it (do not click on the "hello.py" file in the folder, maddeningly that does not open the folder in the same way. A common mistake.)
+
+<p>With the hello project opened, click the "Terminal" tab at the lower left, and PyCharm will create a command line terminal in the "hello" directory. This works on the Mac and Windows.
+
+<p>Within the terminal, type the "ls" command (detailed below), which lists the names of the files and directories in the current folder. In this way, you can confirm that the command line is running in the correct directory. It should look like the following (the "$" represents the prompt printed before where you type).
+
+<pre>
+$ <b>ls</b>
+hello.py        poem.txt        spring.txt      sub
+</pre>
+
+<h2>Running Your Python Program</h2>
+
+<p>When you write a Python program, you are writing a new command the computer can run. Here we'll use the simple <code>hello.py</code> program which you can practice running to see some output.
+
+<p>In the command line, the command to run the Python <code>hello.py</code> program, the command is:
+
+<pre>
+$ <b>python3 hello.py</b> 
+Hello World
+$
+</pre>
+
+<p>The first word "python3" means we want to run the Python interpreter which handles python programs, and then "hello.py" refers to the Python program we want to run. Those two words run the Python program in the "hello.py" file, printing any output to the terminal. On Windows instead of "python3" the command is "python" or "py" and everything else is the same.
+
+<p>In this case, the program just prints "Hello World" on one line. When the program is done we get another prompt.
+
+
+<h2>Command Line Arguments</h2>
+
+<p>The command line is a powerful and flexible way to specify extra information for a program to use. We can type in extra words <b>after</b> the hello.py name of the program, and these are called "command line arguments". If the hello.py program is run with a 1 command line argument, it treats it as a name to put in the greeting. See how the command line argument comes just after the hello.py file name:
+
+<pre>
+$ <b>python3 hello.py Alice</b>
+Hello Alice
+$ <b>python3 hello.py Bob</b>
+Hello Alice
+</pre>
+
+<p>For the above examples we would say that hello.py took 1 command line argument: "Alice" for the first run and "Bob" for the second.
+
+<h2>The Up Arrow</h2>
+
+<p>Typing the whole command line again and again is too much work! The theme of avoiding work runs strong in CS! In the terminal, hit the <b>up arrow</b> - this should bring back your previous command line. You can arrow left and right to edit this line then hit return to run with it. This is an incredibly useful feature, allowing you to retrieve the command you just did and make little edits to try something else.
+
+<p>Exercise: Use the up-arrow to try a bunch of different names.
+
+<h2>-n Options</h2>
+
+<p>Typically when a command line argument begins with a dash, like "-n", it enables some option for the command.
+
+<p>For example, see below what hello.py does when run with 3 command line arguments like this:
+<br><code>hello.py -n <i>a-number</i> <i>a-name</i></code>
+
+<pre>
+$ <b>python3 hello.py -n 100 Alice</b>
+Alice Alice Alice Alice Alice Alice Alice Alice Alice Alice Alice Alice Alice Alice Alice Alice Alice Alice Alice Alice Alice Alice Alice Alice Alice Alice Alice Alice Alice Alice Alice Alice Alice Alice Alice Alice Alice Alice Alice Alice Alice Alice Alice Alice Alice Alice Alice Alice Alice Alice Alice Alice Alice Alice Alice Alice Alice Alice Alice Alice Alice Alice Alice Alice Alice Alice Alice Alice Alice Alice Alice Alice Alice Alice Alice Alice Alice Alice Alice Alice Alice Alice Alice Alice Alice Alice Alice Alice Alice Alice Alice Alice Alice Alice Alice Alice Alice Alice Alice Alice 
+</pre>
+
+<p>Normally words on the command line are separated from each other by spaces. Place text inside quote marks to group it together, treating it as a single arg, like this:
+
+<pre>
+$ <b>python3 hello.py -n 10 "Philip K. Dick"</b>
+Philip K. Dick Philip K. Dick Philip K. Dick Philip K. Dick Philip K. Dick Philip K. Dick Philip K. Dick Philip K. Dick Philip K. Dick Philip K. Dick 
+</pre>
+
+<p>Exercise: Use the up-arrow to try different names and values of -n.
+
+<h2>Remember the Up Arrow</h2>
+
+<p>We are just scratching the surface of how you could run a program and play around with different arguments to run it different ways. Always use the up-arrow to bring back a previous command line for editing; only type out the command from scratch once!
+
+
+
+<h2>See Files and Directories: ls pwd cat wc</h2>
+
+<p>What files are in this directory? What's in this file? We've needed commands to answer those questions from the earliest days of computers. The names chosen within the "Unix" operating system for these commands have gradually taken over, so now the Mac, Linux, and Windows Power Shell command line all support these commands using the same names.
+
+<p>The <code>ls</code> command ("list") lists out the files and sub-directories in the current directory. Here is an example running in the "hello" example directory which ships with a couple .txt files we see in the listing:
+
+<pre>
+$ <b>ls</b>
+hello.py        poem.txt        spring.txt      sub
+$
+</pre>
+
+<p>The <code>cat</code> command prints out the contents of a file to the screen:
+
+<pre>
+$ <b>cat poem.txt</b> 
+Roses are red
+Violets are blue
+This does not rhyme
+$
+$ <b>cat spring.txt</b> 
+Spring has sprung
+Fall has fell
+Winter's here
+And it's colder than
+usual
+$
+</pre>
+
+<p>The <code>pwd</code> command ("print working directory") prints out the name of the current directory plus its parent directories. Essentially is shows where the current directory is in the file system. (See "cd" below for the command that changes the current directory.)
+
+<pre>
+$ <b>pwd</b>
+/Users/nick/cs106a/code/hello
+$
+</pre>
+
+
+<p>The <code>wc</code> command ("word count") counts and prints out the number of lines, words, and characters that make up a file:
+
+<pre>
+$ <b>wc poem.txt</b> 
+       3      10      51 poem.txt
+$ <b>wc hello.py</b> 
+      43     149     991 hello.py
+</pre>
+
+<p>Windows does not have the "wc" command by that name. The equivalent is this command:
+
+<pre>
+$ <b>cat poem.txt | Measure-Object -line -word -char</b>
+</pre>
+
+<p>A fair criticism of the Unix commands is that they are short and cryptic. However, with the above I appreciate that short and cryptic is also easy to type.
+
+
+<h2>Change Directory cd</h2>
+
+<p>The command line runs "in" a current directory, with easy access to those files. Normally we create a terminal in the directory containing the Python and data files and never change it.
+
+<p>If needed, the <code>cd</code> command ("change directory"), changes the directory of a command line.
+The command <code>cd <i>dir-name</i></code> change the current directory to the one named. The special directory name ".." (two dots), means the parent directory. With "pwd" we can check on where we are.
+
+<p>Protip: typing directory names is a chore and error-prone. Type the first few chars of a name, then hit the Tab key - the command line will attempt to auto-complete the rest of the name for you. This saves work, and is more accurate, since the auto-complete always types the name out correctly.
+
+<p>Suppose the command line is in the "hello" folder, which contains a sub-directory named "sub". Then the following command move the command line down into the sub directory:
+
+<pre>
+# <b>pwd</b>     # verify we're in the "hello" dir
+/Users/nick/cs106a/code/hello
+$ <b>ls</b>      # in hello directory, list files
+hello.py        poem.txt        spring.txt        sub
+$ <b>cd sub</b>  # move down into sub directory
+$ <b>pwd</b>     # pwd down here in sub
+/Users/nick/cs106a/code/hello/sub
+$ <b>ls</b>      # list files in sub
+a.txt    b.txt    c.txt
+$ <b>cd ..</b>   # go back up to hello directory
+</pre>
+
+<p>Using "cd", you can move the command line around to anywhere in your file system. Remember to use tab-completion when typing the directory name.
+
+<h2>Capture Output With &gt;</h2>
+
+<p>You run the program with different arguments, seeing different outputs. Eventually you wan to capture the text output into a file. There's a very easy way to do this: add <code>&gt; out.txt</code> at the right side of the command line. This runs the command again, but instead of printing the output on the screen, the output is captured into the file.
+
+<pre>
+$ <b>python3 hello.py -n 10 "Philip K. Dick" > philips.txt</b>
+$ <b>ls</b>    # now philips.txt file exists
+hello.py        philips.txt     poem.txt        spring.txt
+$ <b>cat philips.txt</b> 
+Philip K. Dick Philip K. Dick Philip K. Dick Philip K. Dick Philip K. Dick Philip K. Dick Philip K. Dick Philip K. Dick Philip K. Dick Philip K. Dick 
+</pre>
+
+
+<h2>Creating Command Line Without PyCharm</h2>
+
+<p>Creating a command line terminal within PyCharm is one easy way. However you can also do it without PyCharm:
+
+<p>On the Mac: open the Applications &gt; Utilities &gt; Terminal. This creates a command line starting in the home directory.
+
+<p>On Windows: Open a file-explorer window on the folder you want the command line in. Do a shift-right-click in an area not on top of a file. Select the "Open PowerShell window here" menu option to create a terminal starting in that folder.
+
+<p>Then use command described above like "cd" and "ls" and "pwd".
+
+
+<h2>Timing the Run of a Command</h2>
+
+
+<p>It's handy to measure how many seconds it takes to run a command. On most systems the <code>time</code> command does this (wordcount.py is a CS106A example from the later weeks):
+
+<pre>
+$ <b>time python3 wordcount.py alice-book.txt</b>
+...
+ -output here we're ignoring-
+...
+
+real	0m0.135s
+user	0m0.112s
+sys	0m0.015s
+</pre>
+
+<p>Here "real 0.135s" printed after the regular output means regular clock time, 0.135 of a second, aka 135 milliseconds, passed during the run of this command.
+
+
+<p>The Windows PowerShell equivalent to time the run of a command:
+
+<pre>
+$ <b>Measure-Command { python wordcount.py alice-book.txt }</b>
+</pre>
+
+
+      </div>
+</body>
+

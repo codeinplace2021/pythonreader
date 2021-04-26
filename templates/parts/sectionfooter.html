@@ -1,0 +1,15 @@
+<script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.18.1/build/highlight.min.js"></script>
+<script type="text/javascript">
+    $(function () {
+        // Trim whitespace around code blocks.
+        $("pre>code").each(function (index, element) {
+            var $elem = $(element);
+            $elem.html($.trim($elem.html()));
+        });
+        $("pre").each(function (index, element) {
+            var $elem = $(element);
+            $elem.html($.trim($elem.html()));
+        });
+    });
+    hljs.initHighlightingOnLoad();
+</script>

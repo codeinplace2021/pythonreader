@@ -1,0 +1,239 @@
+%rebase templates/parts/chapter.html
+        <h1>If and Comparisons</h1>
+        <hr/>
+
+<p>This page describes the if-statement, <code>==</code> comparisons, if-else and other related structures.
+
+
+<!--<ul>
+<li><a href=#if>If Statement</a></li>
+<li><a href=#else>If Else</a></li>
+<li><a href=#comparison>If Comparisons</a></li>
+<li><a href=#elif>If Elif</a></li>
+<li><a href=#defacto>De-Facto Tests</a></li>
+</ul>-->
+
+
+
+
+<a name=if>
+<h2>If Statement</h2>
+
+<p>The if-statement controls if some lines run or not.
+
+<p>The if-statement syntax has 4 parts (similar to "while"): if, boolean-test, colon, indented body lines:
+
+
+<pre>
+if <i>boolean-test</i>:
+  <i>indented body lines</i>
+</pre>
+
+<p><b>If Operation:</b> Evaluate the boolean test, and if it is True, run the "body" lines once. Otherwise skip the body lines, and the run continues after the last body line.
+
+<p>The simplest and most common sort of boolean test uses <code>==</code> (two equal signs next to each other) to compare two values, and it's True if the two are the same.
+
+<p>Here is an example that shows an if-statement. The test <code>num == 6</code> is evaluated, yielding the boolean value True.
+
+
+<pre>
+>>> num = 6
+>>> if num == 6:
+...    print('Yay 6!')
+Yay 6!
+</pre>
+
+<h2>If test = vs. == Syntax Error</h2>
+
+<p>Note that it's very easy to accidentally type a single equal sign for a comparison like the following, but in Python that is flagged as a syntax error
+
+<pre>
+if num = 6:       # typo, meant ==
+    print('hi')
+</pre>
+
+<p>Aside: in the language C, the above typo runs silently, interpreting the test as always True regardless of the value of i. Finding that tiny typo that can take many, many hours of debugging. The Python behavior is much better: when the <code>==</code> is not present, the line is flagged as an error.
+
+<!-- older explanation of this 
+<p>The if-test requires <b>some</b> value. It's easy to accidentally type in <code>=</code> instead of <code>==</code> in an if-test. Fortunately in Python an expression like <code>a = 6</code> does not represent any value itself, so the if will generate a syntax error, flagging the mistake. In the language C, typing this sort of mistake just silently runs incorrectly, providing many, many, many hours of debugging fun.
+-->
+
+<h2>Style: Do Not Write x == True</h2>
+
+<p>Suppose some foo() function is supposed to return True or False. Do not write an if-test like this:
+
+<pre>
+if foo() == True:   # NO NO NO == True
+    print('yay')
+</pre>
+
+<p>Instead, let the if/while take the boolean value directly like this:
+<pre>
+if foo():           # YES this way
+    print('yay')
+
+    
+# Or to test if foo() is False use <b>not</b>:
+if not foo(): 
+    print('not yay')
+</pre>
+
+<!--
+Could explain why this rule exists
+<p>The reason is that the flow of data from foo() could easily use the de-facto convention, like 1 for True and 0 for False. That would not be an ideal design, but Python makes that easy to do even by accident. It's better to not depend on precisely the values True and False, instead code that works for any de-facto True/False value.
+-->
+
+<a name=else>
+<h2>If Else</h2>
+
+<p>The optional <code>else:</code> part of an if-statement adds code to run in the case that the test is False. Use <code>else</code> if the run should do exactly one of action-1 or action-2 dependin gon the test (use regular if to do action-1 or nothing).
+
+<pre>
+# set message according to score
+if score > high_score:
+    message = 'New high score!'
+else:
+    message = 'Oh well!
+</pre>
+
+<p>The else clause is always about picking 1 of 2 actions. To run code if a test is False and otherwise do nothing, just use <code>not</code> like this:
+
+<pre>
+if not foo():
+    message = 'no foo today'
+</pre>
+
+
+
+<a name=comparison>
+<h2>Boolean Comparison Operators</h2>
+
+<p>The most common way to get a boolean True/False is comparing two values, e.g. the comparison expression <code>num == 6</code> evaluates to True when num is 6 and False otherwise.
+
+<p>Comparison operators:
+
+<!-- could make a table here - css needs work -->
+
+<p> <code class=big>==</code> &nbsp; test if two values are equal (2 equals signs together). Works for int, string, list, dict, .. most types. Not recommended to use with float values.
+
+<p> <code class=big>!=</code> &nbsp;  not-equal, the opposite of equal (uses == under the hood)
+
+<p> <code class=big> < <=</code>  &nbsp;  less-than, less-or-equal. These work for most types that have an ordering: numbers, strings, dates. For strings, <code><</code> provides alphabetic ordering. Uppercase letters are ordered before lowercase. It is generally an error to compare different types for less-than, e.g. this is an error: <code>4 < 'hello'</code>
+
+<p> <code class=big> > >=</code> &nbsp;  greater than, greater-or-equal.
+
+
+<p>The interpreter example below shows various <code>==</code> style comparisons, and for each what boolean value results:
+
+
+<pre>
+>>> 5 == 6
+False
+>>> 5 == 5
+True
+>>> 5 != 6
+True
+>>> 4 > 2
+True
+>> 4 > 5
+False
+>>> 4 > 4
+False
+>>> 4 >= 4
+True
+>>> s = 'he' + 'llo'
+>>> s == 'hello'
+True
+>>> 'apple' < 'banana'
+True
+>>> 'apple' < 4
+TypeError: '<' not supported between instances of 'str' and 'int'
+</pre>
+
+
+<a name=elif>
+<h2>If Elif</h2>
+
+<p>There is a more rarely used <code>elif</code> for where a series of if-tests can be strung together (mnemonic: 'elif' is length 4, like 'else'):
+
+<pre>
+if s == 'a':
+    # a case
+elif s == 'b':
+    # b case
+else:
+    # catch-all case
+</pre>
+
+<p>The tests are run top to bottom, running the code for the first that is True. However, the logic of when each case runs can be hard to see. What must be true for case c below? You really have to think about the code work work out when (c) happens.
+
+<pre>
+if score > high and s != 'alice':
+    # a
+elif s == 'bob':
+    # b
+else:
+    # c
+</pre>
+
+<p>Answer: c happens when s is not 'bob' but also (score <= high or s == 'alice or both)
+
+<p>If/else chains are fine, just don't think they are trivial. Only add <code>else</code> if the code needs it. Nice, simple if handles most problems and is the most readable.
+
+
+<!-- link to here to introduce boolean idea -->
+
+<a name=defacto>
+<h2>Python if - de-facto True/False</h2>
+
+<p>The Python if statement looks like this
+
+<pre>
+if <i>test</i>:
+    print('test is true!')
+</pre>
+
+<p>Surprisingly, <b>any</b> value can be used in the test expression -  string, int, float, list, ...
+
+<p>Python has a de-facto True/False system, where all the "empty" values count as de-facto False: '', None, 0, 0.0, empty-list, empty-dict
+
+<p>Any other value de-facto counts as True: a non-empty string, a non-zero int, a non-empty list. Many languages use this
+anything-empty-is-false system. The <code>bool()</code> function takes
+any value and returns a formal bool False/True value, so that's a way to see the empty=False interpretation:
+
+<pre>
+>>> bool(0)
+False
+>>> bool(0.0)
+False
+>>> bool('')   # empty string - False
+False
+>>> bool([])   # empty list - False
+False
+>>> bool(None)
+False
+>>> bool(6)       # non-zero int - True
+True
+>>> bool('hi')    # non-empty string - True
+True
+>>> bool([1, 2])  # list of something - True
+True
+</pre>
+
+
+<p>Why does the de-facto system exist? It makes it easy to test, for example, for an empty string like the following. Testing for "empty" data is such a common case, it's nice to have a shorthand for it.
+
+
+<pre>
+# long form screen out empty string
+if len(s) > 0:
+    print(s)
+
+
+# shorter way, handy!
+if s:
+    print(s)
+</pre>
+<hr/>
+
+

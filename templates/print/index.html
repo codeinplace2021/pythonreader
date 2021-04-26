@@ -1,0 +1,155 @@
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    
+
+    %include templates/parts/head.html
+
+</head>
+
+<body>
+
+    <div class="wrapper">
+        <!-- Sidebar  -->
+        %include templates/parts/sideBar.html
+
+        <!-- Page Content  -->
+        <div id="content">
+
+            %include templates/parts/sideBarButton.html
+            
+            <div class="page">    
+                <h1><code>print()</code> and Standard Out</h1>
+                <hr/>
+
+<p>Every running program has a text output area called "standard out", or sometimes just "stdout".  The Python print() function takes in python data such as ints and strings, and prints those values to standard out.
+
+<p>
+<img src={{pathToRoot}}img/pythonreader/print/python-print.png alt="alt: python program runs, each call to print() in the program append a line of text to the standard-out text area">
+
+<p>To say that standard out is "text" here means a series of lines, where each line is a series of chars with a <code>'\n'</code> newline char marking the end of each line. Standard out is relatively simple. It is a single area of text shared by all the code in a program. Each printed line is appended at its end.
+
+<h2>Standard Out in the Terminal</h2>
+
+<p>When you run a program from the terminal, standard out appears right there. Here is example of running the above <code>hello.py</code> in the terminal, and whatever it prints appears immediately in the terminal.
+
+<pre>
+$ <b>python3 hello.py</b>
+hello there
+how are you?
+I am fine
+$
+</pre>
+
+<!-- njp could have introduction of value in memory vs in text form here .. a little abstract! -->
+
+<h2>Print Function</h2>
+
+<p>The Python print() function takes in any number of parameters, and prints them out on one line of text. The items are each converted to text form, separated by spaces, and there is a single <code>'\n'</code> at the end (the "newline" char). When called with zero parameters, print() just prints the <code>'\n'</code> and nothing else. In the interpreter, standard-out displays to the screen in between the '>>>' prompts, so it's an easy way to see what print() does.
+
+<pre>
+>>> print(12, 24, -2)
+12 24 -2
+>>> print('hi', 'there', -2)
+hi there -2
+>>> print('woot')   # 1 item, 1 \n
+woot
+>>> print()         # 0 items, 1 \n
+
+>>>
+</pre>
+
+<p>In Python source code, the text of a string is written with quotes, like <code>'Hello'</code>, so we are very accustomed to seeing that form. Note that printing a string, just prints out the <b>text data</b> of the string with no quotes:
+
+<pre>
+>>> print('Hello')
+Hello
+>>>
+</pre>
+
+<h2>Print Option with multiple inputs</h2>
+
+<p>You can print out multiple things by calling print with multiple "inputs" each separated by a comma. For example:
+<pre>
+>>> print('hello', 24)
+hello    24
+</pre>
+
+<h2>Print Option sep=</h2>
+<p>You are now venturing into "advanced" teritory. These are things you don't need to know! If you are curious, what you can do with print continues.
+
+<p>By default, print() separates the items by tabs. The optional <code>sep=</code> parameter sets a different separator text.
+
+<pre>
+>>> print(12, 24, -2, sep=':')
+12:24:-2
+>>> print('but', 'not', 'including', sep='**')
+but**not**including
+>>> print('but', 'not', 'including', sep='')  # empty string
+butnotincluding
+</pre>
+
+<h2>Print Option end=</h2>
+
+<p>By default, print() puts a single <code>'\n'</code> after all the items. The optional <code>end=</code> parameter sets a custom string to appear after all the items. The most common use of this is when printing a string that already has a <code>'\n'</code> at its end. In that case, printing the string ends up double-spacing the output. See how the printed lines each have an extra blank line after them in this example:
+
+<pre>
+>>> print('hello\n')
+hello
+
+>>> print('there\n')
+there
+
+>>>
+</pre>
+
+<p>The issue is that the string has a newline at the end, and then print() adds a second newline, so we get double spacing. The solution is to use <code>end=</code> to specify the empty string as the end of each line.
+
+<pre>
+>>> print('hello\n', end='')
+hello
+>>> print('there\n', end='')
+there
+</pre>
+
+<!--<h2>Print vs. Return</h2>
+
+<p>Thinking about the black-box design of a function, <code>return</code> is the main way for a function to return results back to its caller. Standard-out is a secondary way for a function to communicate data out, but it is much simpler - standard out is textual (typically), and it is shared among all the functions.
+
+<p>Therefore, use the return-value as the main, black-box data output and function testing mechanism. Standard-out is a secondary form of function output, most often used to produce text output for the user in the terminal.
+
+
+
+
+
+<h2>Print To File</h2>
+
+<p>The super common case is printing to standard output. However, print() also works printing to an open file.
+
+<p>To open a file for writing, add <code>'w'</code> when calling the open() function (shown below) &mdash; <code>'w'</code> for "writing". This deletes any existing contents of that file, so be careful when opening for writing like this. With the file open, the optional <code>file=</code> parameter to print() directs the text lines into the file instead of writing them to standard output.
+
+<pre>
+with open(filename, 'w') as f:
+    print('Hello world', file=f)
+</pre>-->
+
+<p>&nbsp;
+	%include templates/parts/footer.html
+                
+            </div>
+        </div>
+    </div>
+
+    
+</body>
+
+</html>
+
+
+
+
+
+
+</div></body></html>

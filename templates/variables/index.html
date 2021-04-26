@@ -1,0 +1,129 @@
+
+%rebase templates/parts/chapter.html
+
+<h1>Variables</h1>
+<hr/>
+
+<p>A Python variable represents a little bit of memory, keeping track of a value as the code runs. 
+
+<p>A variable is created simply with an "assignment" equal sign <code class=b>=</code> stores a pointer to that value into the variable like this:
+
+<pre>
+x = 42
+</pre>
+
+<p>
+<img src={{pathToRoot}}img/pythonreader/variables/py-var1.png alt="variable name x refers to int value 42">
+
+
+<p>Later in the code, appearances of that variable name, e.g.  <code class=b>x</code>, retrieve its current value, in this case 42. <!-- I figure this doesn't really require explanation .. they've seen vars in math so much -->
+
+<p>Trying to retrieve the value of a variable that does not exist fails with an error (i.e. no <code>=</code> ever assigned that variable).
+
+
+<h2>Variable Assignment Rules</h2>
+
+<p>Here is a more complicated code example and a picture of memory for it, with the variables on the left and their values on the right.
+
+<pre>
+x = 10
+y = 'hello'
+y = 'bye'
+z = y
+</pre>
+
+<p>
+<img src={{pathToRoot}}img/pythonreader/variables/py-var2.png alt="variable x refers to 10, variable y refers to 'bye', z refers to the same 'bye'">
+
+
+<!--
+<p>Assigning a variable sets its arrow to point to the value. Retrieving the value of variable following its arrow.
+-->
+
+<p>Things to notice here...
+
+<p>1. Assignment like <code>x = 10</code> above sets a pointer into that variable, pointing to the value.
+
+<p>2. Assignment like <code>y = 'bye'</code> above, where the variable has an existing pointer in it, overwrites the existing pointer with the new one. Put another way, a variable holds just one pointer. Assigning a new pointer gets rid of the old one.
+
+<p>3. Assignment between two variables like <code>z = y</code> above, makes them point to the same thing.
+It does not set up a permanent link between the variables; it is simpler than that. This assignment just changes <code>z</code> to point to the <code>y</code> value at that moment.
+
+<!-- (This is described as "shallow" below, rearranging the pointers in the variables.) -->
+
+<p>4. Small observation 1: each value in Python is tagged with its type, so in the example above the number 10 is tagged with the type "int", and the string <code>'hello'</code> is tagged with its type "str".
+
+<p><b>Garbage Collection Aside</b>: in the above example, the string 'hello' exists in memory at one time, but then the variable <code>y</code> is moved to point to something else. When a value such as a 'hello' here is left with no variable pointing to it, it cannot be used any more by the code. Such memory, storing a value that is not used, is called "garbage", and the "garbage collector" facility reclaims that memory, re-using it to hold new values. This is something Python does automatically behind the scenes. Most modern languages have a garbage collection to reclaim memory automatically.
+
+<!-- Just because your programs stores the string 'woot' in memory at one time does not mean 'woot' is there forever. There is a natural re-cycling process yyyyyy
+-->
+ 
+<!-- njp - 
+<ul class=slide>
+<li>could get into types 
+<li>could have the '+' example here or later .. how much of a hurry are we in?
+</ul>
+-->
+
+<h2>Variable Swap</h2>
+
+<p>Suppose we have two variables and we want to "swap" their values, so each takes on the value of the other. This is a little coding move that all programmers should know.
+
+<pre>
+a = 42
+b = 13
+</pre>
+
+<p>
+<img src={{pathToRoot}}img/pythonreader/variables/py-varswap1.png alt="before swap: a is 42, b is 13">
+
+
+<p>It might seem that one can begin with <code>a = b</code>, but this does not work, since it overwrites and thus loses the original value of <code>a</code>. The classic 3-line solution uses a temporary variable named "temp" to hold this value during the swap, like this:
+
+<pre>
+temp = a
+a = b
+b = temp
+</pre>
+
+<p>Starting with the above diagram, you can trace through the three assignments, leading to this memory structure:
+
+<p>
+<img src={{pathToRoot}}img/pythonreader/variables/py-varswap2.png alt="after swap: a is 13, b is 42, temp is 42">
+
+
+<h2>Assignment <code>=</code> is Shallow</h2>
+
+<p>The swap example demonstrates a key feature of Python assignment &mdash; each assignment <code>=</code> merely changes what a variable points to. The int, string etc. values are undisturbed. The assignment <code>=</code> in Python just moves an arrow around. In the diagram, this changes the arrows on the left, but the values on the right are undisturbed.
+
+<p>We'll revisit this shallow quality of assignment with parameters and nested data structures.
+
+<h2>Variable Names are Superficial Labels</h2>
+
+<p>Normally variables names are chosen to reflect what data they contain. That said, there
+is one funny feature of variable names to know.
+
+<p>Consider the following computation
+
+<pre>
+>>> x = 6
+>>> y = x + x
+>>> y
+12
+</pre>
+
+<p>Using a couple variables, it computes that doubling 6 makes 12. Suppose instead it was written this way:
+
+<pre>
+>>> alice = 6
+>>> bob = alice + alice
+>>> bob
+12
+</pre>
+
+<p>This is <b>exactly</b> the same computation, just using different variable names. What matters in a computation is the structure &mdash; which value is used at each spot in the computation. The variable names are just labels on the computation. If we change a variable name consistently throughout the code, the computation will work the same.
+
+<p>That said, though variable names are superficial, good code uses meaningful variable names, reflecting the role of that data in the algorithm.
+       
+
+<hr/>         

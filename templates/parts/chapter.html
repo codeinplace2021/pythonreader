@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    
+
+    %include templates/parts/head.html
+
+</head>
+
+<body>
+
+    <div class="wrapper">
+        <!-- Sidebar  -->
+        %include templates/parts/sideBar.html
+
+        <!-- Page Content  -->
+        <div id="content">
+
+            %include templates/parts/sideBarButton.html
+            
+            <div class="page">    
+                {{!body}}
+            </div>
+        </div>
+    </div>
+
+    %include templates/parts/footer.html
+</body>
+
+</html>
