@@ -21,22 +21,43 @@
             %include templates/parts/sideBarButton.html
             
             <div class="page">    
-                <h1>Python Interpreter</h1>
+                <h1>Ed Interpreter</h1>
                 <hr/>
 
-<p>You write your Python code in a text file with a name like <code>hello.py</code>. How does that code Run? There is program installed on your computer named "python3" or "python", and its job is looking at and running your Python code. This type of program is called an "interpreter".
+<p>You write your Python code in a text file with a name like <code>hello.py</code>. How does that code Run? There is program installed in Ed named "python", and its job is looking at and running your Python code. This type of program is called an "interpreter".
 
 
-<h2>Talk To The Ed Interpreter</h2>
+<h2> Running code in the Ed Interpreter </h2>
 
-<p>A nice benefit of using an interpreter is that you can start interactive version of the interpreter and type Python code right into it to see what it does. What happens if you use <code>+</code> in Python code like this: <code>'hello' + 3</code>?
+<p> In Lecture 4, we wrote our first Python program: Hello World! 
 
-<p>You could look up the answer to this, but a very quick way to find out is to type code into the interpreter and see what it does.
+To run our code, we need to first open the terminal on Ed. You can find the terminal underneath the code editor. To open the terminal, click the button that says <b> Click here to activate the terminal</b>.
 
-<p>There are 2 ways to get the interpreter:
+</p>
+
+<img src={{pathToRoot}}img/pythonreader/interpreter/terminal.png alt="The terminal is underneath the code editor in Ed. Click on the terminal to open it.">
+
+<p> Now that we've activated our terminal, we are ready to run our program! To run your program, type into the terminal: <code> python filename.py </code>
+</p>
+
+<p> So, if we wanted to run our Hello World program, we would type: 
+<code> 
+    python helloworld.py
+</code>
+
+<p> This tells our interpreter: use python to run our file named <code> helloword.py </code> </p>
+
+<img src={{pathToRoot}}img/pythonreader/interpreter/terminal2.png alt="The terminal is underneath the code editor in Ed. After typing python helloworld.py and pressing enter, the statement Hello World is now printed out">
+
+<p> Voila! After we type <code> python helloworld.py </code> into our terminal and hit Enter, we see that the interpreter has printed out "Hello World", exactly what we wanted. Great work! </p>
 
 
-<p>1. Open a command-line terminal. Mac: run the "Terminal" app in the Utilities folder. Windows: type "powershell" in the lower left, this opens the Windows command line terminal. In the terminal type the command "python3" ("python" on Windows). This runs the interpreter program directly. Type ctrl-d to exit when done (on Windows ctrl-z).
+
+
+
+
+
+<!-- <p>1. Open a command-line terminal. Mac: run the "Terminal" app in the Utilities folder. Windows: type "powershell" in the lower left, this opens the Windows command line terminal. In the terminal type the command "python3" ("python" on Windows). This runs the interpreter program directly. Type ctrl-d to exit when done (on Windows ctrl-z).
 
 <p>2. If you have PyCharm installed, at the lower-left of any window, click the Python Console tab. Or use the Tools &gt; Python Console menu item.
 
@@ -98,7 +119,7 @@ find(...)
             </div>
             
         </div>
-    </div>
+    </div> -->
 
    
 </body>
