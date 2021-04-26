@@ -261,6 +261,10 @@ li {
   color:blue;
 }
 
+.mainFigure {
+  width:100%;
+}
+
 .console {
   color:black;
   border-style: solid;
