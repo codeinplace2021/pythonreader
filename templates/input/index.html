@@ -26,31 +26,30 @@
 
 <p>A program that runs in the terminal is called a "console program" (console and terminal are practically synonyms). These console programs can become much more interactive if we learn a way for the user to give us some "input". Python has a simple function for doing so, the aptly named <code>input</code> function.
 
-<pre class="console">
-def hello():
+<pre class="language-python"><code>def hello():
     print('hello there')
     user_status = input('how are you? ')
     print('you said: ' + user_status)
 
 def main():
     hello()
-</pre>
+</code></pre>
 
 <h2>Input in the Terminal</h2>
 
 <p>Here is example of running the above <code>hello.py</code> in the terminal. In this example the text written by the user is in <span class="blue">blue</span>.
 
-<pre>
-$ <b>python3 hello.py</b>
+<pre class="console">
+$ <b>python hello.py</b>
 hello there
 how are you? <span class="blue">I am fine</span>
 you said: I am fine
 </pre>
 
 <h2>Changing variable types</h2>
-<p>When you call the <code>input</code> function, the response entered by the user is given back to you! It is always "returned" as a value of type "str" also known as a string. That is a problem if you want to do any further computation. For example, lets say you wanted to print the value a user entered divided by two:
+<p>When you call the <code>input</code> function, the response entered by the user is given back to you! It is always "returned" as a value of type "str" also known as a string. That is a problem if you want to do any further computation. For example, lets say you wanted to print the value a user entered divided by two. You open up the Python interpreter and run the following code:
 
-<pre>
+<pre class="console">
 >>> x = input('enter a value: ')
 enter a value: <span color="blue">42</span>
 >>> print(x)
@@ -61,8 +60,8 @@ Traceback (most recent call last):
 TypeError: unsupported operand type(s) for /: 'str' and 'int'
 </pre>
 
-This is subtle, but recall that every variable has a type. Even though x looks like a number, its type is string. Recall that input always returns a string. The interpreter is complaining that it doesn't make sense to divide a string! Now that you know what the issue is, the fix is simple. You just need to change the variable type to be a float or an int. To do so you can use functions called <code>float</code> and <code>int</code>.
-<pre>
+<p>This is subtle, but recall that every variable has a type. Even though x looks like a number, its type is string. Recall that input always returns a string. The interpreter is complaining that it doesn't make sense to divide a string! Now that you know what the issue is, the fix is simple. You just need to change the variable type to be a float or an int. To do so you can use functions called <code>float</code> and <code>int</code>.</p>
+<pre class="console">
 >>> x_float = float(x)
 >>> print(x_float/2)
 21.0
