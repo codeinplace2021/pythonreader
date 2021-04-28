@@ -1,0 +1,72 @@
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    
+
+    %include templates/parts/head.html
+
+</head>
+
+<body>
+
+    <div class="wrapper">
+        <!-- Sidebar  -->
+        %include templates/parts/sideBar.html
+
+        <!-- Page Content  -->
+        <div id="content">
+
+            %include templates/parts/sideBarButton.html
+            
+            <div class="page">    
+                <h1>Constants</h1>
+                <hr/>
+
+                <p>Constant are really variables that represent quantities that <b>don’t change</b> while the program is running. Variables, on the other hand, often do change. Constants are written in a special way so that programmers know that they will not change. For example, consider this program which can tell you the number of seconds in a given number of minutes:</p>
+
+                <pre class="language-python"><code>"""
+File: constants.py
+An example program with constants
+"""
+
+# an example of defining a constant
+SECONDS_PER_MIN = 60
+
+def main():
+    mins = float(input("Enter number of minutes: "))
+    # an example of using the constant
+    seconds = mins * SECONDS_PER_MIN
+    print("That is", seconds, "seconds!")</code></pre>
+
+    <p>In this example, the programmer has chosen to define a constant for the number of seconds in a minute. Constants make the program more readable which is important for programming style. </p>
+
+                <p>Constants can be changed between runs (as necessary) and your code should be written with constants in a general way, so that it still works when constants are changed.</p>
+
+                <h2>Definining Constants</h2>
+
+<p>Define constants using an expression with the constant name, followed by the <code>=</code> equals sign, followed by the value. Constants can be any type. By convention constants are written in UPPER_SNAKE_CASE and are defined before the main function. Note that for great style we only define constants before the main functions, not variables! Here are a few examples</p>
+
+<pre class="language-python"><code>"""
+These constants don't change while the program is running
+"""
+MY_FAVORITE_NUMBER = 5 
+COURSE_URL = 'http://codeinplace.stanford.edu/course'
+GOLDEN_RATIO = 1.61803398875 # https://en.wikipedia.org/wiki/Golden_ratio
+
+def main():
+    # code that uses the constants
+    ...
+</code></pre>
+
+
+                 %include templates/parts/footer.html
+                
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>

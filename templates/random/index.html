@@ -1,0 +1,115 @@
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    
+
+    %include templates/parts/head.html
+
+</head>
+
+<body>
+
+    <div class="wrapper">
+        <!-- Sidebar  -->
+        %include templates/parts/sideBar.html
+
+        <!-- Page Content  -->
+        <div id="content">
+
+            %include templates/parts/sideBarButton.html
+            
+            <div class="page">    
+                <h1>Random</h1>
+                <hr/>
+
+                <p>At time, you will want a way to generate random numbers.
+Say, for example, when making games or artwork. To get a random number we use the python random number library. One you have imported the library:
+<pre class="language-python"><code>import random</code></pre>
+You get access to the following functions:</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Function</th>
+            <th>What it does</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td style="min-width:250px"><code class="language-python">random.randint(min, max)</code></td>
+            <td>Returns a random integer between min and max, including both min and max.</td>
+        </tr>
+        <tr>
+            <td><code class="language-python">random.random()</code></td>
+            <td>Returns a random real number (float) between 0 and 1.</td>
+        </tr>
+        <tr>
+            <td><code class="language-python">random.uniform(min, max)</code></td>
+            <td>Returns a random real number (float) between min and max.</td>
+        </tr>
+        <tr>
+            <td><code class="language-python">random.seed(1)</code></td>
+            <td>Fixes the random generator so that it gives the same sequence of numbers each time. Can change 0 to another number for a different fixed sequence. Helpful for debugging!</td>
+        </tr>
+    </tbody>
+    </table>
+
+<p>As a "pro tip", if you generate a random number, save the result into a variable. Here are a few examples:</p>
+
+<pre class="language-python"><code># file single_dice.py 
+import random
+
+def main():
+    # generate a random number between min value 1 and max value 6
+    dice_roll = random.randint(1, 6)
+    print('dice value:', dice_roll)</code></pre>
+<p class="mt-2">Each time you run this program you may get a different result. How exciting! Here is the output of three different executions of the same program. Here are a few examples of running this program, <code>single_dice.py</code> from the console five times:
+</p>
+
+<pre class="console">
+[user@sahara ~]$ python single_dice.py
+dice value: 3
+
+[user@sahara ~]$ python single_dice.py
+dice value: 6
+
+[user@sahara ~]$ python single_dice.py
+dice value: 5
+
+[user@sahara ~]$ python single_dice.py
+dice value: 5
+
+[user@sahara ~]$ python single_dice.py
+dice value: 1</pre>
+
+<h3>Rolling two dice</h3>
+Here is an example which simulates rolling two dice, and showing the user the result. This example highlights why it is important to save the result of a randint to a variable. You might want to use the same value in multiple places in your program!
+<pre class="language-python"><code>import random
+
+# use a constant for the number of sides on the dice
+NUM_SIDES = 6
+
+def main():
+    # setting seed is useful for debugging
+    # random.seed(1)
+
+    die1 = random.randint(1, NUM_SIDES)
+    die2 = random.randint(1, NUM_SIDES)
+
+    # this computes the sum and saves the result to a variable named total
+    total = die1 + die2 
+
+    print("Dice have", NUM_SIDES, "sides each.")
+    print("First die:", die1)
+    print("Second die:", die2)
+    print("Total of two dice:", total)</code></pre>
+                 %include templates/parts/footer.html
+                
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>
