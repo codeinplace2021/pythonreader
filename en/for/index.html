@@ -163,132 +163,33 @@
 
                 <pre class="language-python"><code> for i in range(100): 
    print("Python rocks socks!")
- < 2</code></pre>
-                
-                <p> What does the <code> i </code> in the for-loop mean? </p>
-
-                <h2> Comparison Operators </h2>
-
-                <p> To compare values in python, we can use <b> comparison operators </b>. </p>
-
-                <p> Here are the <b>comprison operators</b>: </p>
-
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th>Operator</th>
-                            <th>Meaning</th>
-                            <th>Example</th>
-                            <th>Value</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td style="min-width:100px"><code class="language-python">==</code></td>
-                            <td>equals</td>
-                            <td>1 + 1 == 2</td>
-                            <td>True</td>
-                        </tr>
-                        <tr>
-                            <td><code class="language-python">!=</code></td>
-                            <td>does not equal</td>
-                            <td>3.2 != 2.5</td>
-                            <td>True</td>
-                        </tr>
-                        <tr>
-                            <td><code class="language-python"> < </code></td>
-                            <td>less than </td>
-                            <td>10 < 5 </td>
-                            <td>False </td>
-                        </tr>
-                        <tr>
-                            <td><code class="language-python"> > </code></td>
-                            <td>greater than</td>
-                            <td>10 > 5</td>
-                            <td>True</td>
-                        </tr>
-                         <tr>
-                            <td><code class="language-python"> <= </code></td>
-                            <td>less than or equal to</td>
-                            <td>126 <= 100</td>
-                            <td>False</td>
-                        </tr> 
-                         <tr>
-                            <td><code class="language-python"> >= </code></td>
-                            <td>greater than or equal to</td>
-                            <td>5.0 >= 5.0</td>
-                            <td>True</td>
-                        </tr>                                              
-                    </tbody>
-                </table>
-
-                <p>We can use comparison operators to make conditions for if statements and while loops</p>
-
-                <p> For example: </p>
-
-                <pre class="language-python"><code>if 1 < 2: 
-    print("1 is less than 2")
-                </code></pre>
-
-                <p> Here's another example: </p>
-
-                <pre class="language-python"><code>num = int(input("Enter a number: "))
-if num == 0: 
-   print("That number is 0")
-else: 
-   print("That number is not 0")
-
-                </code></pre>
-
-                <h2> Logical Operators </h2>
-
-                <p> Logical operators can be used to change or combine boolean statements.</p>
-
-                <p> Here are the <b>logical operators</b>: </p>
-
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th>Operator</th>
-                            <th>Example</th>
-                            <th>Result</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td style="min-width:100px"><code class="language-python">not</code></td>
-                            <td>not (2 == 3)</td>
-                            <td>True</td>
-                        </tr>
-                        <tr>
-                            <td><code class="language-python">and</code></td>
-                            <td>(2 ==3) and (-1 < 5)</td>
-                            <td>False</td>
-                        </tr>
-                        <tr>
-                            <td><code class="language-python"> or </code></td>
-                            <td>(2 == 3) or (-1 < 5) </td>
-                            <td>True </td>
-                        </tr>                                              
-                    </tbody>
-                </table>
-
-
-
-                <h2>Boolean Variables</h2>
-                <p> Just like how you can have variables that store integer or string values, you can also have variables that store boolean values. </p>
-                <pre class="language-python"><code># Store expressions that evaluate to True/False
-x = 1 < 2    #True
-y = 5.0 == 4.0    #False 
-
-# Directly set to True/False 
-is_sheltering = True
-is_raining = False 
-
-play_again = input('Play again? "y" or "n"') == 'y'
-if play again: 
-   ...
 </code></pre>
+                
+                <p> What does the <code>i</code> in the for-loop mean? </p>
+
+                <p> <code>i</code> is a variable that keeps track of how many times the loop has run. In our loop above, <code>for i in range(100) </code> means that at the start of the loop, <code>i</code> is 0. Each time the for-loop runs, <code>i</code> increases by 1 and keeps going while <code>i</code> is less than 100. Once <code>i</code> reaches 100, the loop stops running.</p>
+
+                <p> Here's the equivalent of the for-loop above, written as a while-loop: </p>
+                                <pre class="language-python"><code>i = 0
+while i < 100: 
+   print("Python rocks socks!")
+   i += 1
+
+</code></pre>
+				<p> Now that we know that <code>i</code> is a variable, we can see how we can use the variable <code>i</code> inside our for-loop. </p>
+
+				<pre class="language-python"><code> for i in range(3): 
+   print(i * 2)
+</code></pre>
+
+				<p> Here's another way to print even numbers: </p>
+				<pre class="language-python"><code> for i in range(0, 6, 2): 
+   print(i)
+</code></pre>
+				<p> <code> for i in range(0, 6, 2)</code> says: i goes from 0 to 6, counting by 2 each time</p>
+
+
+
 
 <!-- jQuery CDN - Slim version (=without AJAX) -->
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
