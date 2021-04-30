@@ -1,8 +1,9 @@
+
 <!DOCTYPE html>
 <html>
 
 <head>
-    
+
 
 <title>Python Reader</title>
 
@@ -104,6 +105,9 @@
         <li>
             <a href="../random">random</a>
         </li>
+        <li>
+            <a href="../booleans">Booleans</a>
+        </li>
         
         <!--<li>
             <a href="../if"><code>if</code> and comparisons</a>
@@ -149,75 +153,137 @@
     <span></span>
 </button>            
             <div class="page">    
+                <h1>Booleans</h1>
+                <hr/>
+
+                <p>A boolean is an expression that evaluates to either True or False. 
+
+                Here is an example of a boolean expression:  <pre class="language-python"><code> 1 < 2</code></pre>
                 
-        <h1>Boolean Values</h1>
-<hr/>
+                <p> It asks the question: is the value on the left smaller than the value on the right?</p>
 
-<p>The Boolean values in Python are <code>True</code> and <code>False</code>, typically used to control if-statements and while-loops.
+                <h2> Comparison Operators </h2>
 
-<!-- https://en.wikipedia.org/wiki/George_Boole -->
+                <p> To compare values in python, we can use <b> comparison operators </b>. </p>
 
-<h1>Boolean And Or Not</h1>
+                <p> Here are the <b>comprison operators</b>: </p>
 
-<p>The Python "bool" type (short for "boolean") has only two values - <code>True</code> and <code>False</code>.
-Expressions yielding a bool value like <code>a > 10</code>, can be combined with <b>and</b> <b>or</b> <b>not</b>, like following (printing 'yay' if a is in the range 0..100 inclusive):
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Operator</th>
+                            <th>Meaning</th>
+                            <th>Example</th>
+                            <th>Value</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td style="min-width:100px"><code class="language-python">==</code></td>
+                            <td>equals</td>
+                            <td>1 + 1 == 2</td>
+                            <td>True</td>
+                        </tr>
+                        <tr>
+                            <td><code class="language-python">!=</code></td>
+                            <td>does not equal</td>
+                            <td>3.2 != 2.5</td>
+                            <td>True</td>
+                        </tr>
+                        <tr>
+                            <td><code class="language-python"> < </code></td>
+                            <td>less than </td>
+                            <td>10 < 5 </td>
+                            <td>False </td>
+                        </tr>
+                        <tr>
+                            <td><code class="language-python"> > </code></td>
+                            <td>greater than</td>
+                            <td>10 > 5</td>
+                            <td>True</td>
+                        </tr>
+                         <tr>
+                            <td><code class="language-python"> <= </code></td>
+                            <td>less than or equal to</td>
+                            <td>126 <= 100</td>
+                            <td>False</td>
+                        </tr> 
+                         <tr>
+                            <td><code class="language-python"> >= </code></td>
+                            <td>greater than or equal to</td>
+                            <td>5.0 >= 5.0</td>
+                            <td>True</td>
+                        </tr>                                              
+                    </tbody>
+                </table>
 
-<pre>
-if a >= 0 and a <= 100:
-    print('yay')
-</pre>
+                <p>We can use comparison operators to make conditions for if statements and while loops</p>
 
-<p>Python is unique in using the plain words like "and" for this. many languages use "&&" for and, "||" for or.
+                <p> For example: </p>
 
-<p><code><i>a</i> and <i>b</i></code> &rarr; True if both are True
+                <pre class="language-python"><code>if 1 < 2: 
+    print("1 is less than 2")
+                </code></pre>
 
-<p><code><i>a</i> or <i>b</i></code> &rarr; True if one or the other or both are True
+                <p> Here's another example: </p>
 
-<p><code>not <i>a</i></code> &rarr; Inverts True/False
+                <pre class="language-python"><code>num = int(input("Enter a number: "))
+if num == 0: 
+   print("That number is 0")
+else: 
+   print("That number is not 0")
 
-<h2>Boolean Precedence </h2>
+                </code></pre>
 
-<p>There is "precedence" between and/or/not, analogous to arithmetic precedence, where "*" has higher precedence than "+".
+                <h2> Logical Operators </h2>
 
-<p>Precedence order: <code>not</code> is highest precedence, followed by <code>and</code>, followed by <code>or</code>. Mnemonic: <code>not</code> is like unary minus e.g. '-6', <code>and</code> is like * mutliplication, <code>or</code> is like + addition.
+                <p> Logical operators can be used to change or combine boolean statements.</p>
 
-<p>Q: what does the following do:
-<pre>
-if a < 6 and b < 6 or c < 6:
-</pre>
+                <p> Here are the <b>logical operators</b>: </p>
+
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Operator</th>
+                            <th>Example</th>
+                            <th>Result</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td style="min-width:100px"><code class="language-python">not</code></td>
+                            <td>not (2 == 3)</td>
+                            <td>True</td>
+                        </tr>
+                        <tr>
+                            <td><code class="language-python">and</code></td>
+                            <td>(2 ==3) and (-1 < 5)</td>
+                            <td>False</td>
+                        </tr>
+                        <tr>
+                            <td><code class="language-python"> or </code></td>
+                            <td>(2 == 3) or (-1 < 5) </td>
+                            <td>True </td>
+                        </tr>                                              
+                    </tbody>
+                </table>
 
 
-<p>The <code>and</code> goes first (higher precedence), so the above is equivalent to the following form with parenthesis added to show the order the comparisons are evaluated:
-<pre>
-if (a < 6 and b < 6) or c < 6:
-</pre>
 
+                <h2>Boolean Variables</h2>
+                <p> Just like how you can have variables that store integer or string values, you can also have variables that store boolean values. </p>
+                <pre class="language-python"><code># Store expressions that evaluate to True/False
+x = 1 < 2    #True
+y = 5.0 == 4.0    #False 
 
-<p>To force the <code>or</code> to go first, put in parenthesis like this:
-<pre>
-if a < 6 and (b < 6  or c < 6):
-</pre>
+# Directly set to True/False 
+is_sheltering = True
+is_raining = False 
 
-<p>If you are unsure, you can always add parenthesis to an expression to force the order you want.
-
-
-<h2>Boolean Short-Circuit</h2>
-
-<p>Suppose you have an int i, and you want to check if the char at that index is alphabetic .. but only if i is valid. You can write that this way...
-
-<pre>
-if i < len(s) and s[i].isalpha():...
-</pre>
-
-<p>This works because the boolean evaluation goes left to right, stopping ("short-circuiting") as soon as it can. So in the example above, if <code>i < len(s)</code> is False (i.e. i is large), the whole expression evaluates to False. In particular the <code>s[i].isalpha()</code> is <b>not evaluated</b>. Attempting to evaluate it would be an error, since i is too large, creating an IndexError.
-
-<p>Writing the <code>i&lt;len(s)</code> test to the left of the <code>s[i]</code> in effect protects it, and this is a common programming pattern. Most computer languages use short circuiting in the their boolean expressions like this.
-
-<hr/>
-            </div>
-        </div>
-    </div>
-
+play_again = input('Play again? "y" or "n"') == 'y'
+if play again: 
+   ...
+</code></pre>
 
 <!-- jQuery CDN - Slim version (=without AJAX) -->
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
@@ -240,6 +306,11 @@ if i < len(s) and s[i].isalpha():...
             $('a[aria-expanded=true]').attr('aria-expanded', 'false');
         });
     });
-</script></body>
+</script>                
+            </div>
+        </div>
+    </div>
+
+</body>
 
 </html>
