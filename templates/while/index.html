@@ -1,152 +1,129 @@
-%rebase templates/parts/chapter.html
+
+<!DOCTYPE html>
+<html>
+
+<head>
 
 
-        <h1>While Loops</h1>
-        <hr/>
+    %include templates/parts/head.html
 
-<p>A loop takes a few lines of code, and runs them again and again.
-Most algorithms have a lines of code that need to be run thousands or millions of times, and loops are the way to do this.
+</head>
 
+<body>
 
-<p>The while-loop uses a boolean test expression to control the run of the body lines. The for-loop is great of looping over a collection. The while-loop is more general, providing enough control for any sort of looping, without requiring a collection to loop over.
+    <div class="wrapper">
+        <!-- Sidebar  -->
+        %include templates/parts/sideBar.html
 
+        <!-- Page Content  -->
+        <div id="content">
 
-<h2>While Loop Syntax</h2>
+            %include templates/parts/sideBarButton.html
+            
+            <div class="page">    
+                <h1>while-loop</h1>
+                <hr/>
 
-<p>The while-loop syntax has 4 parts: while, boolean test expression, colon, indented body lines:
+                <p> A while-loop repeats code while a certain condition is met. The condition should be a “boolean” which evaluates to either True or False</p>
 
-<pre>
-while <i>test</i>:
-    <i>indented body lines</i>
+                <pre class="language-python"><code> while condition: 
+   body
 
+</code></pre>
+
+                <h2> GuessNum Example </h2>
+                <p> Here's a game called GuessMyNumber. When the program starts, the computer will choose a random number. Then you will guess the number, and it will tell you whether it's too high or too low until you get it right. </p>
+
+                <p> Here's a sample output of the GuessMyNumber game: </p>
+
+                <pre class="console">
+I am thinking of a number between 0 and 99…
+Enter a guess: 50
+Your guess is too high 
+
+Enter a new number: 25
+Your guess is too high 
+
+Enter a new number: 40
+Your guess is too low
+
+Enter a new number: 45
+Your guess is too low  
+
+Enter a new number: 48
+Congrats! The number was: 48
+</pre>
+            
+                <p> This is the code for this program, with comments to describe what each line does:</p>
+                <pre class="language-python"><code>#generate a random number, store it in the variable secret_number
+secret_number = random.randint(1, 99)
+print("I am thinking of a number between 1 and 99…")
+
+#get our first guess from the user 
+guess = int(input("Enter a guess: "))
+
+# True if guess is not equal to secret number 
+while guess != secret_number: 
+   # True if guess is less than secret number 
+   if guess < secret_number: 
+      print("Your guess is too low")
+   else: 
+      print("Your guess is too high")
+   print("") # an empty line 
+
+   # get another guess from the user 
+   guess = int(input("Enter a new guess: "))
+
+print("Congrats! The number was: " + str(secret_number))
+</code></pre>
+                
+                <h2> Sentinel </h2>
+                <p> A <b> sentinel</b> is a value that signals the end of user input </p>
+
+                <p> An example: Write a program  that prompts the user for numbers until the user types -1, then output the total of the numbers. In this case, -1 is the sentinel value. </p>
+
+                <p> An example run of this program: </p>
+
+                <pre class="console">
+Type a number: 10
+Type a number: 20
+Type a number: 30
+Type a number: -1
+total is 60
 </pre>
 
-<p><b>While Operation:</b> Check the boolean test expression, if it is True, run all the "body" lines inside the loop from top to bottom. Then loop back to the top, check the test again, and so on. When the test is False, exit the loop, running continues on the first line after the body lines.
+                <p> Here's the code for this program, with comments to describe what each line does:</p>
+                <pre class="language-python"><code>def main(): 
+   #total is a variable to track the sum of the numbers
+   #at the start of the program, we initialize total to be 0
+   total = 0 
+   
+   # we get the first number from the user
+   num = int(input("Type a number: "))
+   # we have to first get a value for num because the next line of 
+   # code checks for num's value 
 
-<p>Here is a while loop to print the numbers 0, 1, 2, ... 9 (there are easier ways to do this, but here we're just trying to show the parts of the loop).
+   # -1 is our sentinel value. Our loop will stop if num == -1 
+   while num != -1: 
+      # get another number for the user 
+      num = int(input("Type a number: "))
+      
+      # update total to include our new number
+      total = total + num
 
-<!-- how show code vs output, could have >>> .. something simple here maybe right choice -->
+   print(total) #print out the total once the user enters -1
+</code></pre>
 
-<pre>
-i = 0
-while i < 10:
-    print(i)
-    i = i + 1
-print('All done')
-
-0
-1
-2
-3
-4
-5
-6
-7
-8
-9
-All done
-</pre>
-
-<p>Very often the last line of the while body has an "increment" role, such as the <code>i = i + 1</code> line above. The test at the top of the loop checks that variable. It's important that on every iteration, the loop advances that variable one step towards the ultimate end of the loop.
+                
 
 
-<h2>While Zero Iterations OK</h2>
 
-<p>Just as with the for-loop, a while-loop can iterate zero times. That happens if the boolean test is False the very fist time it is checked, like this:
+                %include templates/parts/footer.html
+                
+            </div>
+        </div>
+    </div>
 
-<pre>
-i = 99
-while i < 10:
-    print(i)
-    i += 1
-print('All done')
+</body>
 
-# (zero iterations - no numbers print at all)
-All done
-</pre>
-
-<a name=infinite>
-<h2>Infinite Loop Bug</h2>
-
-<p>With a while-loop, it's possible to accidentally write a loop that never exits. In that case, the while just loops and loops but never makes the test False to exit. As the loop runs and runs, the fans on your laptop may spin up as CPU heats up with this high number of lines running without pause.
-
-<p>Here's an infinite loop example caused by a typical looking bug &mdash; the variable <code>i</code> accidentally stays at the value 1 and the loop just goes forever.
-
-<pre>
-i = 0
-while i < 10:   # BUG infinite loop
-    print(i)
-    i = i * 1
-print('All done')
-</pre>
-
-<h2>Don't Forget the Last "Increment" Line</h2>
-
-<p>Another easy infinite loop bug is forgetting the <code>i = i + 1</code> line entirely, so the variable never advances and the loop never exits. Since the more commonly used for-loop automates the increment step for us, we don't quite have the muscle memory to remember it when writing a while-loop.
-
-
-<h2>Do Not Write == True</h2>
-
-<p>Suppose there is some function <code>foo()</code> and you want a while loop to run so long as it returns True. Do not write this
-
-<pre>
-while foo() == True:   # NO not this way
-    ...
-</pre>
-
-<p>It's better style to write it the following way, letting the while itself evaluate the True/False of the test:
-
-<pre>
-while foo():           # YES this way
-    ...
-</pre>
-<!-- could link to explanation in #boolean -->
-
-<a name=break>
-<h2>Loop Break</h2>
-
-<p>The <code>break</code> directive in a loop exits the loop immediately. Loops have their standard way of exiting. The <code>break</code> gives an extra option to exit the loop if some special condition occurs. Usually the break is put inside an if that checks for some condition.
-
-<p>This example loops over a list of numbers, printing each one in the usual way. However, the if/break structure checks each number after printing, and breaks out of the loop if the number is 6.
-
-<pre>
-nums = [12, 1, 6, 13, 6, 0]
-for num in nums:
-    if num == 6:
-        break  # exit loop immediately
-    print(num)
-print('All done')
-
-12
-1
-All done
-</pre>
-
-<p>Most loops do not use break. Break is an option for certain cases where the programmer wants to be able to exit the loop earlier than it would normally.
-
-
-<h2>Loop Continue</h2>
-
-<p>The <code>continue</code> directive directs the loop run to go back to the top of the loop immediately to start the next iteration. In effect, it skips the current iteration. The continue directive is very rarely used. We mention it here for completeness.
-
-<p>Here is the above example changed to use continue. In effect it skips over iterations where num is 6.
-
-<pre>
-nums = [12, 1, 6, 13, 6, 0]
-for num in nums:
-    if num == 6:
-        continue  # jump to top of loop
-    print(num)
-print('All done')
-
-12
-1
-13
-0
-All done
-</pre>
-
-
-<hr/>
-
-
+</html>
