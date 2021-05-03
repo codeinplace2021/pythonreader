@@ -137,12 +137,26 @@ def main():
     prize = compute_prize(door)
     print('You win ' + str(prize) + ' treats')
 
+def get_door():
+    """
+    Get door, asks the user to enter a door
+    Reprompts the user until they enter 1, 2 or 3
+    Returns the valid door choice as an int
+    """
+    door = int(input("Door: "))
+    # while the input is invalid
+    while door < 1 or door > 3 :
+        # tell the user the input was invalid
+        print("Invalid door!")
+        # ask for a new input
+        door = int(input("Door: "))
+    return door
+
 def compute_prize(door):
     """
-    Compute prize, calculates how many treats you 
-    win. Based off the door which is given as a
-    parameter. Returns the prize. This function
-    uses many non-constant magic-numbers just to 
+    Compute prize, based off the door which is 
+    given as a parameter. Returns the prize. 
+    Uses many non-constant magic-numbers just to 
     make the game more fun to play in class!
     """
     prize = 4
@@ -158,22 +172,7 @@ def compute_prize(door):
         # what happens in door 3?
         for i in range(door):
             prize += i  
-    return prize
-
-def get_door():
-    """
-    Get door, asks the user to enter a door
-    Reprompts the user until they enter 1, 2 or 3
-    Returns the valid door choice
-    """
-    door = int(input("Door: "))
-    # while the input is invalid
-    while door < 1 or door > 3 :
-        # tell the user the input was invalid
-        print("Invalid door!")
-        # ask for a new input
-        door = int(input("Door: "))
-    return door</code></pre>
+    return prize</code></pre>
 
 </div>
 
