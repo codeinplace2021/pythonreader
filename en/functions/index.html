@@ -164,40 +164,48 @@
     <span></span>
 </button>            
             <div class="page">    
-                <h1>Python Functions 1.0</h1>
+                <h1>Python Functions</h1>
 <hr/>
 
-<p> Python functions can <b> take in data </b>, and <b> return data </b></p>
+<p> Python functions can <b> take in data </b>, and <b> return data </b>. So far we have been <i>using</i> many functions in python that take in information and possibly return information such as <pre class="language-python"><code># takes in a prompt, returns user response
+text = input("prompt? ")
 
-<h2> Functions are like toasters </h2>
+# takes in a number, returns the square root of that number
+y = math.sqrt(25)
+
+# takes in text to display to the user
+print("Hello, world")</code></pre></p>
+
+<p>In this chapter we are going to learn how to <i>define</i> functions which can take in information and return information!</p>
+
+<!--<h2> Functions are like toasters </h2>
 
 <img style="height:425px;max-width:500px;width: expression(this.width > 500 ? 500: true);"src=../../img/pythonreader/functions/toasters.png alt="alt: An image of a toaster. A slice of bread goes inside the toaster as a parameter, and a piece of toast is returned ">
 
-<p> Toasters take in an input (bread), does an operation to it (toast the bread), and returns an output (toast). This makes toasters very similar to <b> functions</b>: functions also take an input, do an operation, and return an output.</p>
+<p> Toasters take in an input (bread-like), does an operation to it (toast the bread), and returns output (toast). This makes toasters very similar to <b> functions</b>: functions also take an input, do an operation, and return an output.</p>
 
-<p> A function is also able to be general enough to take in different parameters. For example, if you wanted to toast a bagel, you wouldn't get a new toaster. You can use the same toaster to toast bagels, too, in addition to bread. </p>
+<p> A function is also able to be general enough to take in different parameters. For example, if you wanted to toast a bagel, you wouldn't get a new toaster. You can use the same toaster to toast bagels, too, in addition to bread. </p>-->
 
-<img style="height:380px;max-width:500px;width: expression(this.width > 500 ? 500: true);"src=../../img/pythonreader/functions/bagel.png alt="alt: An image of a toaster. A bagel goes inside the toaster, and a toasted bagel is returned ">
+<!--<img style="height:380px;max-width:500px;width: expression(this.width > 500 ? 500: true);"src=../../img/pythonreader/functions/bagel.png alt="alt: An image of a toaster. A bagel goes inside the toaster, and a toasted bagel is returned ">-->
 
 <h2> Anatomy of a Function</h2>
 
-<p> Starting from the main function, our function <code> average </code> is called: </p>
-<img src=../../img/pythonreader/functions/call_def.png alt="alt: A function is named average is called in main. The function average is defined outside the main function ">
+<p> Starting from the main function, our function <code>average</code> is called. The definition of average specifies that it needs to pieces of information by writing two variable names, separated by a comma <code>,</code> between the parenthesis in the definition life. In the body of the function it can assume that the function call provided two pieces of information and it can refer to the first as variable <code>a</code> and the second as variable <code>b</code>. The definition of average specifies that it gives information back to ther caller via the line that starts with <code>return</code>. In the main function, where average is called, information is provided for the function call to average in parantheses: <code class="language-python">average(5.0, 12.0)</code>. The value that is returned from the function can be saved in a variable, as in this example: <code class="language-python">mid = average(5.0, 12.0)</code>.</p><p>You can step through these slides (click on the slides) to see some of the terminology:</p>
+<!--<img src=../../img/pythonreader/functions/call_def.png alt="alt: A function is named average is called in main. The function average is defined outside the main function ">-->
+<p>
+<iframe src="https://docs.google.com/presentation/d/e/2PACX-1vSYaBW4mDfSlOLuBGAFPF520wy83s8i79fZ8_jSe1jnHXN7RnYsu1w7-9Gg5Vd7ZKFX24SwRkfDv9y3/embed?start=false&loop=false&delayms=60000" frameborder="0" width="100%" height="500" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
+</p>
 
-<p> Inputs & Parameters </p>
-<img src=../../img/pythonreader/functions/input.png alt="alt: In the main function, input is provided for the function call to average in parantheses: average(5.0, 12.0). In our function definition, we have def average(a,b), which means that the function average expects 2 inputs, which will be called a and b in the function ">
+<p>To better understand this, let's look at a few examples</p>
 
-<p> Now that we have our parameters, we can go inside the body of our function: </p>
-<img src=../../img/pythonreader/functions/body.png alt="alt: The body of the function is: sum = a + b, return sum/2">
 
-<p> At the end of the function, we return a value, which is saved in the mid variable in main</p>
-<img src=../../img/pythonreader/functions/return.png alt="alt: At the  end of the average function, we return a value. In the main function, this value that is returned gets saved in a variable called mid: mid = average(5.0, 12.0)">
-
-<h2> Many Example Python functions: </h2>
-
-<h3> No Parameters, No Return Example </h3>
+<h3>No Parameters, No Return Example </h3>
 <pre class="language-python"><code>def print_intro():
-   print("Welcome to class")
+  """
+  Functions do not need to take in information and do not need
+  to return information. Here is a simple example:
+  """
+  print("Welcome to class")
   print("It's the best part of my day") 
 
 def main(): 
@@ -206,18 +214,42 @@ def main():
 
 <h3> Parameter Example  </h3>
 <pre class="language-python"><code>def print_opinion(num): 
-   if(num==5): 
-      print("I love 5!") 
+  """
+  This function requires a single piece of information!
+  Inside the definition we will refer to the information provided
+  as num.
+  """
+  if num == 5: 
+     print("I love 5!") 
   else: 
      print("Whatever") 
 
 def main(): 
-   print_opinion(5): 
+  # when calling the function, we must provide the information
+  print_opinion(5): 
+
+  # which can be as a literal number or as a variable
+  user_num = int(input("enter a num: "))
+  print_opinion(user_num)
 </code></pre>
 
 <h3> Parameter and Return Example </h3>
 <pre class="language-python"><code>def meters_to_cm(meters): 
+   """
+   This simple function expects information in: a number of meters
+   and provides information back: the corresponding number of cm.
+   It uses the return keyword followed by the information to be returned.
+   """
    return 100 * meters
+
+def main():
+   # when you call this function, it gives you information back
+   # a common practice is to save the result in a variable
+   num_cm = meters_to_cm(5.1)
+   print(num_cm)
+
+   # you can use that information immediately
+   print(meters_to_cm(9.5))
 </code></pre>
 
 <h3> Contrasting case: print vs. return: </h3>
@@ -230,10 +262,14 @@ def meters_to_cm_case2(meters)
    print(100 * meters) 
 </code></pre>
 
-<p> Returning is not the same as printing. Return gives a number back to the program. Print gives a number back to the screen. </p>
+<p> Returning is not the same as printing. Return gives a number back to the program. Print gives a number back to the screen. " </p>
 
 <h3> Multiple Return Statements </h3>
-<pre class="language-python"><code>def max(num1, num2): 
+<p><pre class="language-python"><code>def max(num1, num2): 
+   """
+   this function has multiple return statements. When the function executes,
+   if it hits a return statement it immediately halts and gives back the specified info
+   """
    if num1 >= num2: 
       # this return statement only happens if the condition in the if-statement is true
       return num1    
@@ -241,9 +277,105 @@ def meters_to_cm_case2(meters)
 
 def main(): 
    larger = max(5,1)  
-</code></pre>
+</code></pre></p>
+
+<h3>Big Example</h3>
+
+<p>Here is a big example of a medium sized program which was originally written in one large main file. By using functions, we can decompose the program into smaller, separate pieces. The code "using functions" is much better style. It is easier to read the main function. The flow of information is well controlled. It is longer, but mostly because of the extra comments, another important piece of writing programs with good style:</p>
+
+<div class="row">
 
 
+
+<div class="col-12 col-sm-6">
+  <center><h3>Using Functions</h3></center>
+  <pre class="language-python"><code>def main(): 
+    print("Welcome to the CodeInPlace Game Show")
+    print("Pick a door and win a prize")
+    print("------------------------------------")
+
+    door = get_door()
+    prize = compute_prize(door)
+
+    # Part 3: report the prize
+    print('You win ' + str(prize) + ' treats')
+
+def compute_prize(door):
+    """
+    Compute prize, calculates how many treats you 
+    win. Based off the door which is given as a
+    parameter. Returns the prize. This function
+    uses many non-constant magic-numbers just to 
+    make the game more fun to play in class!
+    """
+    prize = 4
+    if door == 1:
+        # what happens in door 1?
+        prize = 2 + 9 // 10 * 100
+    elif door == 2:
+        # what happens in door 2?
+        locked = prize % 2 != 0
+        if not locked:
+            prize += 6
+    elif door == 3 :
+        # what happens in door 3?
+        for i in range(door):
+            prize += i  
+    return prize
+
+def get_door():
+    """
+    Get door, asks the user to enter a door
+    Reprompts the user until they enter 1, 2 or 3
+    Returns the valid door choice
+    """
+    door = int(input("Door: "))
+    # while the input is invalid
+    while door < 1 or door > 3 :
+        # tell the user the input was invalid
+        print("Invalid door!")
+        # ask for a new input
+        door = int(input("Door: "))
+    return door</code></pre>
+
+</div>
+
+
+<div class="col-12 col-sm-6">
+  <center><h3>Without Functions</h3></center>
+  <pre class="language-python"><code>def main(): 
+    print("Welcome to the CodeInPlace Game Show")
+    print("Pick a door and win a prize")
+    print("------------------------------------")
+
+    # Part 1: get the door number form the user
+    door = int(input("Door: "))
+    # while the input is invalid
+    while door < 1 or door > 3 :
+        # tell the user the input was invalid
+        print("Invalid door!")
+        # ask for a new input
+        door = int(input("Door: "))
+
+    # Part 2: compute the prize
+    prize = 4
+    if door == 1:
+        prize = 2 + 9 // 10 * 100
+    elif door == 2:
+        locked = prize % 2 != 0
+        if not locked:
+            prize += 6
+    elif door == 3 :
+        for i in range(door):
+            prize += i  
+
+    # Part 3: report the prize
+    print('You win ' + str(prize) + ' treats')</code></pre>
+
+</div>
+</div>
+
+<hr/>
 
 
 <!-- <p>A python program is made of many lines of code, stored in a file with a name like "example.py".

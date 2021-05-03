@@ -222,6 +222,23 @@ range(1, 10, 2) # [1, 3, 5, 7, 9] which is 1 through 10, counting by 2s
 				<p> <code class="language-python">for i in range(0, 12, 2)</code> says: i goes from 0 to 12, exclusive of 12, counting by 2 each time. It doesn't include the final value 12, so the last value i takes on is 10.</p>
 
 
+<h2>Nested Loops</h2>
+
+<p>Sometimes you will see for loops put inside other for loops. This is called a "nested" loop. When this happens we refer to the first for loop as the "outer" loop and the second for loop as the "inner" loop. These loops operate much like you would expect. It is very good practice (and quite helpful) to make sure that the index variable is different for each loop. A standard choice is to use <code>i</code> for the outer loop and <code>j</code> for the inner loop. What do you think this nested for loop does?
+  <p><pre class="language-python"><code>print('i', 'j')
+for i in range(2):
+   for j in range(3):
+      print(i,j)
+</code></pre>
+This nested loop prints the following to the console:
+<p><pre class="console">i j
+0 0
+0 1
+0 2
+1 0
+1 1
+1 2</pre></p>
+The outer loop counter, i, takes on the values <code>[0, 1]</code> for each of those values the inner loop counter, j, takes on the values <code>[0, 1, 2]</code>.
 
 
 <!-- jQuery CDN - Slim version (=without AJAX) -->
