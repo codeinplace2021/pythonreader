@@ -116,6 +116,9 @@
         <li>
             <a href="../for"><code>for</code></a>
         </li>
+        <li>
+            <a href="../functions">Functions</a>
+        </li>
         
         <!--<li>
             <a href="../if"><code>if</code> and comparisons</a>
@@ -164,8 +167,86 @@
                 <h1>Python Functions 1.0</h1>
 <hr/>
 
+<p> Python functions can <b> take in data </b>, and <b> return data </b></p>
 
-<p>A python program is made of many lines of code, stored in a file with a name like "example.py".
+<h2> Functions are like toasters </h2>
+
+<img style="height:425px;max-width:500px;width: expression(this.width > 500 ? 500: true);"src=../../img/pythonreader/functions/toasters.png alt="alt: An image of a toaster. A slice of bread goes inside the toaster as a parameter, and a piece of toast is returned ">
+
+<p> Toasters take in an input (bread), does an operation to it (toast the bread), and returns an output (toast). This makes toasters very similar to <b> functions</b>: functions also take an input, do an operation, and return an output.</p>
+
+<p> A function is also able to be general enough to take in different parameters. For example, if you wanted to toast a bagel, you wouldn't get a new toaster. You can use the same toaster to toast bagels, too, in addition to bread. </p>
+
+<img style="height:380px;max-width:500px;width: expression(this.width > 500 ? 500: true);"src=../../img/pythonreader/functions/bagel.png alt="alt: An image of a toaster. A bagel goes inside the toaster, and a toasted bagel is returned ">
+
+<h2> Anatomy of a Function</h2>
+
+<p> Starting from the main function, our function <code> average </code> is called: </p>
+<img src=../../img/pythonreader/functions/call_def.png alt="alt: A function is named average is called in main. The function average is defined outside the main function ">
+
+<p> Inputs & Parameters </p>
+<img src=../../img/pythonreader/functions/input.png alt="alt: In the main function, input is provided for the function call to average in parantheses: average(5.0, 12.0). In our function definition, we have def average(a,b), which means that the function average expects 2 inputs, which will be called a and b in the function ">
+
+<p> Now that we have our parameters, we can go inside the body of our function: </p>
+<img src=../../img/pythonreader/functions/body.png alt="alt: The body of the function is: sum = a + b, return sum/2">
+
+<p> At the end of the function, we return a value, which is saved in the mid variable in main</p>
+<img src=../../img/pythonreader/functions/return.png alt="alt: At the  end of the average function, we return a value. In the main function, this value that is returned gets saved in a variable called mid: mid = average(5.0, 12.0)">
+
+<h2> Many Example Python functions: </h2>
+
+<h3> No Parameters, No Return Example </h3>
+<pre class="language-python"><code>def print_intro():
+   print("Welcome to class")
+  print("It's the best part of my day") 
+
+def main(): 
+   print_intro()
+</code></pre>
+
+<h3> Parameter Example  </h3>
+<pre class="language-python"><code>def print_opinion(num): 
+   if(num==5): 
+      print("I love 5!") 
+  else: 
+     print("Whatever") 
+
+def main(): 
+   print_opinion(5): 
+</code></pre>
+
+<h3> Parameter and Return Example </h3>
+<pre class="language-python"><code>def meters_to_cm(meters): 
+   return 100 * meters
+</code></pre>
+
+<h3> Contrasting case: print vs. return: </h3>
+<pre class="language-python"><code># how is this function 
+def meters_to_cm_case1(meters): 
+   return 100 * meters 
+
+# Different than this function? 
+def meters_to_cm_case2(meters) 
+   print(100 * meters) 
+</code></pre>
+
+<p> Returning is not the same as printing. Return gives a number back to the program. Print gives a number back to the screen. </p>
+
+<h3> Multiple Return Statements </h3>
+<pre class="language-python"><code>def max(num1, num2): 
+   if num1 >= num2: 
+      # this return statement only happens if the condition in the if-statement is true
+      return num1    
+   return num2
+
+def main(): 
+   larger = max(5,1)  
+</code></pre>
+
+
+
+
+<!-- <p>A python program is made of many lines of code, stored in a file with a name like "example.py".
 It's natural to have a way to divide the lines code up into sensible sub-parts, and these are called <b>functions</b>. Almost all the code you work with in Python is inside a function.
 
 <h2>Python Function Syntax - "def"</h2>
@@ -184,7 +265,7 @@ def foo():
     y = 2
     z = 3
     i = 0
-</pre>
+</pre> -->
 
 <!--
 
@@ -198,7 +279,7 @@ def draw_colors():
 </pre>
 -->
 
-<p>Parts of a function definition:
+<!-- <p>Parts of a function definition:
 
 <ul>
  <li> <b>def</b> - A function begins with the word <code class=b>def</code>
@@ -321,7 +402,7 @@ hi 22
 behold 123 donuts
 >>> print(4, 8, 15, 16, 'woot')
 4 8 15 16 woot
-</pre>
+</pre> -->
 
 
 
