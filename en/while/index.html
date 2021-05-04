@@ -249,11 +249,13 @@ total is 60
 
    # -1 is our sentinel value. Our loop will stop if num == -1 
    while num != -1: 
+      # update total to include our new number
+      total += num
+
       # get another number for the user 
       num = int(input("Type a number: "))
       
-      # update total to include our new number
-      total = total + num
+      
 
    print(total) #print out the total once the user enters -1
 </code></pre>
