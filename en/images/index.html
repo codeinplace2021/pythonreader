@@ -171,19 +171,232 @@
     <span></span>
 </button>            
             <div class="page">    
-                <h1>Python Functions</h1>
+                <h1>Images</h1>
 <hr/>
 
-<p> Python functions can <b> take in data </b>, and <b> return data </b>. So far we have been <i>using</i> many functions in python that take in information and possibly return information such as <pre class="language-python"><code># takes in a prompt, returns user response
-text = input("prompt? ")
+<p> We've reached an exciting step in your Python journey — images! </p>
 
-# takes in a number, returns the square root of that number
-y = math.sqrt(25)
+<img src=../../img/pythonreader/images/dandelion.png alt="an image of a yellow dandelion" width = "200" height = "200">
 
-# takes in text to display to the user
-print("Hello, world")</code></pre></p>
+<img src=../../img/pythonreader/images/dandelion_pix.png alt="an image of a yellow dandelion" width = "200" height = "200">
 
-<p>In this chapter we are going to learn how to <i>define</i> functions which can take in information and return information!</p>
+<br>
+
+<h2> What is an image? </h2>
+
+<p> An image is made of square pixels. </p>
+
+<p> Each pixel has single color encoded as 3 RGB values, where R = red, G = green, and B = blue. Each value represents brightness for that color (red, green, or blue). You can set RGB values to make any color!  </p>
+
+<p> For example, here's a close-up of the pixels that make up a scene from the Pixar movie Monsters Inc. and the pixels that make up a picture of a dog: </p>
+
+<p> 
+<iframe src="https://docs.google.com/presentation/d/e/2PACX-1vSuY0ofdD9nuCscyJ3wrkk9gtRqQWNntaObwWY6uRiHuf09ApBqBijzr-6opRc7CHTPBHEul2tEMQs4/embed?start=false&loop=false&delayms=3000" frameborder="0" width="100%" height="500" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
+</p>
+
+<p> Each pixel has x and y coordinates in the image. The origin (0,0) is at the upper-left corner. <b> y </b> increases going down, <b> x </b> increases going right </p>
+
+<p> 
+<iframe src="https://docs.google.com/presentation/d/e/2PACX-1vTODK8pn_E8l_d_utmndR-rkwJmtBIX7zKPilDVZ7iQ46BLLrw_4XO1fzS4Mx6ugrJQVFltB9vDggNG/embed?start=false&loop=false&delayms=3000" frameborder="0" width="100%" height="500" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
+</p>
+
+<h2> SimpleImage Library </h2>
+
+<p> In folders for assignment or lecture on images, there is a file <b> simpleimage.py </b>. This is the SimpleImage library, and you will use this library to work with images. </p>
+
+<p> To use the SimpleImage library in your code, include at the top of your program file: </p>
+
+<code class="language-python">from simpleimage import SimpleImage </code>
+
+<p> This is importing the SimpleImage module, so that it is accessible in the code you write. This is similar to when you used <code> import random </code> to use the random number generator library  </p>
+
+<p> Each SimpleImage object is made up of Pixel objects </p>
+
+<h3> Functions in SimpleImage Library </h3>
+
+<p> You can create a SimpleImage object by reading an image from file (jpg, png, gif, etc.) and storing it in a variable</p>
+
+<code class="language-python">my_image = SimpleImage(filename)  </code>
+
+<p> To show the image on your computer: </p>
+
+<code class="language-python"> my_image.show() </code>
+
+<h3> Accessing Pixels in an Image </h3>
+
+<p> We can use a new kind of loop called a "for-each" loop. Here's what it looks like: </p>
+
+<pre class="language-python"><code>for item in collection: 
+  # Do something with item 
+</code></pre>
+
+<p> Here's how to use a for-each loop with an image: </p>
+
+<pre class="language-python"><code>image = SimpleImage("flower.jpg")
+for pixel in image:
+        # The code here gets repeated once for each pixel in image 
+</code></pre>
+
+<h3> Properties of Images and Pixels </h3>
+
+<p> Each SimpleImage image has properties you can access. For example, this is how you can access the width and height of an image: </p>
+
+<code class="language-python">image.width, image.height </code>
+
+<p> Each pixel in an image also has properties: </p>
+
+<p> You can get the x and y coordinates of a pixel in an image: </p>
+
+<code class="language-python">pixel.x, pixel.y </code>
+
+<p> You can also get the RGB values of a pixel, which are integers between 0 and 255. Higher R, G, B values means that there is more of that color present in the pixel. </p>
+
+<code class="language-python">pixel,red, pixel.green, pixel.blue </code>
+
+<h3> Now, let's look at some examples. </h3>
+
+<p> This function, darker, returns a darker version of an image. </p>
+
+<pre class="language-python"><code>def darker(filename): 
+   """
+   Reads image from file specified by filename. 
+   Makes image darker by halving red, green, blue values
+   Returns the darker version of image.
+   """
+
+   img = SimpleImage(filename)
+   for px in image: 
+      px.red = pix.red // 2
+      px.green = pix.green // 2
+      px.blue = pix.blue // 2
+   return img
+</code></pre>
+
+<p> This function, red_channel, returns a red-shaded version of an image. </p>
+
+<pre class="language-python"><code>def red_channel(filename): 
+   """
+   Reads image from file specified by filename. 
+   Changes the image as follows:
+   For every pixel, set green and blue values to 0, 
+   yielding the red channel. 
+   Return the changed image.
+   """
+
+   img = SimpleImage(filename)
+   for px in image: 
+      px.red = pix.red // 2
+      px.green = 0
+      px.blue = 0
+   return img
+</code></pre>
+
+<p> Let's take these functions for a spin!  </p>
+
+<pre class="language-python"><code>def main(): 
+   """
+   Run your desired image manipulation functions here. 
+   You should store the return value (image) and then 
+   call .show() to visualize the output of your program.
+   """
+   
+   # The name of the image file is called flower.png and it is in the 
+   # images folder, so to access the file we do: 'images/flower.png'
+   
+   original_flower = SimpleImage('images/flower.png') 
+   original_flower.show() # displays the original image 
+
+   dark_flower = darker('images/flower.png')
+   dark_flower.show()
+
+   red_flower = red_channel('images/flower.png')
+   red_flower.show()
+</code></pre>
+
+<p> Here are our resulting images. Our original image is on the left, our darkened image is in the middle, and our red-shaded image is on the left. </p>
+
+<img src=../../img/pythonreader/images/result.png alt="an image of a yellow dandelion" width = "500" height = "300">
+
+<h3> Nested For vs For Each Pixel </h3>
+
+<p> What's the difference? </p>
+
+<div class="row">
+
+
+
+<div class="col-12 col-sm-6">
+  <center><h3>For-each loop</h3></center>
+  <pre class="language-python"><code>def darker(filename): 
+   img = SimpleImage(filename)
+   for px in image: 
+      px.red = pix.red // 2
+      px.green = pix.green // 2
+      px.blue = pix.blue // 2
+   return img
+</code></pre>
+
+</div>
+
+
+<div class="col-12 col-sm-6">
+  <center><h3>Nested For-loop</h3></center>
+  <pre class="language-python"><code>def darker(filename): 
+   img = SimpleImage(filename)
+   for y in range(img.height): 
+      for x in range(img.width):  
+         px.red = pix.red // 2
+         px.green = pix.green // 2
+         px.blue = pix.blue // 2
+   return img
+</code></pre>
+
+</div>
+</div>
+
+<p> Nothing! Both functions  above do the exact same thing: make an image darker. We only want to use nested for loops if we care about <b> x </b> and <b> y </b>. </p>
+
+<h3> Mirroring an Image </h3>
+
+<p> For this program, we are given an image, and we want to return an image that includes the original image and its mirror reflection, like this: </p>
+
+<img src=../../img/pythonreader/images/mirror.png alt="an image of burrito, along with a mirrored version" width = "350" height = "300">
+
+<p> How can we write a program that gives us the mirror image? 
+
+We will need access to the <b> x </b> and <b> y </b> values of the pixels in the original image. In our output image, we want to set the corresponding <b> x </b> and <b> y </b> coordinates of the original image and the mirror image to be the same color. </p>
+
+<p> <b> We can use a nested for-loop to do this! </b> </p>
+
+<p> 
+<iframe src="https://docs.google.com/presentation/d/e/2PACX-1vTmuPyF257Quc0BSz5Ckrxc7vRGZYcw5hSZwG2UMQND6551WVsPeFP_nnYd_ioiiyxGaz-VVyAEOl73/embed?start=false&loop=false&delayms=3000" frameborder="0" width="100%" height="500" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
+</p>
+
+<p> Here's how: </p>
+
+<pre class="language-python"><code>def mirror_image(filename): 
+   """
+   Reads image from file specified by filename. 
+   Returns a new image that includes the original image 
+   and its mirror reflection.   
+   """
+   
+   image = SimpleImage(filename)
+   width = image.width
+   height = image.height 
+
+   # Create new image to contain mirror reflection
+   mirror = SimpleImage.blank(width * 2, height)
+
+  for y in range(height): 
+     for x in range(width): 
+        pixel = image.get_pixel(x,y)
+        mirror.set_pixel(x, y, pixel)
+        mirror.set_pixel((width * 2) - (x+1), y, pixel)
+
+  return mirror
+
+</code></pre>
 
 <!--<h2> Functions are like toasters </h2>
 
@@ -195,19 +408,19 @@ print("Hello, world")</code></pre></p>
 
 <!--<img style="height:380px;max-width:500px;width: expression(this.width > 500 ? 500: true);"src=../../img/pythonreader/functions/bagel.png alt="alt: An image of a toaster. A bagel goes inside the toaster, and a toasted bagel is returned ">-->
 
-<h2> Anatomy of a Function</h2>
+<!-- <h2> Anatomy of a Function</h2>
 
 <p>To understand how to defined functions which can take in data and can return data, let's disect a simple example of the definition of an average function. Average takes in two pieces of data and returns the mathematical average.</p>
 
-<p><b>Definition</b>: The definition of average specifies that it needs to pieces of information by writing two variable names, separated by a comma <code>,</code> between the parenthesis in the definition line. In the body of the average function it can assume that the function call provided two pieces of information inside the function body average can refer to the first piece of information as variable <code>a</code> and the second as variable <code>b</code>. The definition of average specifies that it gives information back to ther caller via the line that starts with <code>return</code>.</p>
+<p><b>Definition</b>: The definition of average specifies that it needs to pieces of information by writing two variable names, separated by a comma <code>,</code> between the parenthesis in the definition line. In the body of the average function it can assume that the function call provided two pieces of information inside the function body average can refer to the first piece of information as variable <code>a</code> and the second as variable <code>b</code>. The definition of average specifies that it gives information back to ther caller via the line that starts with <code>return</code>.</p> -->
 
-<p><b>Call</b>: Average is called in the main function. Information is provided for the function call to average between parantheses in the call: <code class="language-python">average(5.0, 12.0)</code>. The value that is returned from the function can be saved in a variable, as in this example: <code class="language-python">mid = average(5.0, 12.0)</code>.</p><p>You can step through these slides (click on the slides) to see some of the terminology:</p>
+<!-- <p><b>Call</b>: Average is called in the main function. Information is provided for the function call to average between parantheses in the call: <code class="language-python">average(5.0, 12.0)</code>. The value that is returned from the function can be saved in a variable, as in this example: <code class="language-python">mid = average(5.0, 12.0)</code>.</p><p>You can step through these slides (click on the slides) to see some of the terminology:</p> -->
 <!--<img src=../../img/pythonreader/functions/call_def.png alt="alt: A function is named average is called in main. The function average is defined outside the main function ">-->
-<p>
+<!-- <p>
 <iframe src="https://docs.google.com/presentation/d/e/2PACX-1vSYaBW4mDfSlOLuBGAFPF520wy83s8i79fZ8_jSe1jnHXN7RnYsu1w7-9Gg5Vd7ZKFX24SwRkfDv9y3/embed?start=false&loop=false&delayms=60000" frameborder="0" width="100%" height="500" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
-</p>
+</p> -->
 
-<p>To better understand this, let's look at a few examples</p>
+<!-- <p>To better understand this, let's look at a few examples</p>
 
 
 <h3>No Parameters, No Return Example </h3>
@@ -223,8 +436,8 @@ def main():
    print_intro()
 </code></pre>
 
-<h3> Parameter Example  </h3>
-<pre class="language-python"><code>def print_opinion(num): 
+<h3> Parameter Example  </h3> -->
+<!-- <pre class="language-python"><code>def print_opinion(num): 
   """
   This function requires a single piece of information!
   Inside the definition we will refer to the information provided
@@ -242,9 +455,9 @@ def main():
   # which can be as a literal number or as a variable
   user_num = int(input("enter a num: "))
   print_opinion(user_num)
-</code></pre>
+</code></pre> -->
 
-<h3> Parameter and Return Example </h3>
+<!-- <h3> Parameter and Return Example </h3>
 <pre class="language-python"><code>def meters_to_cm(meters): 
    """
    This simple function expects information in: a number of meters
@@ -261,9 +474,9 @@ def main():
 
    # you can use that information immediately
    print(meters_to_cm(9.5))
-</code></pre>
+</code></pre> -->
 
-<h3> Contrasting case: print vs. return: </h3>
+<!-- <h3> Contrasting case: print vs. return: </h3>
 <pre class="language-python"><code># how is this function 
 def meters_to_cm_case1(meters): 
    return 100 * meters 
@@ -288,13 +501,13 @@ def meters_to_cm_case2(meters)
 
 def main(): 
    larger = max(5,1)  
-</code></pre></p>
+</code></pre></p> -->
 
-<h3>Big Example</h3>
+<!-- <h3>Big Example</h3>
 
-<p>Here is a big example of a medium sized program which was originally written in one large main file. By using functions, we can decompose the program into smaller, separate pieces. The code "using functions" is much better style. It is easier to read the main function. The flow of information is well controlled. It is longer, but mostly because of the extra comments, another important piece of writing programs with good style:</p>
+<p>Here is a big example of a medium sized program which was originally written in one large main file. By using functions, we can decompose the program into smaller, separate pieces. The code "using functions" is much better style. It is easier to read the main function. The flow of information is well controlled. It is longer, but mostly because of the extra comments, another important piece of writing programs with good style:</p> -->
 
-<div class="row">
+<!-- <div class="row">
 
 
 
@@ -381,7 +594,7 @@ def compute_prize(door):
     print('You win ' + str(prize) + ' treats')</code></pre>
 
 </div>
-</div>
+</div> -->
 
 <hr/>
 
