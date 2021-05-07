@@ -174,58 +174,52 @@
     <span></span>
 </button>            
             <div class="page">    
-                <h1>Images</h1>
+                <h1>TextGrid</h1>
 <hr/>
 
-<p> We've reached an exciting step in your Python journey — images! </p>
-
-<img src=../../img/pythonreader/images/dandelion.png alt="an image of a yellow dandelion" width = "200" height = "200">
-
-<img src=../../img/pythonreader/images/dandelion_pix.png alt="an image of a yellow dandelion" width = "200" height = "200">
+<p> TextGrid is an alternative to images for those who are visually impaired. </p>
 
 <br>
 
-<h2> What is an image? </h2>
+<h2> What is a TextGrid? </h2>
 
-<p> An image is made of square pixels. </p>
+<p> Similar to how images are made of square pixels, TextGrid objects are made of cells that contain a character value. </p>
 
-<p> Each pixel has single color encoded as 3 RGB values, where R = red, G = green, and B = blue. Each value represents brightness for that color (red, green, or blue). You can set RGB values to make any color!  </p>
-
-<p> For example, here's a close-up of the pixels that make up a scene from the Pixar movie Monsters Inc. and the pixels that make up a picture of a dog: </p>
+<p> Here's an example of a 3x3 TextGrid that represents a patch of DNA:  </p>
 
 <p> 
-<iframe src="https://docs.google.com/presentation/d/e/2PACX-1vSuY0ofdD9nuCscyJ3wrkk9gtRqQWNntaObwWY6uRiHuf09ApBqBijzr-6opRc7CHTPBHEul2tEMQs4/embed?start=false&loop=false&delayms=3000" frameborder="0" width="100%" height="500" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
+  <b> 
+  ATC <br> 
+  CTG <br> 
+  TGA
+  </b>
 </p>
 
-<p> Each pixel has x and y coordinates in the image. The origin (0,0) is at the upper-left corner. <b> y </b> increases going down, <b> x </b> increases going right </p>
+<p> Similar to images and pixels, each cell has x and y coordinates in the grid. The origin (0,0) is at the upper-left corner. <b> y </b> increases going down, <b> x </b> increases going right </p>
 
 <p> 
 <iframe src="https://docs.google.com/presentation/d/e/2PACX-1vTODK8pn_E8l_d_utmndR-rkwJmtBIX7zKPilDVZ7iQ46BLLrw_4XO1fzS4Mx6ugrJQVFltB9vDggNG/embed?start=false&loop=false&delayms=3000" frameborder="0" width="100%" height="500" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
 </p>
 
-<h2> SimpleImage Library </h2>
+<h2> TextGrid Library </h2>
 
-<p> In folders for assignment or lecture on images, there is a file <b> simpleimage.py </b>. This is the SimpleImage library, and you will use this library to work with images. </p>
+<p> In folders for assignment or lecture on images, there is a file <b> textgrid.py </b>. This is the TextGrid library, and you will use this library to work with images. </p>
 
-<p> To use the SimpleImage library in your code, include at the top of your program file: </p>
+<p> To use the TextGrid library in your code, include at the top of your program file: </p>
 
-<code class="language-python">from simpleimage import SimpleImage </code>
+<code class="language-python">from textgrid import TextGrid </code>
 
-<p> This is importing the SimpleImage module, so that it is accessible in the code you write. This is similar to when you used <code> import random </code> to use the random number generator library  </p>
+<p> This is importing the TextGrid module, so that it is accessible in the code you write. This is similar to when you used <code> import random </code> to use the random number generator library  </p>
 
-<p> Each SimpleImage object is made up of Pixel objects </p>
+<p> Each TextGrid object is made up of Cell objects </p>
 
-<h3> Functions in SimpleImage Library </h3>
+<h3> Functions in TextGrid Library </h3>
 
-<p> You can create a SimpleImage object by reading an image from file (jpg, png, gif, etc.) and storing it in a variable</p>
+<p> You can create a TextGrid object by reading from a text file and storing it in a variable</p>
 
-<code class="language-python">my_image = SimpleImage(filename)  </code>
+<code class="language-python">grid = SimpleImage(TextGrid)  </code>
 
-<p> To show the image on your computer: </p>
-
-<code class="language-python"> my_image.show() </code>
-
-<h3> Accessing Pixels in an Image </h3>
+<h3> Accessing Cells in a TextGrid </h3>
 
 <p> We can use a new kind of loop called a "for-each" loop. Here's what it looks like: </p>
 
@@ -233,172 +227,88 @@
   # Do something with item 
 </code></pre>
 
-<p> Here's how to use a for-each loop with an image: </p>
+<p> Here's how to use a for-each loop with a TextGrid: </p>
 
-<pre class="language-python"><code>image = SimpleImage("flower.jpg")
-for pixel in image:
-        # The code here gets repeated once for each pixel in image 
+<pre class="language-python"><code>grid = SimpleImage(TextGrid)
+for cell in grid:
+        # The code here gets repeated once for each cell in image 
 </code></pre>
 
-<h3> Properties of Images and Pixels </h3>
+<h3> Accessing data inside a TextGrid element </h3>
 
-<p> Each SimpleImage image has properties you can access. For example, this is how you can access the width and height of an image: </p>
+<p> Each TextGrid image has properties you can access. For example, this is how you can access the width and height of a TextGrid: </p>
 
-<code class="language-python">image.width, image.height </code>
+<code class="language-python">grid.width, grid.height </code>
 
-<p> Each pixel in an image also has properties: </p>
+<p> Each cell in a TextGrid also has properties: </p>
 
 <p> You can get the x and y coordinates of a pixel in an image: </p>
 
-<code class="language-python">pixel.x, pixel.y </code>
+<code class="language-python">cell.x, cell.y </code>
 
-<p> You can also get the RGB values of a pixel, which are integers between 0 and 255. Higher R, G, B values means that there is more of that color present in the pixel. </p>
+<p> You can also get the character value storied in a cell: </p>
 
-<code class="language-python">pixel,red, pixel.green, pixel.blue </code>
+<code class="language-python">cell.value </code>
 
-<h3> Now, let's look at some examples. </h3>
+<h2> Advanced TextGrid functionality </h2>
 
-<p> This function, darker, returns a darker version of an image. </p>
+<h3> Creating a blank grid with specified height and width </h3>
 
-<pre class="language-python"><code>def darker(filename): 
-   """
-   Reads image from file specified by filename. 
-   Makes image darker by halving red, green, blue values
-   Returns the darker version of image.
-   """
+<p> This is useful for starting off with a “blank canvas” that you can populate in an algorithmically interesting way. Both of the lines of code below are valid ways of making a blank grid</p>
 
-   img = SimpleImage(filename)
-   for px in image: 
-      px.red = pix.red // 2
-      px.green = pix.green // 2
-      px.blue = pix.blue // 2
-   return img
+<pre class="language-python"><code>grid = TextGrid.blank(5, 3), grid = TextGrid.blank(width=5, height=3)
 </code></pre>
 
-<p> This function, red_channel, returns a red-shaded version of an image. </p>
+<h3> Accessing a cell by its x, y coordinates </h3>
 
-<pre class="language-python"><code>def red_channel(filename): 
-   """
-   Reads image from file specified by filename. 
-   Changes the image as follows:
-   For every pixel, set green and blue values to 0, 
-   yielding the red channel. 
-   Return the changed image.
-   """
-
-   img = SimpleImage(filename)
-   for px in image: 
-      px.red = pix.red // 2
-      px.green = 0
-      px.blue = 0
-   return img
-</code></pre>
-
-<p> Let's take these functions for a spin!  </p>
-
-<pre class="language-python"><code>def main(): 
-   """
-   Run your desired image manipulation functions here. 
-   You should store the return value (image) and then 
-   call .show() to visualize the output of your program.
-   """
-   
-   # The name of the image file is called flower.png and it is in the 
-   # images folder, so to access the file we do: 'images/flower.png'
-   
-   original_flower = SimpleImage('images/flower.png') 
-   original_flower.show() # displays the original image 
-
-   dark_flower = darker('images/flower.png')
-   dark_flower.show()
-
-   red_flower = red_channel('images/flower.png')
-   red_flower.show()
-</code></pre>
-
-<p> Here are our resulting images. Our original image is on the left, our darkened image is in the middle, and our red-shaded image is on the left. </p>
-
-<img src=../../img/pythonreader/images/result.png alt="an image of a yellow dandelion" width = "500" height = "300">
-
-<h3> Nested For vs For Each Pixel </h3>
-
-<p> What's the difference? </p>
-
-<div class="row">
-
-
-
-<div class="col-12 col-sm-6">
-  <center><h3>For-each loop</h3></center>
-  <pre class="language-python"><code>def darker(filename): 
-   img = SimpleImage(filename)
-   for px in image: 
-      px.red = pix.red // 2
-      px.green = pix.green // 2
-      px.blue = pix.blue // 2
-   return img
-</code></pre>
-
-</div>
-
-
-<div class="col-12 col-sm-6">
-  <center><h3>Nested For-loop</h3></center>
-  <pre class="language-python"><code>def darker(filename): 
-   img = SimpleImage(filename)
-   for y in range(img.height): 
-      for x in range(img.width):  
-         px.red = pix.red // 2
-         px.green = pix.green // 2
-         px.blue = pix.blue // 2
-   return img
-</code></pre>
-
-</div>
-</div>
-
-<p> Nothing! Both functions  above do the exact same thing: make an image darker. We only want to use nested for loops if we care about <b> x </b> and <b> y </b>. </p>
-
-<h3> Mirroring an Image </h3>
-
-<p> For this program, we are given an image, and we want to return an image that includes the original image and its mirror reflection, like this: </p>
-
-<img src=../../img/pythonreader/images/mirror.png alt="an image of burrito, along with a mirrored version" width = "350" height = "300">
-
-<p> How can we write a program that gives us the mirror image? 
-
-We will need access to the <b> x </b> and <b> y </b> values of the pixels in the original image. In our output image, we want to set the corresponding <b> x </b> and <b> y </b> coordinates of the original image and the mirror image to be the same color. </p>
-
-<p> <b> We can use a nested for-loop to do this! </b> </p>
-
-<p> 
-<iframe src="https://docs.google.com/presentation/d/e/2PACX-1vTmuPyF257Quc0BSz5Ckrxc7vRGZYcw5hSZwG2UMQND6551WVsPeFP_nnYd_ioiiyxGaz-VVyAEOl73/embed?start=false&loop=false&delayms=3000" frameborder="0" width="100%" height="500" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
+<p> The top left of the grid corresponds to x=0, y=0. x-coordinates get larger as you move to the right, and y-coordinates get larger as you move down. Note that this function returns a cell, not a character -- to get the value of the grid (e.g. 'A', 'T', 'C', 'G', etc.) use <code> cell.value </code>
 </p>
 
-<p> Here's how: </p>
-<pre class="language-python"><code>def mirror_image(filename): 
-   """
-   Reads image from file specified by filename. 
-   Returns a new image that includes the original image 
-   and its mirror reflection.   
-   """
-   
-   image = SimpleImage(filename)
-   width = image.width
-   height = image.height 
-
-   # Create new image to contain mirror reflection
-   mirror = SimpleImage.blank(width * 2, height)
-
-  for y in range(height): 
-     for x in range(width): 
-        pixel = image.get_pixel(x,y)
-        mirror.set_pixel(x, y, pixel)
-        mirror.set_pixel((width * 2) - (x+1), y, pixel)
-
-  return mirror
-
+<pre class="language-python"><code> myCell = grid.get_cell(x,y)
 </code></pre>
+
+<h3> Setting the value of a certain cell in a grid by its x, y coordinates </h3>
+
+<p> If you have a cell (such as one returned by get_cell) and you want to place it directly into a grid, you can do so with the following function: <code> grid.set_cell(x, y, cell) </code></p>
+
+<p> If you have a character value (ex. 'A', 'T', 'C', 'G', '_', 'O', 'X') and you want to set the nucleotide at x, y to that value, you can do so with the following function: <code> grid.set_value(x, y, value) </code></p>
+
+<p> Note: x and y should be integers and x must be in the range 0 to width-1 (inclusive) and y must be in the range 0 to height-1 (inclusive); value should be a string that is one character long </p>
+
+<h3> Range loops with TextGrid </h3>
+
+<p> The "for each" loop described above is the easiest way to loop over all of the cells in a grid. However, sometimes you want to write loops that access cells by their x, y coordinates. The code below demonstrates the standard nested for loop pattern to access all of the nucleotides in a genome. The outer for loop iterates over the rows (starting with the top row (y = 0) and moving on to the next row (y = 1)), and the inner for loop iterates over the columns. </p>
+
+<pre class="language-python"><code> def example(filename): 
+  grid = TextGrid(filename) 
+  for y in range(grid.height): 
+    # loop over all the rows 
+      for x in range(grid.width): 
+      # loop over all the columns 
+      character = grid.get_value(x, y) # do something with character 
+      return grid
+</code></pre>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 <!--<h2> Functions are like toasters </h2>
 
