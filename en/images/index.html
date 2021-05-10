@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    
+
 
 <title>Python Reader</title>
 
@@ -71,7 +71,7 @@
     </div>
 
     <ul class="list-unstyled components">
-        
+
         <li>
             <a href="../intro">Introduction</a>
         </li>
@@ -83,18 +83,18 @@
         <li>
             <a href="../interpreter">Interpreter</a>
         </li>
-        
+
         <li>
             <a href="../variables">Variables</a>
         </li>
-        
+
         <li>
             <a href="../print"><code>print</code></a>
         </li>
         <li>
             <a href="../input"><code>input</code></a>
         </li>
-        
+
         <li>
             <a href="../math">Math and expressions</a>
         </li>
@@ -129,7 +129,7 @@
         <li>
             <a href="../TextGrid">TextGrid</a>
         </li>
-        
+
         <!--<li>
             <a href="../if"><code>if</code> and comparisons</a>
         </li>
@@ -172,8 +172,8 @@
 <button type="button" id="sidebarCollapse" class="mobile-only btn btn-info">
     <i class="fas fa-align-left"></i>
     <span></span>
-</button>            
-            <div class="page">    
+</button>
+            <div class="page">
                 <h1>Images</h1>
 <hr/>
 
@@ -193,13 +193,13 @@
 
 <p> For example, here's a close-up of the pixels that make up a scene from the Pixar movie Monsters Inc. and the pixels that make up a picture of a dog: </p>
 
-<p> 
+<p>
 <iframe src="https://docs.google.com/presentation/d/e/2PACX-1vSuY0ofdD9nuCscyJ3wrkk9gtRqQWNntaObwWY6uRiHuf09ApBqBijzr-6opRc7CHTPBHEul2tEMQs4/embed?start=false&loop=false&delayms=3000" frameborder="0" width="100%" height="500" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
 </p>
 
 <p> Each pixel has x and y coordinates in the image. The origin (0,0) is at the upper-left corner. <b> y </b> increases going down, <b> x </b> increases going right </p>
 
-<p> 
+<p>
 <iframe src="https://docs.google.com/presentation/d/e/2PACX-1vTODK8pn_E8l_d_utmndR-rkwJmtBIX7zKPilDVZ7iQ46BLLrw_4XO1fzS4Mx6ugrJQVFltB9vDggNG/embed?start=false&loop=false&delayms=3000" frameborder="0" width="100%" height="500" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
 </p>
 
@@ -229,15 +229,15 @@
 
 <p> We can use a new kind of loop called a "for-each" loop. Here's what it looks like: </p>
 
-<pre class="language-python"><code>for item in collection: 
-  # Do something with item 
+<pre class="language-python"><code>for item in collection:
+  # Do something with item
 </code></pre>
 
 <p> Here's how to use a for-each loop with an image: </p>
 
 <pre class="language-python"><code>image = SimpleImage("flower.jpg")
 for pixel in image:
-        # The code here gets repeated once for each pixel in image 
+        # The code here gets repeated once for each pixel in image
 </code></pre>
 
 <h3> Properties of Images and Pixels </h3>
@@ -254,60 +254,59 @@ for pixel in image:
 
 <p> You can also get the RGB values of a pixel, which are integers between 0 and 255. Higher R, G, B values means that there is more of that color present in the pixel. </p>
 
-<code class="language-python">pixel,red, pixel.green, pixel.blue </code>
+<code class="language-python">pixel.red, pixel.green, pixel.blue </code>
 
 <h3> Now, let's look at some examples. </h3>
 
 <p> This function, darker, returns a darker version of an image. </p>
 
-<pre class="language-python"><code>def darker(filename): 
+<pre class="language-python"><code>def darker(filename):
    """
-   Reads image from file specified by filename. 
+   Reads image from file specified by filename.
    Makes image darker by halving red, green, blue values
    Returns the darker version of image.
    """
 
-   img = SimpleImage(filename)
-   for px in image: 
-      px.red = pix.red // 2
-      px.green = pix.green // 2
-      px.blue = pix.blue // 2
-   return img
+   image = SimpleImage(filename)
+   for pixel in image:
+      pixel.red = pixel.red // 2
+      pixel.green = pixel.green // 2
+      pixel.blue = pixel.blue // 2
+   return image
 </code></pre>
 
 <p> This function, red_channel, returns a red-shaded version of an image. </p>
 
-<pre class="language-python"><code>def red_channel(filename): 
+<pre class="language-python"><code>def red_channel(filename):
    """
-   Reads image from file specified by filename. 
+   Reads image from file specified by filename.
    Changes the image as follows:
-   For every pixel, set green and blue values to 0, 
-   yielding the red channel. 
+   For every pixel, set green and blue values to 0,
+   yielding the red channel.
    Return the changed image.
    """
 
-   img = SimpleImage(filename)
-   for px in image: 
-      px.red = pix.red // 2
-      px.green = 0
-      px.blue = 0
-   return img
+   image = SimpleImage(filename)
+   for pixel in image:
+      pixel.green = 0
+      pixel.blue = 0
+   return image
 </code></pre>
 
 <p> Let's take these functions for a spin!  </p>
 
-<pre class="language-python"><code>def main(): 
+<pre class="language-python"><code>def main():
    """
-   Run your desired image manipulation functions here. 
-   You should store the return value (image) and then 
+   Run your desired image manipulation functions here.
+   You should store the return value (image) and then
    call .show() to visualize the output of your program.
    """
-   
-   # The name of the image file is called flower.png and it is in the 
+
+   # The name of the image file is called flower.png and it is in the
    # images folder, so to access the file we do: 'images/flower.png'
-   
-   original_flower = SimpleImage('images/flower.png') 
-   original_flower.show() # displays the original image 
+
+   original_flower = SimpleImage('images/flower.png')
+   original_flower.show() # displays the original image
 
    dark_flower = darker('images/flower.png')
    dark_flower.show()
@@ -330,13 +329,13 @@ for pixel in image:
 
 <div class="col-12 col-sm-6">
   <center><h3>For-each loop</h3></center>
-  <pre class="language-python"><code>def darker(filename): 
-   img = SimpleImage(filename)
-   for px in image: 
-      px.red = pix.red // 2
-      px.green = pix.green // 2
-      px.blue = pix.blue // 2
-   return img
+  <pre class="language-python"><code>def darker(filename):
+   image = SimpleImage(filename)
+   for pixel in image:
+      pixel.red = pixel.red // 2
+      pixel.green = pixel.green // 2
+      pixel.blue = pixel.blue // 2
+   return image
 </code></pre>
 
 </div>
@@ -344,14 +343,15 @@ for pixel in image:
 
 <div class="col-12 col-sm-6">
   <center><h3>Nested For-loop</h3></center>
-  <pre class="language-python"><code>def darker(filename): 
-   img = SimpleImage(filename)
-   for y in range(img.height): 
-      for x in range(img.width):  
-         px.red = pix.red // 2
-         px.green = pix.green // 2
-         px.blue = pix.blue // 2
-   return img
+  <pre class="language-python"><code>def darker(filename):
+   image = SimpleImage(filename)
+   for y in range(image.height):
+      for x in range(image.width):
+        pixel = image.get_pixel(x, y)
+        pixel.red = pixel.red // 2
+        pixel.green = pixel.green // 2
+        pixel.blue = pixel.blue // 2
+   return image
 </code></pre>
 
 </div>
@@ -365,33 +365,33 @@ for pixel in image:
 
 <img src=../../img/pythonreader/images/mirror.png alt="an image of burrito, along with a mirrored version" width = "350" height = "300">
 
-<p> How can we write a program that gives us the mirror image? 
+<p> How can we write a program that gives us the mirror image?
 
 We will need access to the <b> x </b> and <b> y </b> values of the pixels in the original image. In our output image, we want to set the corresponding <b> x </b> and <b> y </b> coordinates of the original image and the mirror image to be the same color. </p>
 
 <p> <b> We can use a nested for-loop to do this! </b> </p>
 
-<p> 
+<p>
 <iframe src="https://docs.google.com/presentation/d/e/2PACX-1vTmuPyF257Quc0BSz5Ckrxc7vRGZYcw5hSZwG2UMQND6551WVsPeFP_nnYd_ioiiyxGaz-VVyAEOl73/embed?start=false&loop=false&delayms=3000" frameborder="0" width="100%" height="500" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
 </p>
 
 <p> Here's how: </p>
-<pre class="language-python"><code>def mirror_image(filename): 
+<pre class="language-python"><code>def mirror_image(filename):
    """
-   Reads image from file specified by filename. 
-   Returns a new image that includes the original image 
-   and its mirror reflection.   
+   Reads image from file specified by filename.
+   Returns a new image that includes the original image
+   and its mirror reflection.
    """
-   
+
    image = SimpleImage(filename)
    width = image.width
-   height = image.height 
+   height = image.height
 
    # Create new image to contain mirror reflection
    mirror = SimpleImage.blank(width * 2, height)
 
-  for y in range(height): 
-     for x in range(width): 
+  for y in range(height):
+     for x in range(width):
         pixel = image.get_pixel(x,y)
         mirror.set_pixel(x, y, pixel)
         mirror.set_pixel((width * 2) - (x+1), y, pixel)
@@ -432,27 +432,27 @@ We will need access to the <b> x </b> and <b> y </b> values of the pixels in the
   to return information. Here is a simple example:
   """
   print("Welcome to class")
-  print("It's the best part of my day") 
+  print("It's the best part of my day")
 
-def main(): 
+def main():
    print_intro()
 </code></pre>
 
 <h3> Parameter Example  </h3> -->
-<!-- <pre class="language-python"><code>def print_opinion(num): 
+<!-- <pre class="language-python"><code>def print_opinion(num):
   """
   This function requires a single piece of information!
   Inside the definition we will refer to the information provided
   as num.
   """
-  if num == 5: 
-     print("I love 5!") 
-  else: 
-     print("Whatever") 
+  if num == 5:
+     print("I love 5!")
+  else:
+     print("Whatever")
 
-def main(): 
+def main():
   # when calling the function, we must provide the information
-  print_opinion(5): 
+  print_opinion(5):
 
   # which can be as a literal number or as a variable
   user_num = int(input("enter a num: "))
@@ -460,7 +460,7 @@ def main():
 </code></pre> -->
 
 <!-- <h3> Parameter and Return Example </h3>
-<pre class="language-python"><code>def meters_to_cm(meters): 
+<pre class="language-python"><code>def meters_to_cm(meters):
    """
    This simple function expects information in: a number of meters
    and provides information back: the corresponding number of cm.
@@ -479,30 +479,30 @@ def main():
 </code></pre> -->
 
 <!-- <h3> Contrasting case: print vs. return: </h3>
-<pre class="language-python"><code># how is this function 
-def meters_to_cm_case1(meters): 
-   return 100 * meters 
+<pre class="language-python"><code># how is this function
+def meters_to_cm_case1(meters):
+   return 100 * meters
 
-# Different than this function? 
-def meters_to_cm_case2(meters) 
-   print(100 * meters) 
+# Different than this function?
+def meters_to_cm_case2(meters)
+   print(100 * meters)
 </code></pre>
 
 <p> Returning is not the same as printing. Return gives a number back to the part of the program that called your function. Print puts the value on the console. </p>
 
 <h3> Multiple Return Statements </h3>
-<p><pre class="language-python"><code>def max(num1, num2): 
+<p><pre class="language-python"><code>def max(num1, num2):
    """
    this function has multiple return statements. When the function executes,
    if it hits a return statement it immediately halts and gives back the specified info
    """
-   if num1 >= num2: 
+   if num1 >= num2:
       # this return statement only happens if the condition in the if-statement is true
-      return num1    
+      return num1
    return num2
 
-def main(): 
-   larger = max(5,1)  
+def main():
+   larger = max(5,1)
 </code></pre></p> -->
 
 <!-- <h3>Big Example</h3>
@@ -515,7 +515,7 @@ def main():
 
 <div class="col-12 col-sm-6">
   <center><h3>Using Functions</h3></center>
-  <pre class="language-python"><code>def main(): 
+  <pre class="language-python"><code>def main():
     print("Welcome to the CodeInPlace Game Show")
     print("Pick a door and win a prize")
     print("------------------------------------")
@@ -541,9 +541,9 @@ def get_door():
 
 def compute_prize(door):
     """
-    Compute prize, based off the door which is 
-    given as a parameter. Returns the prize. 
-    Uses many non-constant magic-numbers just to 
+    Compute prize, based off the door which is
+    given as a parameter. Returns the prize.
+    Uses many non-constant magic-numbers just to
     make the game more fun to play in class!
     """
     prize = 4
@@ -558,7 +558,7 @@ def compute_prize(door):
     elif door == 3 :
         # what happens in door 3?
         for i in range(door):
-            prize += i  
+            prize += i
     return prize</code></pre>
 
 </div>
@@ -566,7 +566,7 @@ def compute_prize(door):
 
 <div class="col-12 col-sm-6">
   <center><h3>Without Functions</h3></center>
-  <pre class="language-python"><code>def main(): 
+  <pre class="language-python"><code>def main():
     print("Welcome to the CodeInPlace Game Show")
     print("Pick a door and win a prize")
     print("------------------------------------")
@@ -590,7 +590,7 @@ def compute_prize(door):
             prize += 6
     elif door == 3 :
         for i in range(door):
-            prize += i  
+            prize += i
 
     # Part 3: report the prize
     print('You win ' + str(prize) + ' treats')</code></pre>
@@ -703,7 +703,7 @@ The run starts with the lines in the caller function and goes over to run the li
 
 <h1>Parameter Passing</h1>
 
-<p>Suppose we have a paint_window() function that fills a computer window with a color. We want a way to tell the function <b>what</b> color to use when calling it &mdash; blue or red or whatever. 
+<p>Suppose we have a paint_window() function that fills a computer window with a color. We want a way to tell the function <b>what</b> color to use when calling it &mdash; blue or red or whatever.
 
 <p>A parameter is extra information supplied by the caller that customizes the run of the called function. We will learn all the details of parameters in time. For today, it's sufficient that a function can take a parameter, and the parameter value is "passed in" as part of the call simply by including the desired value within the parenthesis.
 
