@@ -36,15 +36,17 @@
 
 <p> This is importing the TextGrid module, so that it is accessible in the code you write. This is similar to when you used <code> import random </code> to use the random number generator library  </p>
 
-<p> Each TextGrid object is made up of Cell objects </p>
-
 <h3> Functions in TextGrid Library </h3>
 
 <p> You can create a TextGrid object by reading from a text file and storing it in a variable</p>
 
-<code class="language-python">grid = SimpleImage(TextGrid)  </code>
+<code class="language-python">grid = TextGrid('foo').txt  </code>
 
-<h3> Accessing Cells in a TextGrid </h3>
+<p> You can create a blank TextGrid object by specifying a width and a height</p>
+
+<code class="language-python">grid = TextGrid.blank(400,200)  </code>
+
+<h3> Accessing Letters in a TextGrid </h3>
 
 <p> We can use a new kind of loop called a "for-each" loop. Here's what it looks like: </p>
 
@@ -54,9 +56,9 @@
 
 <p> Here's how to use a for-each loop with a TextGrid: </p>
 
-<pre class="language-python"><code>grid = SimpleImage(TextGrid)
-for cell in grid:
-        # The code here gets repeated once for each cell in image 
+<pre class="language-python"><code>
+for letter in grid:
+        # The code here gets repeated once for each letter in the grid
 </code></pre>
 
 <h3> Accessing data inside a TextGrid element </h3>
@@ -67,13 +69,13 @@ for cell in grid:
 
 <p> Each cell in a TextGrid also has properties: </p>
 
-<p> You can get the x and y coordinates of a pixel in an image: </p>
+<p> You can get the x and y coordinates of a letter: </p>
 
-<code class="language-python">cell.x, cell.y </code>
+<code class="language-python">letter.x, letter.y </code>
 
 <p> You can also get the character value storied in a cell: </p>
 
-<code class="language-python">cell.value </code>
+<code class="language-python"> letter = grid.get_letter(x, y) </code>
 
 <h2> Advanced TextGrid functionality </h2>
 
@@ -84,19 +86,19 @@ for cell in grid:
 <pre class="language-python"><code>grid = TextGrid.blank(5, 3), grid = TextGrid.blank(width=5, height=3)
 </code></pre>
 
-<h3> Accessing a cell by its x, y coordinates </h3>
+<h3> Accessing a letter by its x, y coordinates </h3>
 
-<p> The top left of the grid corresponds to x=0, y=0. x-coordinates get larger as you move to the right, and y-coordinates get larger as you move down. Note that this function returns a cell, not a character -- to get the value of the grid (e.g. 'A', 'T', 'C', 'G', etc.) use <code> cell.value </code>
+<p> The top left of the grid corresponds to x=0, y=0. x-coordinates get larger as you move to the right, and y-coordinates get larger as you move down. 
 </p>
 
-<pre class="language-python"><code> myCell = grid.get_cell(x,y)
+<pre class="language-python"><code> myLetter = grid.get_letter(x,y)
 </code></pre>
 
-<h3> Setting the value of a certain cell in a grid by its x, y coordinates </h3>
+<h3> Setting the value of a certain letter in a grid by its x, y coordinates </h3>
 
-<p> If you have a cell (such as one returned by get_cell) and you want to place it directly into a grid, you can do so with the following function: <code> grid.set_cell(x, y, cell) </code></p>
+<p> If you have a letter (such as one returned by get_letter) and you want to place it directly into a grid, you can do so with the following function: <code> grid.set_letter(x, y, letter) </code></p>
 
-<p> If you have a character value (ex. 'A', 'T', 'C', 'G', '_', 'O', 'X') and you want to set the nucleotide at x, y to that value, you can do so with the following function: <code> grid.set_value(x, y, value) </code></p>
+<p> If you have a character value (ex. 'A') and you want to set the letter at x, y to that value, you can do so with the following function: <code> grid.set_value(x, y, value) </code></p>
 
 <p> Note: x and y should be integers and x must be in the range 0 to width-1 (inclusive) and y must be in the range 0 to height-1 (inclusive); value should be a string that is one character long </p>
 
@@ -110,7 +112,8 @@ for cell in grid:
     # loop over all the rows 
       for x in range(grid.width): 
       # loop over all the columns 
-      character = grid.get_value(x, y) # do something with character 
+      character = grid.get_letter(x, y) # do something with character 
+      character.show()
       return grid
 </code></pre>
 
