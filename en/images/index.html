@@ -185,6 +185,77 @@
 
 <br>
 
+<br />
+<h2> Syntax Reference </h2>
+<table style="width:100%; border: 1px solid grey; border-radius: 5px; border-collapse: separate; border-spacing: 10px;">
+  <tr>
+    <th td style="padding-left: 10px;">Action</th>
+    <th>Syntax</th>
+  </tr>
+  <tr>
+    <td style="padding-left: 10px;">import <code>simpleimage</code> library</td>
+    <td><code class="language-python">from simpleimage import SimpleImage</code></td>
+  </tr>
+  <tr>
+    <td style="padding-left: 10px;">Read an image from a filename</td>
+    <td><code class="language-python">image = SimpleImage(filename)</code></td>
+  </tr>
+  <tr>
+    <td style="padding-left: 10px;">Loop over pixels in an image</td>
+    <td style="padding-right: 10px;">
+        <pre class="language-python">
+for pixel in image:
+    # Use pixel in here
+        </pre>
+    </td>
+  </tr>
+  <tr>
+    <td style="padding-left: 10px;">Access data inside an element</td>
+    <td>
+        Color properties: <code class="language-python">pixel.red</code>, <code class="language-python">pixel.green</code>, <code class="language-python">pixel.blue</code>
+        <br />
+        Location properties: <code class="language-python">pixel.x</code>, <code class="language-python">pixel.y</code>
+    </td>
+  </tr>
+  <tr>
+    <td style="padding-left: 10px;">Displaying the image</td>
+    <td>
+        <code class="language-python">image.show()</code>
+    </td>
+  </tr>
+  <tr>
+    <td style="padding-left: 10px;">Accessing Image Size</td>
+    <td>
+        <code class="language-python">image.width</code>, <code class="language-python">image.height</code>
+    </td>
+  </tr>
+  <tr>
+    <td style="padding-left: 10px;">Create a blank image with specified dimensions</td>
+    <td>
+        <code class="language-python">image = SimpleImage.blank(width, height)</code>
+    </td>
+  </tr>
+  <tr>
+    <td style="padding-left: 10px;">Accessing pixel from coordinates</td>
+    <td>
+        <code class="language-python">pixel = image.get_pixel(x, y)</code>
+    </td>
+  </tr>
+  <tr>
+    <td style="padding-left: 10px;">Set a pixel with coordinates</td>
+    <td>
+        <code class="language-python">image.set_pixel(x, y, pixel)</code>
+    </td>
+  </tr>
+  <tr>
+    <td style="padding-left: 10px;">Resize an image to be the same size as another image</td>
+    <td>
+        <code class="language-python">image.make_as_big_as(target_image)</code>
+    </td>
+  </tr>
+</table>
+<br />
+
 <h2> What is an image? </h2>
 
 <p> An image is made of square pixels. </p>
