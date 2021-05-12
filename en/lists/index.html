@@ -129,6 +129,9 @@
         <li>
             <a href="../TextGrid">TextGrid</a>
         </li>
+        <li>
+            <a href="../lists">Lists</a>
+        </li>
         
         <!--<li>
             <a href="../if"><code>if</code> and comparisons</a>
@@ -179,7 +182,45 @@
 <h1>Python Lists</h1>
 <hr/>
 
-<p>A list contains series of any data type: strings, ints, other lists. The things inside a list are generically called "elements". Unlike strings, lists are "mutable" - they can be changed.
+<h2> What is a list? </h2>
+<p> 
+<ul>
+	<li> A list is way to keep track of an ordered collection of items </li>
+		<ul> 
+			<li> Items in the list are called "elements"</li>
+			<li> Ordered: can refer to elements by their position</li>
+			<li> Collection: list can contain multiple items</li>
+		</ul>
+	<li> The list dynamically adjusts its size as elements are added or removed</li>
+</ul>
+</p>
+
+<h2> Creating Lists </h2>
+<p> 
+<ul> 
+	<li> Lists start/end with brackets. Elements are separated by commas. </li>
+	<pre class="language-python"><code>
+	my_list = [1, 2, 3]
+ 	reals = [4.7, -6.0, 0.22, 1.6]
+	strs = ['lots', 'of', 'strings', 'in', 'list']
+	mix = [4, 'hello', -3.2, True, 6]
+	empty_list = []
+</code></pre>
+	<li> *Note: A list with one element is not the same as the element! <code> 3 </code> is not the same as <code> [3] </code></li>
+</ul>
+</p>
+
+<h2> Accessing Elements of a List </h2>
+<p> Consider the following list: </p>
+<pre class="language-python"><code>
+letters = ['a', 'b', 'c', 'd', 'e']
+</code></pre>
+<p> We can think of the list like a series of variables that are indexed, where the indexes start from 0.</p>
+
+<img src=../../img/pythonreader/lists/list.png alt="alt: list of ['a', 'b', 'c', 'd', 'e']. a has index 0, b has index 1, c has index 2, d has index 3, and e has index 4">
+
+
+<!-- <p>A list contains series of any data type: strings, ints, other lists. The things inside a list are generically called "elements". Unlike strings, lists are "mutable" - they can be changed.
 
 <p>Using the standard indexing scheme, the first element is at index 0, the next at index 1, and so on up to index length-1. As elements are added and removed, Python maintains the elements as contiguous block alwayx indexed by the numbers 0..length-1 inclusive.
 
@@ -192,7 +233,7 @@
 <p>Here is what that list looks like in memory
 
 <p>
-<img src=../../img/pythonreader/lists/python-listabc.png alt="alt: list of ['a', 'b', 'c']">
+<img src=../../img/pythonreader/lists/python-listabc.png alt="alt: list of ['a', 'b', 'c']"> -->
 
 
 <h2>Basic Operations</h2>
@@ -343,25 +384,25 @@ ValueError: 'x' is not in list
 
 <p><code>lst.insert(index, x)</code>  - insert the element x so it is at the given index, shifting elements towards the end of the list as needed. Use index=len(lst) to insert at the end. Append() is simpler since it just goes on the end without any shifting and you don't have to think about index numbers.
 
-<p><code>lst.copy()</code> - returns a copy of lst. You could use this to loop over a list and also modify it - loop over a copy, modify the original. (mentioned for completeness, I don't think we will ever need this function in CS106A.)
+<pre> 
+>>> jedi = ['luke', 'obiwan']
+>>> jedi.insert(1, 'mehran')
+>>> jedi
+['luke', 'mehran', 'obiwan']
+</pre>
+
 
 
 <p>More details at official
 <a href='https://docs.python.org/3/library/stdtypes.html#sequence-types-list-tuple-range'>Python List Docs</a>
 
-
+<!-- 
 <a name=listslice>
-<h2>List Slices</h2>
+<h2>List Slices</h2> -->
 
-<p>Slices work to pull out parts of list just as with strings.
+<!-- 
 
-<pre>
-lst = ['a', 'b', 'c']
-lst[:2] -> ['a', 'b']
-lst[2:] -> ['c']
-</pre>
-
-<p>The original list is not modified, this creates a new list populated with elements from the original. Omitting both start and end indexes yields a copy of the whole list - <code>lst[:]</code>
+<p>The original list is not modified, this creates a new list populated with elements from the original. Omitting both start and end indexes yields a copy of the whole list - <code>lst[:]</code> -->
 
 
 <h2>Foreach loop - for elem in list</h2>
@@ -375,7 +416,7 @@ for url in urls:
     print(url)
 </pre>
 
-<p>Style: it's a nice pattern to name the list variable with the letter "s"  like "urls". Then the loop variable can use the singular form "url" - confirming as you type that the loop variable and what's in the collection match up. Many Python bugs amount to mixing up what type of data is in a variable, so this convention can help you keep in mind what is in the collection.
+<!-- <p>Style: it's a nice pattern to name the list variable with the letter "s"  like "urls". Then the loop variable can use the singular form "url" - confirming as you type that the loop variable and what's in the collection match up. Many Python bugs amount to mixing up what type of data is in a variable, so this convention can help you keep in mind what is in the collection. -->
 
 
 <h2>Index loop - for i in range</h2>
@@ -401,14 +442,32 @@ for i in range(10):
 # lst = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
 </pre>
 
-<a name=del>
+<h2> Variables passed as parameters </h2>
+
+<table style="width:100%; color: black">
+  <tr>
+    <th>Variables that act like they are copied (called immutable)</th>
+    <th>Variables that act like their URL is copied (called mutable)</th>
+  </tr>
+  <tr>
+    <td>integer, float, boolean, string</td>
+    <td>canvas, pixel, SimpleImage, list</td>
+  </tr>
+   <tr>
+    <td>These types are called "immutable". You get copies of values for parameters</td>
+    <td>These types are called "mutable". You get reference (RUL) for parameters. They are changed in place when you assign</td>
+  </tr>
+</table>
+
+
+<!-- <a name=del>
 <h2>List Del</h2>
 
 <p>This is more rarely used, but it can be a handy syntax.
 
-<p>The <code>del</code> feature is Python deletes items out of a list or dict, modifying the structure in place. For its syntax, basically write a square bracket expression to refer to an element, and <code>del</code> can delete that element. Like this
+<p>The <code>del</code> feature is Python deletes items out of a list or dict, modifying the structure in place. For its syntax, basically write a square bracket expression to refer to an element, and <code>del</code> can delete that element. Like this -->
 
-<pre>
+<!-- <pre>
 >>> lst = ['a', 'b', 'c']
 >>> lst[0]
 'a'
@@ -418,8 +477,8 @@ for i in range(10):
 >>>
 >>> # Elements shift over to stay in 0..len-1, so now [0] is 'b'
 >>> lst[0]
-'b'
-</pre>
+'b' -->
+<!-- </pre>
 
 <p>Python list elements are are kept in contiguous block, with index numbers 0..len-1. Therefore, deleting an element from a list, Python will automatically shift over the elements to its right to keep the elements contiguous.
 
@@ -432,7 +491,7 @@ for i in range(10):
 ['a', 'd']
 </pre>
 
-<p>Del works with dicts too.
+<p>Del works with dicts too. -->
 
 
             </div>
