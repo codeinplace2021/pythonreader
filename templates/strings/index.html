@@ -1,20 +1,162 @@
 %rebase templates/parts/chapter.html
 
 
-<h1>Python Strings</h1>
+<h1>Strings & Text Processing</h1>
 <hr/>
+
+<h2> Strings are immutable </h2>
+
+<p> What does this mean? Let's say we have the string: </p>
+
+<pre class="language-python"><code> s = "brahm"
+</code></pre>
+
+<p> Now, let's say that Brahm wants to change the string, so that the 'b' in his name is capitalized, like this: <code> "Brahm" </code></p>
+
+<p> To do that, Brahm might want to write a line of code like this, the same way you would change an element of a list:</p>
+
+<pre class="language-python"><code> s[0] = "B" 
+#this won't work!
+</code></pre>
+
+<p> But when he does this, Brahm runs into an error message: </p>
+
+<pre>
+TypeError: 'str' object does not support item assignment
+</pre>
+
+<p> This is a key difference between strings and lists: strings can't be mutated. The only way to change a string variable is to reassign it and make a new string. </p>
+
+<p> So, Brahm can create a new string to capitalize the 'b' in his name: </p>
+
+<pre class="language-python"><code> str = "Brahm"
+</code></pre>
 
 <p>A Python string, like <code>'Hello'</code> stores text as a sequence of individual characters. Text is central to many compautions - urls, chat messages, the underlying HTML code that makes up web pages.
 
 <p>Python strings are written between single quote marks like <code>'Hello'</code> or alternately they can be written in double quote marks like <code>"There"</code>.
 
+<p> Immutability guarantees that string parameters won’t change, like in this example below. Click through the slides to see how the strings are stored in the computer's memory: </p>
+
+<iframe src="https://docs.google.com/presentation/d/e/2PACX-1vTUtvMaS3XErLrm4MW8AiZCovR6sREYs44eUFBbtEqIYEC0-6NghpubA1ZpQvpv__Wozyj__tq7lB9o/embed?start=false&loop=false&delayms=3000" frameborder="0" width="960" height="569" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
+
+<h2> String Functions </h2>
+
+<h3> <code> .upper() </code> and <code> .lower() </code></h3>
+<p> <code> .upper() </code> returns a string with all the letters in upper case, and <code> .lower() </code> returns a string with all the letters in lower case. </p>
 
 <pre>
-a = 'Hello'
-b = "isn't"
+s = "So long and thanks for all the fish"
+>>> s.upper()
+" SO LONG AND THANKS FOR ALL THE FISH  "
+
+>>> s.lower()
+" so long and thanks for all the fish  "
 </pre>
 
-<p>Each character in a string is drawn from the <a href='https://en.wikipedia.org/wiki/Unicode'>unicode</a> character set, which includes the "characters" or pretty much every language on earth, plus many emojis. See the <a href=#unicode>unicode section</a> below for more information.
+<h3> <code> .replace(char1, char2) </code> </h3>
+<p> <code> .replace(char1, char2) </code> replaces all instances of the first parameter with the second parameter </p>
+
+<pre>
+s = "So long and thanks for all the fish"
+>>> s.replace(“a”, “e”)
+“ So long end thenks for ell the fish  ”
+
+>>> s.replace(“s”, “”)
+“ o long and thank for all the fih  ”
+</pre>
+
+<h2> <code> .find(char) </code> </h2>
+<code> .find(char) </code> returns the first index of where the parameter (a character) occurs in the string. If the character is not in the string, the function returns -1. 
+
+<pre>
+s = "So long and thanks for all the fish"
+>>> s.find(“n”)
+6
+
+>>> s.find(“x”)
+-1
+</pre>
+
+<h2> .strip() </h2>
+<code> .strip() </code> removes all the white space at the beginning and end of the string. 
+
+<pre>
+s = "So long and thanks for all the fish"
+>>> s.strip()
+“So long and thanks for all the fish”
+</pre>
+
+<h2> .split() </h2>
+<code> .split </code> splits the string into a list. If you don't pass any parameters, the string is split by spaces: 
+
+<pre>
+s = "So long and thanks for all the fish"
+>>> s.split()
+[“So”, “long”, “and”, “thanks”, “for”, “all”, “the”, “fish”]
+</pre>
+
+If you do pass a parameter, the string will be split by the parameter that you pass. So, if you pass in a comma as a parameter, the string will be separated by commas. 
+
+<pre>
+names = “Bruce,Diana,Victor,Barry,Clark,Arthur,Hal”
+>>> names.split(“,”)
+[“Bruce”, “Diana”, “Victor”, “Barry”, “Clark”, “Arthur”, “Hal”]
+</pre>
+
+<h2> Some more string functions: </h2>
+<pre>
+>>> chant = “wakanda forever”
+>>> stop_balrog = “YOU SHALL NOT PASS”
+>>> spaces = “   ”
+>>> number = “42”
+
+>>> chant.startswith(“wak”)
+True
+>>> stop_balrog.startswith(“you”)
+False
+>>> chant.endswith(“ver”)
+True
+
+>>> chant.title()
+“Wakanda Forever”
+
+>>> chant.islower()
+True
+>>> spaces.isspace()
+True
+>>> number.isdigit()
+True
+</pre>
+
+<p> Because strings are immutable, these functions don’t change the string and return a new string instead.</p>
+
+<h2> How to Process A String </h2>
+
+<p> Processing a string involves transforming or inspecting the contents of the string </p>
+
+<table style="width:100%; border: 1px solid black;">
+  <tr style = "border: 1px solid black"> 
+  	<th style = "border: 1px solid black"> If you need both the index (i) and the character (char), use a for i in range loop</th>
+  	<th style = "border: 1px solid black"> If you need just the character (char), use a for-each loop</th>
+  </tr>
+  <tr style = "border: 1px solid black">
+    <th style = "border: 1px solid black"><pre class="language-python"><code> for i in range(len(s)):
+	char = s[i]
+	# process char
+</code></pre></th>
+    <th style = "border: 1px solid black"><pre class="language-python"><code> for char in s:
+	# process char
+</code></th>
+  </tr>
+</table>
+
+<h2> Reversing a string </h2>
+
+<iframe src="https://docs.google.com/presentation/d/e/2PACX-1vR9qzRvN1sS-R-4lQ8_mIXcftWXJr6Dfh7nWWdAAHGltk_V3HGm1eBCmCU4h6pXDneXU0bjnzkm3Mlq/embed?start=false&loop=false&delayms=3000" frameborder="0" width="960" height="569" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
+
+
+<!-- <p>Each character in a string is drawn from the <a href='https://en.wikipedia.org/wiki/Unicode'>unicode</a> character set, which includes the "characters" or pretty much every language on earth, plus many emojis. See the <a href=#unicode>unicode section</a> below for more information. -->
 
 
 
@@ -29,7 +171,7 @@ Maybe more of a lecture-ism
 <p>That is a string, as we can see from the quote marks. It's a string length 4 made of the four typed characters '1' '2' '3' and '4'.
 -->
 
-<h2>String len()</h2>
+<!-- <h2>String len()</h2>
 
 <p>The len() function returns the length of a string, the number of chars in it. It is valid to have a string of zero characters, written just as <code>''</code>, called the "empty string". The length of the empty string is 0. The len() function in Python is omnipresent - it's used to retrieve the length of <i>every</i> data type, with string just a first example.
 
@@ -126,14 +268,14 @@ True
 False
 >>> '' in 'abcd'       # empty string in always True
 True
-</pre>
+</pre> -->
 
 <!--
 We have the basics, len(s), s[0]
 Here are the most useful Python string functions (mostly noun.verb form):
 -->
 
-<h2>Character Class Tests</h2>
+<<!-- h2>Character Class Tests</h2>
 
 <p>The characters that make up a string can be divided into several categories or "character classes":
 
@@ -151,12 +293,12 @@ Here are the most useful Python string functions (mostly noun.verb form):
 
 <p><code>s.isalpha()</code> - True for alphabetic "word" characters like <code>'abcXYZ'</code> (applies to "word" characters in other unicode alphabets too like <code>'Σ'</code>)
 
-<p><code>s.isdigit()</code> - True if all chars in s are digits <code>'0..9'</code>
+<p><code>s.isdigit()</code> - True if all chars in s are digits <code>'0..9'</code> -->
 
 <!-- not worth it!
 <p><code>s.isalnum()</code> - alphanumeric, just combines isalpha() and isdigit()
 -->
-
+<!-- 
 <p><code>s.isspace()</code> - True for whitespace char, e.g. space, tab, newline
 
 <p><code>s.isupper(), s.islower()</code> - True for uppercase / lowercase alphabetic chars. False for other characters like <code>'9'</code> and <code>'$'</code> which do not have upper/lower versions.
@@ -347,7 +489,7 @@ Third line
 'val: 45'
 </pre>
 
-<p>There are many, many other options for format markers, but {:.4g} is a good one to know for the common situation of printing float values.
+<p>There are many, many other options for format markers, but {:.4g} is a good one to know for the common situation of printing float values. -->
 
 <!-- njp - more detail on replace -->
 
