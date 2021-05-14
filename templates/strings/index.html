@@ -159,10 +159,10 @@ True
 </p>
 
 <pre class="language-python"><code>def reverse_string(s):
-reverse = “”
-for ch in s:
-reverse = ch + reverse
-return reverse 
+	reverse = “”
+	for ch in s:
+	reverse = ch + reverse
+	return reverse 
 
 def is_palindrome(str): 
 	normalized = normalize(str)
@@ -179,6 +179,18 @@ This function removes all spaces and punctuation from a string
 			normalized += ch.lower()
 	return normalized
 </code> </pre>
+
+<h2> Solving a Puzzle </h2>
+
+<p> Let's return to the story of Bright Simons, who came up with the mPedigree problem. A significant problem people with malaria face is with counterfeit medicine. In 2013, the UN estimated that 700,000 people die each year because they are given counterfeit drugs. Bright Simons wanted to find a way to prevent that malaria patients from receiving counterfeit medicine. </p>
+
+<iframe src="https://docs.google.com/presentation/d/e/2PACX-1vTNCgqMwPhcFGJTnBJy2MyRpIzanpYWh4TVKQg2A2L-RRMyYhXkqmy67afpJ6M5mi0S1jahEH2rUAlo/embed?start=false&loop=false&delayms=3000" frameborder="0" width="960" height="569" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
+
+<p> Here's how Bright Simon's solution works: Each box of medicine from the manufacturer has a label with a number on it. Someone can then take that number, and text it to mPedigree. If that number comes from a manufacturer, mPedigree will let them know. If that number comes from a counterfeiter who just put a random number on the box, mPedigree can tell the patient to not take the medicine. </p>
+
+<p> You now have all the knowledge needed to implement Bright Simon's solution in Python. How can we write a function that generates these numbers for his solution? </p>
+
+<iframe src="https://docs.google.com/presentation/d/e/2PACX-1vTTm9Uq8qTsztzCpIZ2hjHYGQ0B-5W4fuq7cF_lUVYJYssAYvCLcWk9ZeLztR_XV8zDdoZ63PHqaffv/embed?start=false&loop=false&delayms=3000" frameborder="0" width="960" height="569" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
 
 
 <!-- <p>Each character in a string is drawn from the <a href='https://en.wikipedia.org/wiki/Unicode'>unicode</a> character set, which includes the "characters" or pretty much every language on earth, plus many emojis. See the <a href=#unicode>unicode section</a> below for more information. -->
@@ -518,7 +530,7 @@ Third line
 
 <!-- njp - more detail on replace -->
 
-<a name=loops>
+<!-- <a name=loops>
 <h2>String Loops</h2>
 
 <p>Standard i/range() loop goes through all index numbers for s:
@@ -676,3 +688,4 @@ True
 <p>Not all computers have the ability to display all unicode chars, so the display of a string may fall back to something like \x0001F489 - telling you the hex digits for the char, even though it can't be drawn on screen.
 
 
+ -->
