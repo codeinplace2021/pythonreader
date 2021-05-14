@@ -336,6 +336,31 @@ True
 
 <iframe src="https://docs.google.com/presentation/d/e/2PACX-1vR9qzRvN1sS-R-4lQ8_mIXcftWXJr6Dfh7nWWdAAHGltk_V3HGm1eBCmCU4h6pXDneXU0bjnzkm3Mlq/embed?start=false&loop=false&delayms=3000" frameborder="0" width="960" height="569" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
 
+<p> We can use the code we wrote to reverse a string to check if a string is a palindrome! A palindrome is a word that reads the same way from the front and from the back. Here are some examples: kayak, A man, a plan, a canal - Panama! Here's a palindrome in Hindi: कडक
+</p>
+
+<pre class="language-python"><code>def reverse_string(s):
+reverse = “”
+for ch in s:
+reverse = ch + reverse
+return reverse 
+
+def is_palindrome(str): 
+	normalized = normalize(str)
+	rev = reverse_string(normalized)
+	return normalized == rev
+
+def normalize(str): 
+'''
+This function removes all spaces and punctuation from a string
+'''
+	normalized = ''
+	for ch in str: 
+		if ch.isalpha(): 
+			normalized += ch.lower()
+	return normalized
+</code> </pre>
+
 
 <!-- <p>Each character in a string is drawn from the <a href='https://en.wikipedia.org/wiki/Unicode'>unicode</a> character set, which includes the "characters" or pretty much every language on earth, plus many emojis. See the <a href=#unicode>unicode section</a> below for more information. -->
 
@@ -456,7 +481,7 @@ We have the basics, len(s), s[0]
 Here are the most useful Python string functions (mostly noun.verb form):
 -->
 
-<<!-- h2>Character Class Tests</h2>
+<!-- h2>Character Class Tests</h2>
 
 <p>The characters that make up a string can be divided into several categories or "character classes":
 
