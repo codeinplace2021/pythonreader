@@ -225,10 +225,10 @@ TypeError: 'str' object does not support item assignment
 <pre>
 s = "So long and thanks for all the fish"
 >>> s.upper()
-"SO LONG AND THANKS FOR ALL THE FISH"
+" SO LONG AND THANKS FOR ALL THE FISH  "
 
 >>> s.lower()
-"so long and thanks for all the fish"
+" so long and thanks for all the fish  "
 </pre>
 
 <h3> <code> .replace(char1, char2) </code> </h3>
@@ -236,11 +236,11 @@ s = "So long and thanks for all the fish"
 
 <pre>
 s = "So long and thanks for all the fish"
->>> s.replace("a", "e")
-"So long end thenks for ell the fish"
+>>> s.replace(“a”, “e”)
+“ So long end thenks for ell the fish  ”
 
->>> s.replace("s", "")
-"So long and thank for all the fih"
+>>> s.replace(“s”, “”)
+“ o long and thank for all the fih  ”
 </pre>
 
 <h2> <code> .find(char) </code> </h2>
@@ -248,10 +248,10 @@ s = "So long and thanks for all the fish"
 
 <pre>
 s = "So long and thanks for all the fish"
->>> s.find("n")
+>>> s.find(“n”)
 5
 
->>> s.find("x")
+>>> s.find(“x”)
 -1
 </pre>
 
@@ -261,7 +261,7 @@ s = "So long and thanks for all the fish"
 <pre>
 s = "      So long and thanks for all the fish       "
 >>> s.strip()
-"So long and thanks for all the fish"
+“So long and thanks for all the fish”
 </pre>
 
 <h2> <code> .split() </code> </h2>
@@ -270,33 +270,33 @@ s = "      So long and thanks for all the fish       "
 <pre>
 s = "So long and thanks for all the fish"
 >>> s.split()
-["So", "long", "and", "thanks", "for", "all", "the", "fish"]
+[“So”, “long”, “and”, “thanks”, “for”, “all”, “the”, “fish”]
 </pre>
 
 If you do pass a parameter, the string will be split by the parameter that you pass. So, if you pass in a comma as a parameter, the string will be separated by commas. 
 
 <pre>
-names = "Bruce,Diana,Victor,Barry,Clark,Arthur,Hal"
->>> names.split(",")
-["Bruce", "Diana", "Victor", "Barry", "Clark", "Arthur", "Hal"]
+names = “Bruce,Diana,Victor,Barry,Clark,Arthur,Hal”
+>>> names.split(“,”)
+[“Bruce”, “Diana”, “Victor”, “Barry”, “Clark”, “Arthur”, “Hal”]
 </pre>
 
 <h2> Some more string functions: </h2>
 <pre>
->>> chant = "wakanda forever"
->>> stop_balrog = "YOU SHALL NOT PASS"
->>> spaces = "   "
->>> number = "42"
+>>> chant = “wakanda forever”
+>>> stop_balrog = “YOU SHALL NOT PASS”
+>>> spaces = “   ”
+>>> number = “42”
 
->>> chant.startswith("wak")
+>>> chant.startswith(“wak”)
 True
->>> stop_balrog.startswith("you")
+>>> stop_balrog.startswith(“you”)
 False
->>> chant.endswith("ver")
+>>> chant.endswith(“ver”)
 True
 
 >>> chant.title()
-"Wakanda Forever"
+“Wakanda Forever”
 
 >>> chant.islower()
 True
@@ -336,7 +336,7 @@ True
 </p>
 
 <pre class="language-python"><code>def reverse_string(s):
-	reverse = ""
+	reverse = “”
 	for ch in s:
 	reverse = ch + reverse
 	return reverse 
