@@ -34,6 +34,201 @@
         </ul>
     </li>
 </ul>
+
+<h2> Dictionaries in Python </h2>
+
+<h3> Creating dictionaries </h3>
+<ul> 
+    <li> Dictionary start/end with braces: {}</li>
+    <li> Key:Value pairs are separated by a colon</li>
+    <li> Each pair is separated by a comma </li>
+</ul>
+
+<p> Here is how to create a dictionary that stores the ages of the members of our teaching team: Chris, Brahm, and Mehran. </p>
+
+<pre class="language-python"><code>ages = {'Chris': 32, 'Brahm': 23, 'Mehran': 50}
+</code></pre>
+
+<h3> Accessing elements of a dictionary: </h3>
+<p> 
+<ul> 
+    <li> We can use keys to access their associated value 
+        <br> 
+        <pre class="language-python"><code> ages['Chris'] # is 32
+    ages['Mehran'] # is 50
+</code></pre>
+<!--         <code> ages['Chris'] </code> is  32
+        <br> 
+        <code> ages['Mehran'] </code> is  50 -->
+    </li>
+    <li> We can set values like regular variables
+        <br> 
+<pre class="language-python"><code>ages['Mehran'] = 18 # sets Mehran's age to 18
+
+ages['Mehran'] += 3 # adds 3 to Mehran's age
+</code></pre>
+    </li>
+    <li> If we try to access a key that is not in the dictionary, we will get an error. For example, here is the console output if we try to find Brahm's age: 
+
+    <pre>>>> brahms_age = ages['Brahm']
+>>> brahms_age
+23
+    </pre>
+    However, we get an error if we try to access Santa Claus's age, which is not in the dictionary: 
+    <pre>>>> santas_age = ages['Santa Claus']
+KeyError: 'Santa Claus' 
+    </pre>
+    KeyError means that the key we provided is not in the dictionary.
+    </li>
+    <li> We can use the keyword <code>in</code> to check if a key is in a dictionary, using a boolean expression to return true or false: 
+    <pre>>>> 'Brahm' in ages
+True
+>>> 'Santa Claus' not in ages
+True
+    </pre>
+    </li>
+</ul>
+</p>
+
+<h3> Adding elements to a dictionary </h3>
+<ul> 
+    <li> We can add and change pairs in a dictionary 
+     <pre class="language-python"><code>phone = {} # starting with an empty dictionary 
+phone['Pat'] = '555-1212'
+phone['Jenny'] = '867-5309'
+phone['Pat'] = None
+phone['Pat'] = '867-5309'
+</code></pre>   
+    </li>
+    <li> Here’s what the dictionary looks like after these names are added: </li>
+    <pre class="language-python"><code>{'Pat': '867-5309', 'Jenny': '867-5309'}
+</code></pre>
+</ul>
+
+<h3> A word about Keys/Values </h3>
+<ul> 
+    <li> Keys must be immutable types (eg. int, float, string)
+        <ul> 
+            <li> Keys cannot be changed in place </li>
+            <li> If you want to change a key, need to remove key/value pair from dictionary and then add key/value pair with new key. </li>
+        </ul>
+    </li>
+    <li> Values can be mutable or immutable types (eg. int, float, string, lists, dictionaries -- yes, you can have a dictionary of dictionaries!)
+        <ul> 
+            <li> Values can be changed in place </li>
+        </ul>
+     </li>
+    <li> Dictionaries are mutable. This means changes made to a dictionary in a function persist after the function is done.</li>
+</ul>
+
+<p> Let's take a further look at the significance of dictionaries being mutable. Here's an example, which takes our dictionary of ages and adds one to the age when a person has a birthday: </p>
+
+<pre class="language-python"><code>def have_birthday(dict, name):
+    print("You're one year older, " + name + "!")
+    dict[name] += 1
+
+def main():
+    ages = {'Chris': 32, 'Brahm': 23, 'Mehran': 50}
+    print(ages)
+    have_birthday(ages, 'Chris')
+    print(ages)
+    have_birthday(ages, 'Mehran')
+    print(ages)
+</code></pre>
+
+<p> This is what the program prints out: </p>
+<pre>
+{'Chris': 32, 'Brahm': 23, 'Mehran': 50}
+You're one year older, Chris!
+{'Chris': 33, 'Brahm': 23, 'Mehran': 50}
+You're one year older, Mehran!
+{'Chris': 33, 'Brahm': 23, 'Mehran': 51}
+</pre>
+
+<p> Because dictionaries are mutable, changes made to the dictionary in the <code> have_birthday </code> function persist in the main function</p>
+
+<h3> Functions you can apply to dictionaries </h3>
+
+<p> We will now provide some useful functions you can apply to dictionaraies! We'll demonstrate them on our ages dictionary: </p>
+
+<pre> ages = {'Chris': 32, 'Brahm': 23, 'Mehran': 50} </pre>
+
+<h4> <code>  dict.get(key) </code> </h4>
+<p> Returns value associated with key in dictionary.  Returns <code>None</code> if key doesn't exist. </p>
+<pre>>>> print(ages.get('Chris'))
+32
+>>> print(ages.get('Santa Claus')) 
+None
+</pre>
+
+<h4> <code>  dict.get(key, default) </code></h4>
+<p> Returns value associated with key in dictionary.  Returns default if key doesn't exist.</p>
+<pre> >>> print(ages.get('Chris', 100))
+32
+>>> print(ages.get('Santa Claus', 100))
+100
+</pre>
+
+<h4> <code>  dict.keys() </code></h4>
+<p> Returns something similar to a range of the keys in dictionary. We can use this to loop over all the keys in a dictionary: </p>
+<pre class="language-python"><code>for key in ages.keys():
+    print(str(key) + ", " + str(ages[key]))
+</code></pre>
+<p> We can also turn <code> keys() </code> into a list using the <code>list</code> function</p>
+<pre> >>> list(ages.keys())
+    ['Chris', 'Brahm', 'Mehran']
+</pre>
+
+<p> We can also loop over a dictionary using for-each loop just using name of dictionary:</p>
+<pre class="language-python"><code>for key in ages:
+    print(str(key) + ", " + str(ages[key]))
+</code></pre>
+
+<h4> <code>  dict.values() </code></h4>
+<p> Returns something similar to a range of the values in dictionary. We can use this to loop over all the values in a dictionary: </p>
+<pre class="language-python"><code>for value in ages.values():
+      print(value)
+</code></pre>
+<p> We can also turn <code> values() </code> into a list using the <code>list</code> function</p>
+<pre>>>> list(ages.values())
+    [32, 23, 50]
+</pre>
+
+<h4> <code>  dict.pop(key) </code></h4>
+<p> Removes key/value pair with the given key.  Returns value from that key/value pair. </p>
+<pre>>>> ages
+>>> {'Chris': 32, 'Brahm': 23, 'Mehran': 50}
+>>> ages.pop('Mehran')
+50
+>>> ages
+{'Chris': 32, 'Brahm': 23}
+</pre>
+
+<h4> <code>  dict.clear() </code></h4>
+<p> Removes all key/value pairs in the dictionary. </p>
+<pre>>>> ages.clear()
+>>> ages
+{}
+</pre>
+
+<h4> <code>  len(dict) </code></h4>
+<p> Returns number of key/value pairs in the dictionary </p>
+<pre>>>> ages
+{'Chris': 32, 'Brahm': 23, 'Mehran': 50}
+>>> len(ages)
+3
+</pre>
+
+<h4> <code>  del dict[key] </code></h4>
+<p> Removes key/value pair with the given key. It's similar to pop, but doesn't return anything. </p>
+<pre>>>> ages
+{'Chris': 32, 'Brahm': 23, 'Mehran': 50}
+>>> del ages['Mehran']
+>>> ages
+{'Chris': 32, 'Brahm': 23}
+</pre>
+
+
 <!-- <p>The dict "dictionary" type is very important because it takes in disorganized data, organizes it,
 and it is <b>fast</b>. The dict here is based on the "hash table" data structure.
 You will learn how to build and analyze a hash table in CS106B, here we're happy to just use them. Many important algorithms leverage hash tables in some way since they can handle large data sets and remain fast.
