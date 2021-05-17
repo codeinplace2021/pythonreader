@@ -135,6 +135,9 @@
         <li>
             <a href="../strings">Strings</a>
         </li>
+        <li>
+            <a href="../dicts">Dictionaries</a>
+        </li>
         
         <!--<li>
             <a href="../if"><code>if</code> and comparisons</a>
@@ -182,16 +185,46 @@
             <div class="page">    
                 
 
-<h1>Python Dict</h1>
+<h1>Dictionaries</h1>
 <hr/>
 
-<p>The dict "dictionary" type is very important because it takes in disorganized data, organizes it,
+<h2> What are Dictionaries? </h2>
+
+<p> Dictionaries associate a <b> key </b> with a <b> value </b>
+<ul> 
+    <li> <b> Key </b> is a unique identifier</li>
+    <li> <b> Value </b> is something we associate with that key</li>
+</ul>
+</p>
+
+<p> Here are some examples of dictionaries in the real world: </p>
+<ul> 
+    <li> Phonebook:
+        <ul> 
+            <li> Keys: names </li>
+            <li> Values: phone numbers </li>
+        </ul>
+    </li>
+    <li> Dictionary
+        <ul> 
+            <li> Keys: words </li>
+            <li> Values: word definitions </li>
+        </ul>
+    </li>
+    <li> US Government
+        <ul> 
+            <li> Keys: Social Security number </li>
+            <li> Values: Information about an individual's employment </li>
+        </ul>
+    </li>
+</ul>
+<!-- <p>The dict "dictionary" type is very important because it takes in disorganized data, organizes it,
 and it is <b>fast</b>. The dict here is based on the "hash table" data structure.
 You will learn how to build and analyze a hash table in CS106B, here we're happy to just use them. Many important algorithms leverage hash tables in some way since they can handle large data sets and remain fast.
 
-'dict' is the name of the Python dict type, so we'll use just 'd' as a generic variable name.
+'dict' is the name of the Python dict type, so we'll use just 'd' as a generic variable name. -->
 
-<pre>
+<!-- <pre>
 d = {}                  # Create empty dict
 d['ca'] = 'California'  # 1. Set key/value pairs into dict
 d['ok'] = 'Oklahoma'
@@ -200,10 +233,10 @@ d['tx'] = 'Texas'
 val = d['nj']           # 2. Retrieve value by key
 val = d['xx']           # fails with KeyError
 check = 'nj' in d       # 3. in check -> True
-</pre>
+</pre> -->
 
 
-<p>1. <code>d['ca'] = 'California'</code> - with equal-sign: d[key] = xxx creates a key/value pair in the dict. If a pair was in there already, it is overwritten.
+<!-- <p>1. <code>d['ca'] = 'California'</code> - with equal-sign: d[key] = xxx creates a key/value pair in the dict. If a pair was in there already, it is overwritten.
 
 <p>2. <code>val = d['nj']</code> - referring to d[key] retrieves the value for that key, or is a KeyError. Code needs to check that the key is in before doing [ ] retrieval.
 
@@ -272,7 +305,7 @@ def print_counts3(counts):
     # unsorted
     for key,value in counts.items():
         print(key, value)
-</pre>
+</pre> -->
 
 
 <!--
@@ -355,7 +388,7 @@ without crashing should it hit the None case.
 -->
 
 
-
+<!-- 
 <h2>Tuples and Dicts</h2>
 
 <p>One handy use of tuples is the dict.items() function, which returns the entire contents of the dict as an list of len-2 (key, value) tuples.
@@ -380,7 +413,7 @@ for key,value in d.items():
     # use key and value in here
 </pre>
 
-<p>This is a special version of the for loop, where there are multiple variables, and the number of variables matches the size of a tuples coming off the list. The above example, looping key,value over dict.items() is probably the most common use of this multiple-variable variant of the for loop.
+<p>This is a special version of the for loop, where there are multiple variables, and the number of variables matches the size of a tuples coming off the list. The above example, looping key,value over dict.items() is probably the most common use of this multiple-variable variant of the for loop. -->
 
 
 
