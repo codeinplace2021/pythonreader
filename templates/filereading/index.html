@@ -2,7 +2,238 @@
 <h1>Python File Reading</h1>
 <hr/>
 
-<p>Python makes it easy to read the data out of a text file. There are a few different forms, depending on if you want to process the file line by line or all at once.
+<p> Chances are if you've used a computer before, you've interacted with files. Files are a powerful way to store data, and in this class you will learn how to use files in Python to analyze data! </p>
+
+<h2> A brief review of dictionaries </h2>
+<p> Dictionaries allow us to build <b> one-way </b> associations between one kind of data (which we call the <b> key </b>) and another (which we call the <b>value</b>). A common metaphor for them is a phone book, whose keys are people’s names and whose values are their phone numbers. It’s super easy to look someone’s number up if you know their name, but harder to do it the other way around.</p>
+
+<pre class="language-python"><code>>>> d = {}             # make an empty dictionary
+>>> d['brahm'] = 42    # associate the key ‘brahm’ with the value 42
+>>> d['julie'] = 5     # associate the key ‘julie’ with the value 5
+>>> d['julie'] = 8     # change the value for ‘julie’ to be 8
+                       # since keys need to be unique
+
+>>> d['brahm']         # get the value associated with ‘brahm’ 
+42
+>>> 'python' in d      # check whether a particular key is in the map
+False
+</code></pre>
+
+<h2> What is a file? </h2>
+
+<p> The following pictures represent how files on your computer look like on Mac, Windows, and Ed: </p>
+
+<iframe src="https://docs.google.com/presentation/d/e/2PACX-1vRCukEMsVNWn_2vY-hMKWlJ5zwtcNLEkqxL0YPKhYKBC-fgkJYY7xNC5IDI9Tn4Fk8Pv9SALteyKaTz/embed?start=false&loop=false&delayms=3000" frameborder="0" width="960" height="569" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
+
+<p> When you edit a word document, the program Microsoft Word is opening the file essay.docx. When you watch a video on your computer, the program VLC is opening the file Avengers: Endgame.mp4. When you listen to a song, the program iTunes is opening the file Thriller.mp3. </p>
+
+<p> You've also used files before, in Python. For example, when you write the line of code <code>img = SimpleImage("buddy.jpg")
+</code>, you are opening a file titled buddy.jpg. When you type <code>python3 program.py
+</code> into your terminal, the program python3 is opening the file program.py </p>
+
+<p> Files are used to store text, python programs, audio, video, and more. In your computer, all files are stores as a series of 0s and 1s. </p>
+
+<iframe src="https://docs.google.com/presentation/d/e/2PACX-1vRKIwNUYiOVV0vSE_sF70KJeZnzjqrfEb1RD8ww4D4wXo3Do2wmaimpnS12eFjTsO7HGgukpZ-vlfCC/embed?start=false&loop=false&delayms=3000" frameborder="0" width="960" height="569" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
+
+<p> In this class, we will focus on text files, which store data that a Python program can read. There are a few types of Python files. A .txt file stores text. A .csv file (short for Comma Separated Values), stores text separated by commas, which can be structured into a table. A .json file stores data that is structured like a dictionary. </p>
+
+<iframe src="https://docs.google.com/presentation/d/e/2PACX-1vTiQzmLzYoEFi-wBXcECzXE3nwq1GMcSK7zroJ5T9qN3SKLWZmFaDpsdsXXAXI0KP-SlY6khF5TcSBq/embed?start=false&loop=false&delayms=3000" frameborder="0" width="960" height="569" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
+
+<h2> Reading a file in Python </h2>
+
+<table style="width:100%; border: 1px solid black;">
+  <tr style="width:100%; border: 1px solid black;">
+    <th style="width:100%; border: 1px solid black;"> print_poem.py </th>
+    <th style="width:100%; border: 1px solid black;">invictus.txt</th>
+  </tr>
+  <tr style="width:100%; border: 1px solid black;">
+    <td style="width:100%; border: 1px solid black;"><pre class="language-python"><code>f = open(‘invictus.txt’)
+for line in f:
+	# process the line
+f.close()</code></pre></td>
+    <td style="width:100%; border: 1px solid black;"><pre> Out of the night that covers me,
+      Black as the pit from pole to pole,
+I thank whatever gods may be
+      For my unconquerable soul.
+.
+.
+.
+I am the master of my fate,
+      I am the captain of my soul.
+
+'Invictus', by William Ernest Henley
+</pre></td>
+  </tr>
+</table>
+
+<h3> Reading a file in Python: Newlines </h3>
+
+<p> Computers don’t know that lines are shown below one another in a file. They store all the lines in a file in one continuous block and separate the lines with a special <b>newline character</b>, <code>\n</code>.</p>
+
+<iframe src="https://docs.google.com/presentation/d/e/2PACX-1vQAd1UvlQId_ZF6-anbqqHPf3kgYbXdYW6NQtQqDBA1cKhA8HIRJYDkxNESCl3HeHfHztd_DL60tx7Q/embed?start=false&loop=false&delayms=3000" frameborder="0" width="960" height="569" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
+
+<h2> The file-reading loop</h2>
+
+<p> This is the canonical loop used to read a file. <code>.strip()</code> removes whitespace from each line. </p>
+
+<pre class="language-python"><code>with open(filename) as f:
+for line in f:
+	line = line.strip()  # or strip("\n"), lstrip(), rstrip() 
+	# process line</code></pre>
+
+<p> To skip a line in the file, you can use the function <code>next(filename)</code>. Here is the code to skip the first line of a poem: </p>
+
+<pre class="language-python"><code>f = open(‘invictus.txt’)
+next(f)
+for line in f:
+	# process the line
+f.close()</code></pre>
+
+<h2> <code>.read()</code> and <code>.readlines()</code></h2>
+<p> <code>.read()</code> and <code>.readlines()</code> are two other ways to read files. <code>.read()</code> reads the entire file into a string, and <code>.readlines()</code> reads the each line of the file, ending with a \n, into a list.</p>
+
+<pre class="language-python"><code>with open(filename) as f:
+   lines = f.readlines() #This reads the entire contents of the files into a string, including the \n newline characters
+
+with open(filename) as f:
+   lines = f.readlines() #This reads each line of a file (ending with a \n character) into a list
+</code></pre>
+
+<p> A gentle warning: f.read() and f.readlines() are handy, but shouldn’t be your first resort. If you try to read really big files, that takes up a lot of your computer’s memory, which you should try to avoid. You generally won’t need the contents of the entire file as a string or list, anyway.</p>
+
+<h2> Writing to Files </h2>
+
+<iframe src="https://docs.google.com/presentation/d/e/2PACX-1vQzMnDvtYO-jkN8HmHgbI-gEqz8HQCTvSR8HNuzmZFFPvLYy1DL0vIwgXp6vnX6VsTgZumErhed71Qt/embed?start=false&loop=false&delayms=3000" frameborder="0" width="960" height="569" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
+
+<h2> Visualizing Data</h2>
+
+<p> With everything you've learned in this course, you can know put it all together to write a program that visualizes data! In <a href="https://www.youtube.com/watch?v=Fj-qt6neUog" style="color:blue"> this example here, watch Brahm write a program that visualizes the population of cities in different countries. </a></p>
+
+<p> To do so, Brahm makes use of .csv files</p>
+
+<p> Looping through a <code> csv.reader </code> splits by commas for you</p>
+<table style="width:100%; border: 1px solid black;">
+  <tr style="width:100%; border: 1px solid black;">
+    <th style="width:100%; border: 1px solid black;"> USA.csv </th>
+    <th style="width:100%; border: 1px solid black;">plot_countries.py</th>
+  </tr>
+  <tr style="width:100%; border: 1px solid black;">
+    <td style="width:100%; border: 1px solid black;"><pre>City,Latitude,Longitude,Population
+New York,40.6943,-73.9249,18713220
+Los Angeles,34.1139,-118.4068,12750807
+Chicago,41.8373,-87.6862,8604203
+Miami,25.7839,-80.2102,6445545
+Dallas,32.7936,-96.7662,5743938
+Philadelphia,40.0077,-75.1339,5649300
+Houston,29.7863,-95.3889,5464251
+.
+.
+.
+</pre></td>
+    <td style="width:100%; border: 1px solid black;"><pre class="language-python"><code>import csv
+
+def plot_country():
+	with open("USA.csv") as f:
+		next(f)
+		reader = csv.reader(f)
+
+		for line in reader:
+			lat = float(line[1])
+			lon = float(line[2])
+</code></pre></td>
+  </tr>
+</table>
+
+<p> Looping through a <code>csv.DictReader</code> and gives you back each line as a dictionary whose keys are column names and whose values are that column’s value for that particular row</p>
+<table style="width:100%; border: 1px solid black;">
+  <tr style="width:100%; border: 1px solid black;">
+    <th style="width:100%; border: 1px solid black;"> USA.csv </th>
+    <th style="width:100%; border: 1px solid black;">plot_countries.py</th>
+  </tr>
+  <tr style="width:100%; border: 1px solid black;">
+    <td style="width:100%; border: 1px solid black;"><pre>City,Latitude,Longitude,Population
+New York,40.6943,-73.9249,18713220
+Los Angeles,34.1139,-118.4068,12750807
+Chicago,41.8373,-87.6862,8604203
+Miami,25.7839,-80.2102,6445545
+Dallas,32.7936,-96.7662,5743938
+Philadelphia,40.0077,-75.1339,5649300
+Houston,29.7863,-95.3889,5464251
+.
+.
+.
+</pre></td>
+    <td style="width:100%; border: 1px solid black;"><pre class="language-python"><code>import csv
+
+def plot_country():
+	with open("USA.csv") as f:
+		reader = csv.DictReader(f)
+
+		for line in reader:
+			lat = float(line[‘Latitude’])
+			lon = float(line[‘Longitude’])
+</code></pre></td>
+  </tr>
+</table>
+
+<p> A <code>csv.writer</code> allows you to write rows as lists of data, without worrying about things like \n characters</p>
+<table style="width:100%; border: 1px solid black;">
+  <tr style="width:100%; border: 1px solid black;">
+    <th style="width:100%; border: 1px solid black;"> data.csv </th>
+    <th style="width:100%; border: 1px solid black;">plot_countries.py</th>
+  </tr>
+  <tr style="width:100%; border: 1px solid black;">
+    <td style="width:100%; border: 1px solid black;"><pre>x,y
+1,2
+2,4
+4,6
+</pre></td>
+    <td style="width:100%; border: 1px solid black;"><pre class="language-python"><code>import csv
+
+def write_data():
+	with open("data.csv", "w") as f:
+		writer = csv.writer(f)
+		writer.writerow(["x", "y"])
+		writer.writerows([
+			[1,2],
+			[2,4],
+			[4,6]
+		])
+</code></pre></td>
+  </tr>
+</table>
+
+<p> A <code>csv.DictWriter</code> allows you to write rows as dictionaries of data, without worrying about things like \n characters</p>
+<table style="width:100%; border: 1px solid black;">
+  <tr style="width:100%; border: 1px solid black;">
+    <th style="width:100%; border: 1px solid black;"> data.csv </th>
+    <th style="width:100%; border: 1px solid black;">plot_countries.py</th>
+  </tr>
+  <tr style="width:100%; border: 1px solid black;">
+    <td style="width:100%; border: 1px solid black;"><pre>x,y
+1,2
+2,4
+4,6
+</pre></td>
+    <td style="width:100%; border: 1px solid black;"><pre class="language-python"><code>import csv
+
+def write_data():
+	with open("data.csv", "w") as f:
+		columns = [‘x’, ‘y’]
+		writer = csv.DictWriter(f)
+		writer.writeheader(fieldnames=columns)
+		writer.writerow({‘x’: 1, ‘y’: 2})
+		writer.writerow({‘x’: 2, ‘y’: 4})
+writer.writerow({‘x’: 4, ‘y’: 6})
+</code></pre></td>
+  </tr>
+</table>
+
+<h2> JSON Files </h2>
+<iframe src="https://docs.google.com/presentation/d/e/2PACX-1vS39da7C49z6_UCB-1x5feZrIa3GvUecx6zTK3fle4atoUt-YFaRBjpbaREK7Ef011sJBzfEafXkI6e/embed?start=false&loop=false&delayms=3000" frameborder="0" width="960" height="569" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
+
+
+<!-- <p>Python makes it easy to read the data out of a text file. There are a few different forms, depending on if you want to process the file line by line or all at once.
 
 <p>Here is the easiest code to open a file, read all the lines out of it, handling one line at a time.
 
@@ -162,7 +393,7 @@ f.close()
 $ <b>cat out.txt</b>
 Hello there
 Opposite or reading!
-</pre>
+</pre> -->
 
 &nbsp;
 
