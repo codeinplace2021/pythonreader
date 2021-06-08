@@ -370,7 +370,7 @@ f.close()</code></pre>
 </p>
 
 <pre class="language-python"><code>with open(filename) as f:
-   lines = f.readlines() #This reads the entire contents of the files into a string, including the \n newline characters
+   lines = f.read() #This reads the entire contents of the files into a string, including the \n newline characters
 
 with open(filename) as f:
    lines = f.readlines() #This reads each line of a file (ending with a \n character) into a list
